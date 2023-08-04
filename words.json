@@ -1,7 +1,16 @@
 [
   {
-    "word": "book",
+    "word": "Book",
     "translation": "Libro",
     "notes": "This is a easy word"
+  },
+  {
+    "word": "Cat",
+    "translation": "Gato"
+  },
+  {
+    "word": "Home",
+    "translation": "Hogar",
+    "notes": "Everybody has a home"
   }
 ]
