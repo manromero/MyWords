@@ -56,7 +56,6 @@ export const Card = (props: TCard): JSX.Element => {
 const styles = StyleSheet.create({
   root: {
     backgroundColor: '#e9e9e9',
-    height: '70%',
     margin: 20,
     borderRadius: 30,
     padding: 50,
