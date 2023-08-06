@@ -10,13 +10,14 @@ import {Card} from './Card';
 
 import words from './words.json';
 import Carousel from 'react-native-reanimated-carousel';
+import {ConcepEdit} from './ConcepEdit';
 
 function App(): JSX.Element {
   const windowWidth = Dimensions.get('window').width;
   return (
     <SafeAreaView style={styles.root}>
       <GestureHandlerRootView style={styles.gestureHandlerView}>
-        <Carousel
+        {/* <Carousel
           style={styles.carousel}
           loop
           width={windowWidth}
@@ -24,7 +25,8 @@ function App(): JSX.Element {
           scrollAnimationDuration={400}
           onSnapToItem={index => console.log('current index:', index)}
           renderItem={({item}) => <Card key={item.word} {...item} />}
-        />
+        /> */}
+        <ConcepEdit />
       </GestureHandlerRootView>
     </SafeAreaView>
   );

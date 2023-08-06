@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#e9e9e9',
     margin: 20,
     borderRadius: 30,
-    padding: 50,
+    padding: 40,
     paddingTop: 40,
     display: 'flex',
     flexDirection: 'column',
