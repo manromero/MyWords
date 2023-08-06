@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
 
 import {StyleSheet, Text, View} from 'react-native';
@@ -17,10 +10,11 @@ type TCard = {
   word: string;
   translation?: string;
   notes?: string;
+  learned?: boolean;
 };
 
 export const Card = (props: TCard): JSX.Element => {
-  const handleVoice = () => {
+  const handlePlaySound = () => {
     Tts.getInitStatus().then(() => {
       Tts.speak(props.word);
     });
@@ -28,7 +22,17 @@ export const Card = (props: TCard): JSX.Element => {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.word}>{props.word}</Text>
+      <View style={styles.wordAndPlaySoundWrapper}>
+        <Text style={styles.word}>{props.word}</Text>
+        <Icon
+          name="volume-up"
+          aria-label="Play sound"
+          size={30}
+          color="#017aeb"
+          onPress={handlePlaySound}
+        />
+      </View>
+
       {props.translation && (
         <View>
           <Text style={styles.label}>Translation</Text>
@@ -41,12 +45,12 @@ export const Card = (props: TCard): JSX.Element => {
           <Text style={styles.notes}>{props.notes}</Text>
         </View>
       )}
-      <View style={styles.iconWrapper}>
+      <View style={styles.learnedIconWrapper}>
         <Icon
-          name="volume-up"
+          name="task-alt"
+          aria-label={props.learned ? 'Mark as unlearned' : 'Mark as learned'}
           size={30}
-          color="#017aeb"
-          onPress={handleVoice}
+          color={props.learned ? '#007e1d' : '#656565'}
         />
       </View>
     </View>
@@ -64,7 +68,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 20,
   },
+  wordAndPlaySoundWrapper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   word: {
+    flex: 1,
     fontSize: 35,
     fontWeight: '600',
     color: '#393939',
@@ -73,5 +84,5 @@ const styles = StyleSheet.create({
   label: {fontSize: 15, fontWeight: '400', color: '#959595'},
   translation: {fontSize: 30, fontWeight: '600', color: '#393939'},
   notes: {fontSize: 20, fontWeight: '600', color: '#393939'},
-  iconWrapper: {display: 'flex', flexDirection: 'row-reverse'},
+  learnedIconWrapper: {display: 'flex', flexDirection: 'row-reverse'},
 });
