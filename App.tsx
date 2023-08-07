@@ -19,7 +19,7 @@ function App(): JSX.Element {
     <SafeAreaView style={styles.root}>
       <GestureHandlerRootView style={styles.gestureHandlerView}>
         <NavigationContainer>
-          <Drawer.Navigator initialRouteName="Home">
+          <Drawer.Navigator initialRouteName="List Words">
             <Drawer.Screen name="List Words" component={WordCarousel} />
             <Drawer.Screen name="Create Word" component={WordCreation} />
           </Drawer.Navigator>
