@@ -6,7 +6,6 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaView, StyleSheet, Dimensions} from 'react-native';
 
 // components
-import {Card} from './Card';
 
 import words from './words.json';
 import Carousel from 'react-native-reanimated-carousel';
@@ -18,7 +17,7 @@ function App(): JSX.Element {
   return (
     <SafeAreaView style={styles.root}>
       <GestureHandlerRootView style={styles.gestureHandlerView}>
-        <Carousel
+        {/* <Carousel
           style={styles.carousel}
           loop
           width={windowWidth}
@@ -26,8 +25,8 @@ function App(): JSX.Element {
           scrollAnimationDuration={400}
           onSnapToItem={index => console.log('current index:', index)}
           renderItem={({item}) => <WordPreview key={item.word} {...item} />}
-        />
-        {/* <WordEdition /> */}
+        /> */}
+        <WordEdition />
       </GestureHandlerRootView>
     </SafeAreaView>
   );

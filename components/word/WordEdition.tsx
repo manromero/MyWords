@@ -16,6 +16,9 @@ export const WordEdition = (props: TWordEdition): JSX.Element => {
   const [translation, setTranslation] = useState(props.translation);
   const [notes, setNotes] = useState(props.notes);
   const [showPreview, setShowPreview] = useState(false);
+
+  const disabled = !word;
+
   return (
     <MWCard>
       {showPreview ? (
@@ -52,8 +55,8 @@ export const WordEdition = (props: TWordEdition): JSX.Element => {
         name={showPreview ? 'visibility-off' : 'visibility'}
         size={20}
         backgroundColor={'#e9e9e9'}
-        color={word ? '#00247e' : '#666666'}
-        disabled={!word}
+        color={disabled ? '#666666' : '#00247e'}
+        disabled={disabled}
         onPress={() => setShowPreview(prevVal => !prevVal)}>
         {showPreview ? 'RAW' : 'PREVIEW'}
       </Icon.Button>
@@ -68,8 +71,8 @@ export const WordEdition = (props: TWordEdition): JSX.Element => {
         <Icon.Button
           name="save"
           size={20}
-          backgroundColor={word ? '#00247e' : '#666666'}
-          disabled={!word}
+          backgroundColor={disabled ? '#666666' : '#00247e'}
+          disabled={disabled}
           color={'#ffffff'}>
           SAVE
         </Icon.Button>
