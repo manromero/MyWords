@@ -1,1 +1,1 @@
-export * from './MWTextInput';
+export * from './commons';
