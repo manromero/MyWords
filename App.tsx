@@ -3,30 +3,27 @@ import React from 'react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 // react-native components
-import {SafeAreaView, StyleSheet, Dimensions} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 
-// components
+// navigation components
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {NavigationContainer} from '@react-navigation/native';
 
-import words from './words.json';
-import Carousel from 'react-native-reanimated-carousel';
-import {WordEdition} from './components/word/WordEdition';
-import {WordPreview} from './components/word/wordPreview';
+// screens
+import {WordCarousel, WordCreation} from './screens';
+
+const Drawer = createDrawerNavigator();
 
 function App(): JSX.Element {
-  const windowWidth = Dimensions.get('window').width;
   return (
     <SafeAreaView style={styles.root}>
       <GestureHandlerRootView style={styles.gestureHandlerView}>
-        {/* <Carousel
-          style={styles.carousel}
-          loop
-          width={windowWidth}
-          data={words}
-          scrollAnimationDuration={400}
-          onSnapToItem={index => console.log('current index:', index)}
-          renderItem={({item}) => <WordPreview key={item.word} {...item} />}
-        /> */}
-        <WordEdition />
+        <NavigationContainer>
+          <Drawer.Navigator initialRouteName="Home">
+            <Drawer.Screen name="List Words" component={WordCarousel} />
+            <Drawer.Screen name="Create Word" component={WordCreation} />
+          </Drawer.Navigator>
+        </NavigationContainer>
       </GestureHandlerRootView>
     </SafeAreaView>
   );
@@ -34,15 +31,10 @@ function App(): JSX.Element {
 
 const styles = StyleSheet.create({
   root: {
-    backgroundColor: '#575757',
     flex: 1,
   },
   gestureHandlerView: {
     flex: 1,
-  },
-  carousel: {
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 
