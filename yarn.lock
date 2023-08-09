@@ -1726,6 +1726,11 @@
   dependencies:
     "plist" "^3.0.5"
 
+"@react-native-firebase/database@^18.3.0":
+  "integrity" "sha512-5brbU6HCM9+JvlxOiRBdpTz712cUP+7Jnp0GwPE7QUi97oUv45dm2945B8cNBfk3pSg2Dh57eOWuzkbo7PqfUA=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/database/-/database-18.3.0.tgz"
+  "version" "18.3.0"
+
 "@react-native-google-signin/google-signin@^10.0.1":
   "integrity" "sha512-oZoU2lfKyn0s0GqqdFsi4v2FSENrxQYQU9DD/RSkxDdkIQ49Wwo6p5LKlgXY04GwZEVdYMuvZN3G89gQW0ig2g=="
   "resolved" "https://registry.npmjs.org/@react-native-google-signin/google-signin/-/google-signin-10.0.1.tgz"
