@@ -11,15 +11,21 @@ import {AuthProvider} from './context';
 // Main
 import {Main} from './screens';
 
+// Toast
+import Toast from 'react-native-toast-message';
+
 function App(): JSX.Element {
   return (
-    <SafeAreaView style={styles.root}>
-      <GestureHandlerRootView style={styles.gestureHandlerView}>
-        <AuthProvider>
-          <Main />
-        </AuthProvider>
-      </GestureHandlerRootView>
-    </SafeAreaView>
+    <>
+      <SafeAreaView style={styles.root}>
+        <GestureHandlerRootView style={styles.gestureHandlerView}>
+          <AuthProvider>
+            <Main />
+          </AuthProvider>
+        </GestureHandlerRootView>
+      </SafeAreaView>
+      <Toast />
+    </>
   );
 }
 

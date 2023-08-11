@@ -3,12 +3,10 @@ import React from 'react';
 import {MWCard} from '../../commons';
 import {WordPreviewContent} from './WordPreviewContent';
 
-type TWordPreview = {
-  word: string;
-  translation?: string;
-  notes?: string;
-  learned?: boolean;
-};
+// types
+import {TWord} from '../../../types';
+
+type TWordPreview = TWord;
 
 export const WordPreview = (props: TWordPreview): JSX.Element => {
   return (

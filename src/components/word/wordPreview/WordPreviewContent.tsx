@@ -3,15 +3,18 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Tts from 'react-native-tts';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {TWord} from '../../../types';
+
+// firestore
+import firestore from '@react-native-firebase/firestore';
+
+// Toast
+import Toast from 'react-native-toast-message';
 
 Tts.setDefaultLanguage('en-gb');
 
-type TWordPreviewContent = {
-  word: string;
-  translation?: string;
-  notes?: string;
+type TWordPreviewContent = TWord & {
   showLearnedIcon?: boolean;
-  learned?: boolean;
 };
 
 export const WordPreviewContent = ({
@@ -20,8 +23,27 @@ export const WordPreviewContent = ({
 }: TWordPreviewContent): JSX.Element => {
   const handlePlaySound = () => {
     Tts.getInitStatus().then(() => {
-      Tts.speak(props.word);
+      Tts.speak(props.word ?? '');
     });
+  };
+
+  const handleOnPressLearnedIcon = () => {
+    const collection = firestore().collection('words');
+    collection
+      .doc(props.id)
+      .update({learned: !props.learned})
+      .then(() =>
+        Toast.show({
+          type: 'success',
+          text1: 'New word learned!',
+        }),
+      )
+      .catch(() => {
+        Toast.show({
+          type: 'error',
+          text1: 'Unexpected error',
+        });
+      });
   };
 
   return (
@@ -49,13 +71,14 @@ export const WordPreviewContent = ({
           <Text style={styles.notes}>{props.notes}</Text>
         </View>
       )}
-      {showLearnedIcon && (
+      {showLearnedIcon && props.id && (
         <View style={styles.learnedIconWrapper}>
           <Icon
             name="task-alt"
             aria-label={props.learned ? 'Mark as unlearned' : 'Mark as learned'}
             size={30}
             color={props.learned ? '#007e1d' : '#656565'}
+            onPress={handleOnPressLearnedIcon}
           />
         </View>
       )}

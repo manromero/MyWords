@@ -1726,9 +1726,9 @@
   dependencies:
     "plist" "^3.0.5"
 
-"@react-native-firebase/database@^18.3.0":
-  "integrity" "sha512-5brbU6HCM9+JvlxOiRBdpTz712cUP+7Jnp0GwPE7QUi97oUv45dm2945B8cNBfk3pSg2Dh57eOWuzkbo7PqfUA=="
-  "resolved" "https://registry.npmjs.org/@react-native-firebase/database/-/database-18.3.0.tgz"
+"@react-native-firebase/firestore@^18.3.0":
+  "integrity" "sha512-lf++MjazL+5JH0wvlFb2WFqEtUvULaNy4ahlLYOoNwlCjDyvR3L9mYov6cbBVoSu1AJrQcv9u2aHZApEJKaFZg=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/firestore/-/firestore-18.3.0.tgz"
   "version" "18.3.0"
 
 "@react-native-google-signin/google-signin@^10.0.1":
@@ -5647,6 +5647,11 @@
   dependencies:
     "react-freeze" "^1.0.0"
     "warn-once" "^0.1.0"
+
+"react-native-toast-message@^2.1.6":
+  "integrity" "sha512-VctXuq20vmRa9AE13acaNZhrLcS3FaBS2zEevS3+vhBsnVZYG0FIlWIis9tVnpnNxUb3ART+BWtwQjzSttXTng=="
+  "resolved" "https://registry.npmjs.org/react-native-toast-message/-/react-native-toast-message-2.1.6.tgz"
+  "version" "2.1.6"
 
 "react-native-tts@^4.1.0":
   "integrity" "sha512-tvf3lQ6u9MqztUie37qoPw5YQPqi0ql1lPhDsBBs/RRA6A/H1J9X9H/qb1A0Hx0ZpjavrEdtVSqQQ2JDZvZCTQ=="
