@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {StyleSheet, View} from 'react-native';
 import {MWCard, MWTextInput} from '../commons';
@@ -14,7 +14,7 @@ import Toast from 'react-native-toast-message';
 // types
 import {TWord} from '../../types';
 
-import {useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
 type TWordEdition = TWord;
 
@@ -25,9 +25,20 @@ export const WordEdition = (props: TWordEdition): JSX.Element => {
   const [notes, setNotes] = useState(props.notes ?? '');
   const [showPreview, setShowPreview] = useState(false);
 
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    // TODO MANROMERO revisar
+    // when the screen is focused
+    setId(props.id);
+    setWord(props.word ?? '');
+    setTranslation(props.translation ?? '');
+    setNotes(props.notes ?? '');
+    setShowPreview(false);
+  }, []);
+
   useFocusEffect(
     React.useCallback(() => {
-      // when the screen is focused
       return () => {
         // when the screen is unfocused
         setId(undefined);
@@ -82,12 +93,14 @@ export const WordEdition = (props: TWordEdition): JSX.Element => {
     collection
       .doc(id)
       .delete()
-      .then(() =>
+      .then(() => {
         Toast.show({
           type: 'success',
           text1: 'Word deleted',
-        }),
-      )
+        });
+        // TODO manromero revisar
+        navigation.goBack();
+      })
       .catch(() => {
         Toast.show({
           type: 'error',

@@ -79,12 +79,15 @@ const styles = StyleSheet.create({
   itemsSeparator: {height: 5},
 });
 
-const Item = (props: TWord & {navigation: any}): JSX.Element => {
+const Item = ({
+  navigation,
+  ...props
+}: TWord & {navigation: any}): JSX.Element => {
   return (
     <TouchableHighlight
       style={itemStyles.root}
       // TODO MANROMERO edition passing params
-      onPress={() => props.navigation.navigate('Create Word')}>
+      onPress={() => navigation.navigate('Edit Word', props)}>
       <Text style={itemStyles.label}>{props.word}</Text>
     </TouchableHighlight>
   );

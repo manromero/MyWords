@@ -3,11 +3,15 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import {WordEdition as WordEditionComponent} from '../components';
+import {TWord} from '../types';
 
-export const WordEdition = (): JSX.Element => {
+export const WordEdition = ({route}: any): JSX.Element => {
+  const wordToEdit = route.params as TWord;
+  // TODO MANROMERO revisar
+  console.log(wordToEdit);
   return (
     <View style={styles.root}>
-      <WordEditionComponent />
+      <WordEditionComponent {...wordToEdit} />
     </View>
   );
 };
