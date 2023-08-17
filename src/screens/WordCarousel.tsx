@@ -10,6 +10,7 @@ import firestore, {
 
 // Toast
 import Toast from 'react-native-toast-message';
+import {Theme} from '../theme';
 
 export const WordCarousel = (): JSX.Element => {
   const [words, setWords] = useState<
@@ -46,7 +47,7 @@ export const WordCarousel = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   root: {
-    backgroundColor: '#575757',
+    backgroundColor: Theme.COLORS.BG.PRIMARY,
     flex: 1,
   },
 });

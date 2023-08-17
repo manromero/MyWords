@@ -3,6 +3,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import {WordEdition} from '../components';
+import {Theme} from '../theme';
 
 export const WordCreation = (): JSX.Element => {
   return (
@@ -14,7 +15,7 @@ export const WordCreation = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   root: {
-    backgroundColor: '#575757',
+    backgroundColor: Theme.COLORS.BG.PRIMARY,
     flex: 1,
   },
 });

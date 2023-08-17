@@ -10,6 +10,7 @@ import firestore from '@react-native-firebase/firestore';
 
 // Toast
 import Toast from 'react-native-toast-message';
+import {Theme} from '../theme';
 
 export const TagCreation = (): JSX.Element => {
   const [id, setId] = useState('');
@@ -80,19 +81,27 @@ export const TagCreation = (): JSX.Element => {
         />
         <View style={styles.footer}>
           <Icon.Button
-            name="delete-outline"
+            name="delete"
             size={20}
-            backgroundColor={'#7e0000'}
-            color={'#ffffff'}
+            backgroundColor={Theme.COLORS.BG.ACTION_DELETE}
+            color={Theme.COLORS.TEXT.ACTION_DELETE}
             onPress={() => {}}>
             DELETE
           </Icon.Button>
           <Icon.Button
             name="save"
             size={20}
-            backgroundColor={disabled ? '#666666' : '#00247e'}
+            backgroundColor={
+              disabled
+                ? Theme.COLORS.BG.DISABLED
+                : Theme.COLORS.BG.ACTION_PRIMARY
+            }
             disabled={disabled}
-            color={'#ffffff'}
+            color={
+              disabled
+                ? Theme.COLORS.TEXT.DISABLED
+                : Theme.COLORS.TEXT.ACTION_PRIMARY
+            }
             onPress={handleOnSave}>
             SAVE
           </Icon.Button>
@@ -104,7 +113,7 @@ export const TagCreation = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   root: {
-    backgroundColor: '#575757',
+    backgroundColor: Theme.COLORS.BG.PRIMARY,
     flex: 1,
   },
   footer: {

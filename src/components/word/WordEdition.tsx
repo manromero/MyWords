@@ -15,6 +15,7 @@ import Toast from 'react-native-toast-message';
 import {TWord} from '../../types';
 
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {Theme} from '../../theme';
 
 type TWordEdition = TWord;
 
@@ -146,8 +147,12 @@ export const WordEdition = (props: TWordEdition): JSX.Element => {
       <Icon.Button
         name={showPreview ? 'visibility-off' : 'visibility'}
         size={20}
-        backgroundColor={'#e9e9e9'}
-        color={disabled ? '#666666' : '#00247e'}
+        backgroundColor={Theme.COLORS.BG.ACTION_PRIMARY}
+        color={
+          disabled
+            ? Theme.COLORS.TEXT.DISABLED
+            : Theme.COLORS.TEXT.ACTION_PRIMARY
+        }
         disabled={disabled}
         onPress={() => setShowPreview(prevVal => !prevVal)}>
         {showPreview ? 'RAW' : 'PREVIEW'}
@@ -155,10 +160,10 @@ export const WordEdition = (props: TWordEdition): JSX.Element => {
       <View style={styles.footer}>
         {id && (
           <Icon.Button
-            name="delete-outline"
+            name="delete"
             size={20}
-            backgroundColor={'#7e0000'}
-            color={'#ffffff'}
+            backgroundColor={Theme.COLORS.BG.ACTION_DELETE}
+            color={Theme.COLORS.TEXT.ACTION_DELETE}
             onPress={handleOnDelete}>
             DELETE
           </Icon.Button>
@@ -166,9 +171,15 @@ export const WordEdition = (props: TWordEdition): JSX.Element => {
         <Icon.Button
           name="save"
           size={20}
-          backgroundColor={disabled ? '#666666' : '#00247e'}
+          backgroundColor={
+            disabled ? Theme.COLORS.BG.DISABLED : Theme.COLORS.BG.ACTION_PRIMARY
+          }
           disabled={disabled}
-          color={'#ffffff'}
+          color={
+            disabled
+              ? Theme.COLORS.TEXT.DISABLED
+              : Theme.COLORS.TEXT.ACTION_PRIMARY
+          }
           onPress={handleOnSave}>
           SAVE
         </Icon.Button>

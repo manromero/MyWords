@@ -4,6 +4,7 @@ import {StyleSheet, View} from 'react-native';
 
 import {WordEdition as WordEditionComponent} from '../components';
 import {TWord} from '../types';
+import {Theme} from '../theme';
 
 export const WordEdition = ({route}: any): JSX.Element => {
   const wordToEdit = route.params as TWord;
@@ -18,7 +19,7 @@ export const WordEdition = ({route}: any): JSX.Element => {
 
 const styles = StyleSheet.create({
   root: {
-    backgroundColor: '#575757',
+    backgroundColor: Theme.COLORS.BG.PRIMARY,
     flex: 1,
   },
 });

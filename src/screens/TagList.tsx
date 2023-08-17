@@ -1,8 +1,14 @@
 import React, {useEffect, useState} from 'react';
 
 // components
-import {StyleSheet, View, FlatList, Text, TextInput} from 'react-native';
-import {TouchableHighlight} from 'react-native-gesture-handler';
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  Text,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 
 // firestore
 import firestore, {
@@ -14,6 +20,7 @@ import Toast from 'react-native-toast-message';
 
 // types
 import {TTag} from '../types';
+import {Theme} from '../theme';
 
 // TODO type
 export const TagList = ({navigation}: any): JSX.Element => {
@@ -52,7 +59,6 @@ export const TagList = ({navigation}: any): JSX.Element => {
           const wordData = wordDoc.data();
           return wordData.label?.includes(filter);
         })}
-        ItemSeparatorComponent={() => <View style={styles.itemsSeparator} />}
         renderItem={({item}) => (
           <Item
             key={item.id}
@@ -69,14 +75,13 @@ export const TagList = ({navigation}: any): JSX.Element => {
 
 const styles = StyleSheet.create({
   root: {
-    backgroundColor: '#818181',
+    backgroundColor: Theme.COLORS.BG.PRIMARY,
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
     gap: 15,
     padding: 10,
   },
-  itemsSeparator: {height: 5},
 });
 
 const Item = ({
@@ -84,12 +89,12 @@ const Item = ({
   ...props
 }: TTag & {navigation: any}): JSX.Element => {
   return (
-    <TouchableHighlight
+    <TouchableOpacity
       style={itemStyles.root}
       // TODO MANROMERO edition passing params
       onPress={() => navigation.navigate('Edit Tag', props)}>
       <Text style={itemStyles.label}>{props.label}</Text>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 };
 
@@ -97,21 +102,29 @@ const itemStyles = StyleSheet.create({
   root: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#f8f8f8',
+    margin: 5,
+    backgroundColor: Theme.COLORS.BG.SECONDARY,
     display: 'flex',
     justifyContent: 'center',
-    borderColor: '#19191a',
-    borderWidth: 1,
     borderRadius: 5,
+    shadowColor: Theme.COLORS.SHADOW.PRIMARY,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 1,
   },
-  label: {fontSize: 15, fontWeight: '400', color: '#1d1c1c'},
+  label: {fontSize: 15, fontWeight: '400', color: Theme.COLORS.TEXT.PRIMARY},
 });
 
 const inputStyles = ({active}: {active?: boolean}) =>
   StyleSheet.create({
     input: {
-      backgroundColor: '#f8f8f8',
-      borderBottomColor: '#00247e',
+      borderBottomColor: Theme.COLORS.BORDER.PRIMRARY,
       borderBottomWidth: active ? 3 : 1,
+      marginLeft: 5,
+      marginRight: 5,
     },
   });

@@ -10,6 +10,7 @@ import firestore from '@react-native-firebase/firestore';
 
 // Toast
 import Toast from 'react-native-toast-message';
+import {Theme} from '../../../theme';
 
 Tts.setDefaultLanguage('en-gb');
 
@@ -54,7 +55,7 @@ export const WordPreviewContent = ({
           name="volume-up"
           aria-label="Play sound"
           size={30}
-          color="#017aeb"
+          color={Theme.COLORS.ICONS.INFO}
           onPress={handlePlaySound}
         />
       </View>
@@ -77,7 +78,11 @@ export const WordPreviewContent = ({
             name="task-alt"
             aria-label={props.learned ? 'Mark as unlearned' : 'Mark as learned'}
             size={30}
-            color={props.learned ? '#007e1d' : '#656565'}
+            color={
+              props.learned
+                ? Theme.COLORS.ICONS.SUCCESS
+                : Theme.COLORS.ICONS.DISABLED
+            }
             onPress={handleOnPressLearnedIcon}
           />
         </View>
@@ -97,11 +102,15 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 35,
     fontWeight: '600',
-    color: '#393939',
+    color: Theme.COLORS.TEXT.SECONDARY,
     textAlign: 'center',
   },
-  label: {fontSize: 15, fontWeight: '400', color: '#959595'},
-  translation: {fontSize: 30, fontWeight: '600', color: '#393939'},
-  notes: {fontSize: 20, fontWeight: '600', color: '#393939'},
+  label: {fontSize: 15, fontWeight: '400', color: Theme.COLORS.TEXT.SECONDARY},
+  translation: {
+    fontSize: 30,
+    fontWeight: '600',
+    color: Theme.COLORS.TEXT.SECONDARY,
+  },
+  notes: {fontSize: 20, fontWeight: '600', color: Theme.COLORS.TEXT.SECONDARY},
   learnedIconWrapper: {display: 'flex', flexDirection: 'row-reverse'},
 });

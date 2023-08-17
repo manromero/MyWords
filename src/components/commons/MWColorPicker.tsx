@@ -5,8 +5,7 @@ import {
   Text,
   TextInput,
   View,
-  Button,
-  TouchableHighlight,
+  TouchableOpacity,
   Modal,
 } from 'react-native';
 
@@ -25,6 +24,7 @@ type TMWColorPicker = {
 };
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {Theme} from '../../theme';
 
 export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
   const [showPreview, setShowPreview] = useState(false);
@@ -43,22 +43,28 @@ export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
           value={props.value}
           onChangeText={props.onChangeColor}
         />
-        <TouchableHighlight onPress={() => setShowPreview(prevVal => !prevVal)}>
+        <TouchableOpacity
+          style={styles.showModalIconWrapper}
+          onPress={() => setShowPreview(prevVal => !prevVal)}>
           <Icon
             name={showPreview ? 'visibility-off' : 'visibility'}
             size={20}
-            color={'#00247e'}
+            color={Theme.COLORS.ICONS.INFO}
           />
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
       <Modal animationType="slide" transparent={true} visible={showPreview}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <TouchableHighlight
+            <TouchableOpacity
               style={styles.closeButton}
               onPress={() => setShowPreview(false)}>
-              <Icon name={'close'} size={20} color={'#000000'} />
-            </TouchableHighlight>
+              <Icon
+                name={'close'}
+                size={20}
+                color={Theme.COLORS.ICONS.PRIMARY}
+              />
+            </TouchableOpacity>
             <ColorPicker
               style={styles.colorPicker}
               onComplete={color => setPickerColor(color.hex)}
@@ -67,14 +73,14 @@ export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
               <HueSlider />
               <OpacitySlider />
             </ColorPicker>
-            <Button
-              title="ELEGIR COLOR"
-              color={'#00247e'}
+            <TouchableOpacity
+              style={styles.chooseColorButton}
               onPress={() => {
                 setShowPreview(false);
                 props.onChangeColor?.(pickerColor);
-              }}
-            />
+              }}>
+              <Text style={styles.chooseColorButtonText}>ELEGIR COLOR</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -88,9 +94,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    gap: 20,
   },
-  label: {fontSize: 15, fontWeight: '400', color: '#959595'},
+  label: {fontSize: 15, fontWeight: '400', color: Theme.COLORS.TEXT.SECONDARY},
+  showModalIconWrapper: {padding: 5},
   centeredView: {
     flex: 1,
     justifyContent: 'center',
@@ -102,8 +108,8 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
-    shadowColor: '#000',
+    padding: 20,
+    shadowColor: Theme.COLORS.SHADOW.PRIMARY,
     shadowOffset: {
       width: 10,
       height: 10,
@@ -118,13 +124,23 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   colorPicker: {gap: 10},
+  chooseColorButton: {
+    backgroundColor: Theme.COLORS.BG.ACTION_PRIMARY,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  chooseColorButtonText: {
+    color: Theme.COLORS.TEXT.ACTION_PRIMARY,
+    fontWeight: '700',
+  },
 });
 
 const inputStyles = ({active}: {active?: boolean}) =>
   StyleSheet.create({
     input: {
       flex: 1,
-      borderBottomColor: '#00247e',
+      borderBottomColor: Theme.COLORS.BORDER.PRIMRARY,
       borderBottomWidth: active ? 3 : 1,
     },
   });

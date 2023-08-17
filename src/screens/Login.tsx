@@ -8,6 +8,7 @@ import {
   GoogleSignin,
   GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
+import {Theme} from '../theme';
 
 GoogleSignin.configure({
   webClientId:
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#393939',
+    color: Theme.COLORS.TEXT.SECONDARY,
     textAlign: 'center',
   },
 });
