@@ -7,8 +7,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Theme} from '../theme';
 
 const routes = [
-  {name: 'Words', icon: 'format-list-bulleted', route: ''},
-  {name: 'Tags', icon: 'bookmark-border', route: ''},
+  {name: 'Words', icon: 'format-list-bulleted', route: 'Words'},
+  {name: 'Tags', icon: 'bookmark-border', route: 'Tags'},
   {name: 'Log Out', icon: 'logout', route: ''},
 ];
 
@@ -34,15 +34,14 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 15,
-    // padding: 10,
   },
 });
 
-const Item = ({navigation, ...props}: any & {navigation: any}): JSX.Element => {
+const Item = (props: any & {navigation: any}): JSX.Element => {
   return (
     <TouchableOpacity
       style={itemStyles.root}
-      onPress={() => navigation.navigate('Edit Word', props)}>
+      onPress={() => props.navigation.navigate(props.route)}>
       <Icon
         name={props.icon}
         aria-label="Play sound"

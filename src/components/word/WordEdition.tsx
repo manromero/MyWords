@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 import {StyleSheet, View} from 'react-native';
 import {MWCard, MWTextInput} from '../commons';
@@ -14,7 +14,7 @@ import Toast from 'react-native-toast-message';
 // types
 import {TWord} from '../../types';
 
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {Theme} from '../../theme';
 
 type TWordEdition = TWord;
@@ -27,29 +27,6 @@ export const WordEdition = (props: TWordEdition): JSX.Element => {
   const [showPreview, setShowPreview] = useState(false);
 
   const navigation = useNavigation();
-
-  useEffect(() => {
-    // TODO MANROMERO revisar
-    // when the screen is focused
-    setId(props.id);
-    setWord(props.word ?? '');
-    setTranslation(props.translation ?? '');
-    setNotes(props.notes ?? '');
-    setShowPreview(false);
-  }, []);
-
-  useFocusEffect(
-    React.useCallback(() => {
-      return () => {
-        // when the screen is unfocused
-        setId(undefined);
-        setWord('');
-        setTranslation('');
-        setNotes('');
-        setShowPreview(false);
-      };
-    }, []),
-  );
 
   const handleOnSave = () => {
     const collection = firestore().collection('words');

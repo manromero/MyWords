@@ -93,7 +93,7 @@ const Item = ({
     <TouchableOpacity
       style={itemStyles.root}
       // TODO MANROMERO edition passing params
-      onPress={() => navigation.navigate('Edit Word', props)}>
+      onPress={() => navigation.navigate('Word Edition', props)}>
       <Text style={itemStyles.label}>{props.word}</Text>
     </TouchableOpacity>
   );

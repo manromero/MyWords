@@ -6,12 +6,33 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 
 // screens
-import {Settings, WordCarousel, WordCreation} from '../screens';
+import {
+  Settings,
+  TagList,
+  WordCarousel,
+  WordCreation,
+  WordEdition,
+  WordList,
+} from '../screens';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Tab = createBottomTabNavigator();
+
+const SettingsStack = createStackNavigator();
+
+const SettingStackScreen = () => {
+  return (
+    <SettingsStack.Navigator initialRouteName="Settings">
+      <SettingsStack.Screen name="Settings" component={Settings} />
+      <SettingsStack.Screen name="Words" component={WordList} />
+      <SettingsStack.Screen name="Word Edition" component={WordEdition} />
+      <SettingsStack.Screen name="Tags" component={TagList} />
+    </SettingsStack.Navigator>
+  );
+};
 
 export const Navigation = (): JSX.Element => {
   return (
@@ -39,8 +60,9 @@ export const Navigation = (): JSX.Element => {
         />
         <Tab.Screen
           name="Settings"
-          component={Settings}
+          component={SettingStackScreen}
           options={{
+            headerShown: false,
             tabBarLabel: 'Settings',
             tabBarIcon: ({color, size}) => (
               <Icon name={'settings'} size={size} color={color} />
