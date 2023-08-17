@@ -1,33 +1,53 @@
+/* eslint-disable react/no-unstable-nested-components */
 // vendors
 import React from 'react';
 
 // navigation components
-import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 
 // screens
-import {
-  TagCreation,
-  TagList,
-  WordCarousel,
-  WordCreation,
-  WordEdition,
-  WordList,
-} from '../screens';
+import {Settings, WordCarousel, WordCreation} from '../screens';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-const Drawer = createDrawerNavigator();
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+const Tab = createBottomTabNavigator();
 
 export const Navigation = (): JSX.Element => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Create Tag">
-        <Drawer.Screen name="Carouosel Words" component={WordCarousel} />
-        <Drawer.Screen name="List Word" component={WordList} />
-        <Drawer.Screen name="Create Word" component={WordCreation} />
-        <Drawer.Screen name="Edit Word" component={WordEdition} />
-        <Drawer.Screen name="Create Tag" component={TagCreation} />
-        <Drawer.Screen name="List Tag" component={TagList} />
-      </Drawer.Navigator>
+      <Tab.Navigator initialRouteName="Settings">
+        <Tab.Screen
+          name="Words Carousel"
+          component={WordCarousel}
+          options={{
+            tabBarLabel: 'Learn',
+            tabBarIcon: ({color, size}) => (
+              <Icon name={'view-carousel'} size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Words Creation"
+          component={WordCreation}
+          options={{
+            tabBarLabel: 'New Word',
+            tabBarIcon: ({color, size}) => (
+              <Icon name={'playlist-add'} size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={Settings}
+          options={{
+            tabBarLabel: 'Settings',
+            tabBarIcon: ({color, size}) => (
+              <Icon name={'settings'} size={size} color={color} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };

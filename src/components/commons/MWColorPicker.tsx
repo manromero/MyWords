@@ -140,7 +140,7 @@ const inputStyles = ({active}: {active?: boolean}) =>
   StyleSheet.create({
     input: {
       flex: 1,
-      borderBottomColor: Theme.COLORS.BORDER.PRIMRARY,
+      borderBottomColor: Theme.COLORS.BORDER.PRIMARY,
       borderBottomWidth: active ? 3 : 1,
     },
   });

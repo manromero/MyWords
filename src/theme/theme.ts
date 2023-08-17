@@ -21,7 +21,8 @@ export const Theme = {
       DISABLED: '#e0e0e0',
     },
     BORDER: {
-      PRIMRARY: '#1c2025',
+      PRIMARY: '#1c2025',
+      SECONDARY: '#606060',
     },
     SHADOW: {
       PRIMARY: '#000',

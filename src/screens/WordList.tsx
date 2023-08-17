@@ -124,7 +124,7 @@ const inputStyles = ({active}: {active?: boolean}) =>
   StyleSheet.create({
     input: {
       backgroundColor: Theme.COLORS.BG.SECONDARY,
-      borderBottomColor: Theme.COLORS.BORDER.PRIMRARY,
+      borderBottomColor: Theme.COLORS.BORDER.PRIMARY,
       borderBottomWidth: active ? 3 : 1,
       marginLeft: 5,
       marginRight: 5,
