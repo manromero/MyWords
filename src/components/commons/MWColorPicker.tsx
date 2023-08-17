@@ -54,6 +54,11 @@ export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
       <Modal animationType="slide" transparent={true} visible={showPreview}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <TouchableHighlight
+              style={styles.closeButton}
+              onPress={() => setShowPreview(false)}>
+              <Icon name={'close'} size={20} color={'#000000'} />
+            </TouchableHighlight>
             <ColorPicker
               style={styles.colorPicker}
               onComplete={color => setPickerColor(color.hex)}
@@ -107,6 +112,10 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     gap: 10,
+  },
+  closeButton: {
+    padding: 5,
+    alignSelf: 'flex-end',
   },
   colorPicker: {gap: 10},
 });

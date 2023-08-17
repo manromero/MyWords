@@ -8,6 +8,7 @@ import {NavigationContainer} from '@react-navigation/native';
 // screens
 import {
   TagCreation,
+  TagList,
   WordCarousel,
   WordCreation,
   WordEdition,
@@ -25,6 +26,7 @@ export const Navigation = (): JSX.Element => {
         <Drawer.Screen name="Create Word" component={WordCreation} />
         <Drawer.Screen name="Edit Word" component={WordEdition} />
         <Drawer.Screen name="Create Tag" component={TagCreation} />
+        <Drawer.Screen name="List Tag" component={TagList} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

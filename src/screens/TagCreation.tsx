@@ -5,10 +5,55 @@ import {MWCard, MWTextInput, MWColorPicker} from '../components';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+// firestore
+import firestore from '@react-native-firebase/firestore';
+
+// Toast
+import Toast from 'react-native-toast-message';
+
 export const TagCreation = (): JSX.Element => {
+  const [id, setId] = useState('');
   const [label, setLabel] = useState('');
   const [backgroundColor, setBackgroundColor] = useState('');
   const [labelColor, setLabelColor] = useState('');
+
+  const handleOnSave = () => {
+    const collection = firestore().collection('tags');
+    const tagDTO = {label, backgroundColor, labelColor};
+    if (id) {
+      collection
+        .doc(id)
+        .update(tagDTO)
+        .then(() =>
+          Toast.show({
+            type: 'success',
+            text1: 'Tag updated',
+          }),
+        )
+        .catch(() => {
+          Toast.show({
+            type: 'error',
+            text1: 'Error when updating the tag',
+          });
+        });
+    } else {
+      collection
+        .add(tagDTO)
+        .then(dataSaved => {
+          setId(dataSaved.id);
+          Toast.show({
+            type: 'success',
+            text1: 'Tag created',
+          });
+        })
+        .catch(() => {
+          Toast.show({
+            type: 'error',
+            text1: 'Error when creating the tag',
+          });
+        });
+    }
+  };
 
   const disabled = !label || !backgroundColor || !labelColor;
 
@@ -48,7 +93,7 @@ export const TagCreation = (): JSX.Element => {
             backgroundColor={disabled ? '#666666' : '#00247e'}
             disabled={disabled}
             color={'#ffffff'}
-            onPress={() => {}}>
+            onPress={handleOnSave}>
             SAVE
           </Icon.Button>
         </View>
