@@ -18,11 +18,15 @@ type TOption = {
 };
 
 type TMWPicker = {
+  filterPlaceholder?: string;
   options: TOption[];
   onOptionChange: (option: TOption) => void;
 };
 
-export const MWPicker = (props: TMWPicker): JSX.Element => {
+export const MWPicker = ({
+  filterPlaceholder = 'Filter Elements',
+  ...props
+}: TMWPicker): JSX.Element => {
   const [options, setOptions] = useState<TOption[]>(props.options);
   const [filter, setFilter] = useState('');
   const [inputActive, setInputActive] = useState(false);
@@ -32,14 +36,19 @@ export const MWPicker = (props: TMWPicker): JSX.Element => {
   }, [props.options]);
 
   const handleOnPress = (optionValue: string) => {
+    let optionUdapted;
     const newOptions = options.map(option => {
       const copyOption = {...option};
       if (copyOption.value === optionValue) {
         copyOption.selected = !copyOption.selected;
+        optionUdapted = {...copyOption};
       }
       return copyOption;
     });
     setOptions(newOptions);
+    if (optionUdapted) {
+      props.onOptionChange(optionUdapted);
+    }
   };
 
   return (
@@ -48,7 +57,7 @@ export const MWPicker = (props: TMWPicker): JSX.Element => {
         onFocus={() => setInputActive(true)}
         onBlur={() => setInputActive(false)}
         style={inputStyles({active: inputActive}).input}
-        placeholder="Filter tags"
+        placeholder={filterPlaceholder}
         value={filter}
         onChangeText={newFilter => setFilter(newFilter)}
       />
@@ -75,6 +84,7 @@ const styles = StyleSheet.create({
 const Item = (
   props: TOption & {onPress: (optionValue: string) => void},
 ): JSX.Element => {
+  const itemStyles = getItemStyles(props.selected);
   return (
     <TouchableOpacity
       style={itemStyles.root}
@@ -84,26 +94,33 @@ const Item = (
   );
 };
 
-const itemStyles = StyleSheet.create({
-  root: {
-    flex: 1,
-    padding: 10,
-    margin: 5,
-    backgroundColor: Theme.COLORS.BG.SECONDARY,
-    display: 'flex',
-    justifyContent: 'center',
-    borderRadius: 5,
-    shadowColor: Theme.COLORS.SHADOW.PRIMARY,
-    shadowOffset: {
-      width: 2,
-      height: 2,
+const getItemStyles = (selected?: boolean) =>
+  StyleSheet.create({
+    root: {
+      flex: 1,
+      padding: 10,
+      margin: 5,
+      backgroundColor: selected
+        ? Theme.COLORS.BG.PICKER_OPTION_SELECTED
+        : Theme.COLORS.BG.SECONDARY,
+      display: 'flex',
+      justifyContent: 'center',
+      borderRadius: 5,
+      shadowColor: Theme.COLORS.SHADOW.PRIMARY,
+      shadowOffset: {
+        width: 2,
+        height: 2,
+      },
+      shadowOpacity: 0.1,
+      shadowRadius: 5,
+      elevation: 1,
     },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 1,
-  },
-  label: {fontSize: 15, fontWeight: '400', color: Theme.COLORS.TEXT.PRIMARY},
-});
+    label: {
+      fontSize: 15,
+      fontWeight: selected ? '700' : '400',
+      color: Theme.COLORS.TEXT.PRIMARY,
+    },
+  });
 
 const inputStyles = ({active}: {active?: boolean}) =>
   StyleSheet.create({

@@ -13,6 +13,7 @@ export const Theme = {
       DISABLED: '#e0e0e0',
       ACTION_PRIMARY: 'transparent',
       ACTION_DELETE: 'transparent',
+      PICKER_OPTION_SELECTED: '#dbe3fa',
     },
     ICONS: {
       PRIMARY: '#1c2025',
