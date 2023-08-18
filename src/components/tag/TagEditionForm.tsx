@@ -13,7 +13,7 @@ import Toast from 'react-native-toast-message';
 import {Theme} from '../../theme';
 import {TTag} from '../../types';
 
-type TTagEditionForm = TTag;
+type TTagEditionForm = TTag & {navigation: any};
 
 export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
   const [id, setId] = useState(props.id);
@@ -33,12 +33,13 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
       collection
         .doc(id)
         .update(tagDTO)
-        .then(() =>
+        .then(() => {
           Toast.show({
             type: 'success',
             text1: 'Tag updated',
-          }),
-        )
+          });
+          props.navigation.goBack();
+        })
         .catch(() => {
           Toast.show({
             type: 'error',
@@ -54,6 +55,7 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
             type: 'success',
             text1: 'Tag created',
           });
+          props.navigation.goBack();
         })
         .catch(() => {
           Toast.show({
@@ -62,6 +64,26 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
           });
         });
     }
+  };
+
+  const handleOnDelete = () => {
+    const collection = firestore().collection('tags');
+    collection
+      .doc(id)
+      .delete()
+      .then(() => {
+        Toast.show({
+          type: 'success',
+          text1: 'Tag deleted',
+        });
+        props.navigation.goBack();
+      })
+      .catch(() => {
+        Toast.show({
+          type: 'error',
+          text1: 'Error when deleting the word',
+        });
+      });
   };
 
   const disabled = !label || !labelColor || !backgroundColor || !borderColor;
@@ -110,7 +132,7 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
             size={20}
             backgroundColor={Theme.COLORS.BG.ACTION_DELETE}
             color={Theme.COLORS.TEXT.ACTION_DELETE}
-            onPress={() => {}}>
+            onPress={handleOnDelete}>
             DELETE
           </Icon.Button>
         )}

@@ -6,11 +6,11 @@ import {TagEditionForm} from '../components';
 import {TTag} from '../types';
 import {Theme} from '../theme';
 
-export const TagEdition = ({route}: any): JSX.Element => {
+export const TagEdition = ({route, navigation}: any): JSX.Element => {
   const tagToEdit = route.params as TTag;
   return (
     <View style={styles.root}>
-      <TagEditionForm {...tagToEdit} />
+      <TagEditionForm {...tagToEdit} navigation={navigation} />
     </View>
   );
 };

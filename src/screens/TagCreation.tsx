@@ -5,10 +5,10 @@ import {StyleSheet, View} from 'react-native';
 import {Theme} from '../theme';
 import {TagEditionForm} from '../components';
 
-export const TagCreation = (): JSX.Element => {
+export const TagCreation = ({navigation}: any): JSX.Element => {
   return (
     <View style={styles.root}>
-      <TagEditionForm />
+      <TagEditionForm navigation={navigation} />
     </View>
   );
 };
