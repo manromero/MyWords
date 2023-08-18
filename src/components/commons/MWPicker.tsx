@@ -1,0 +1,116 @@
+import React, {useState, useEffect} from 'react';
+
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  Text,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+
+import {Theme} from '../../theme';
+
+type TOption = {
+  label: string;
+  value: string;
+  selected?: boolean;
+};
+
+type TMWPicker = {
+  options: TOption[];
+  onOptionChange: (option: TOption) => void;
+};
+
+export const MWPicker = (props: TMWPicker): JSX.Element => {
+  const [options, setOptions] = useState<TOption[]>(props.options);
+  const [filter, setFilter] = useState('');
+  const [inputActive, setInputActive] = useState(false);
+
+  useEffect(() => {
+    setOptions(props.options);
+  }, [props.options]);
+
+  const handleOnPress = (optionValue: string) => {
+    const newOptions = options.map(option => {
+      const copyOption = {...option};
+      if (copyOption.value === optionValue) {
+        copyOption.selected = !copyOption.selected;
+      }
+      return copyOption;
+    });
+    setOptions(newOptions);
+  };
+
+  return (
+    <View style={styles.root}>
+      <TextInput
+        onFocus={() => setInputActive(true)}
+        onBlur={() => setInputActive(false)}
+        style={inputStyles({active: inputActive}).input}
+        placeholder="Filter tags"
+        value={filter}
+        onChangeText={newFilter => setFilter(newFilter)}
+      />
+      <FlatList
+        data={options.filter(option => option.label.includes(filter))}
+        renderItem={({item}) => <Item {...item} onPress={handleOnPress} />}
+        keyExtractor={item => item.value}
+      />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  root: {
+    backgroundColor: Theme.COLORS.BG.PRIMARY,
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 15,
+    padding: 10,
+  },
+});
+
+const Item = (
+  props: TOption & {onPress: (optionValue: string) => void},
+): JSX.Element => {
+  return (
+    <TouchableOpacity
+      style={itemStyles.root}
+      onPress={() => props.onPress(props.value)}>
+      <Text style={itemStyles.label}>{props.label}</Text>
+    </TouchableOpacity>
+  );
+};
+
+const itemStyles = StyleSheet.create({
+  root: {
+    flex: 1,
+    padding: 10,
+    margin: 5,
+    backgroundColor: Theme.COLORS.BG.SECONDARY,
+    display: 'flex',
+    justifyContent: 'center',
+    borderRadius: 5,
+    shadowColor: Theme.COLORS.SHADOW.PRIMARY,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 1,
+  },
+  label: {fontSize: 15, fontWeight: '400', color: Theme.COLORS.TEXT.PRIMARY},
+});
+
+const inputStyles = ({active}: {active?: boolean}) =>
+  StyleSheet.create({
+    input: {
+      borderBottomColor: Theme.COLORS.BORDER.PRIMARY,
+      borderBottomWidth: active ? 3 : 1,
+      marginLeft: 5,
+      marginRight: 5,
+    },
+  });
