@@ -7,6 +7,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Modal,
+  Dimensions,
 } from 'react-native';
 
 import {Theme} from '../../theme';
@@ -33,6 +35,7 @@ export const MWPicker = ({
   const [options, setOptions] = useState<TOption[]>(props.options);
   const [filter, setFilter] = useState('');
   const [inputActive, setInputActive] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     setOptions(props.options);
@@ -55,34 +58,79 @@ export const MWPicker = ({
   };
 
   return (
-    <View style={styles.root}>
-      <TouchableOpacity style={styles.closeButton}>
-        <Icon name={'close'} size={25} color={Theme.COLORS.ICONS.PRIMARY} />
+    <View>
+      <TouchableOpacity
+        style={styles.openModalButton}
+        onPress={() => setShowModal(true)}>
+        <Text style={styles.openModalButtonText}>{props.buttonLabel}</Text>
       </TouchableOpacity>
-      <TextInput
-        onFocus={() => setInputActive(true)}
-        onBlur={() => setInputActive(false)}
-        style={inputStyles({active: inputActive}).input}
-        placeholder={filterPlaceholder}
-        value={filter}
-        onChangeText={newFilter => setFilter(newFilter)}
-      />
-      <FlatList
-        data={options.filter(option => option.label.includes(filter))}
-        renderItem={({item}) => <Item {...item} onPress={handleOnPress} />}
-        keyExtractor={item => item.value}
-      />
+      <Modal animationType="slide" transparent={true} visible={showModal}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <TouchableOpacity style={styles.closeButton}>
+              <Icon
+                name={'close'}
+                size={25}
+                color={Theme.COLORS.ICONS.PRIMARY}
+                onPress={() => setShowModal(false)}
+              />
+            </TouchableOpacity>
+            <TextInput
+              onFocus={() => setInputActive(true)}
+              onBlur={() => setInputActive(false)}
+              style={inputStyles({active: inputActive}).input}
+              placeholder={filterPlaceholder}
+              value={filter}
+              onChangeText={newFilter => setFilter(newFilter)}
+            />
+            <FlatList
+              data={options.filter(option => option.label.includes(filter))}
+              renderItem={({item}) => (
+                <Item {...item} onPress={handleOnPress} />
+              )}
+              keyExtractor={item => item.value}
+            />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  root: {
-    backgroundColor: Theme.COLORS.BG.PRIMARY,
-    flex: 1,
+  openModalButton: {
+    backgroundColor: Theme.COLORS.BG.ACTION_PRIMARY,
     display: 'flex',
-    flexDirection: 'column',
-    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+  },
+  openModalButtonText: {
+    color: Theme.COLORS.TEXT.ACTION_PRIMARY,
+    fontWeight: '700',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    width: '80%',
+    margin: 20,
+    maxHeight: Dimensions.get('screen').height * 0.7,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 20,
+    shadowColor: Theme.COLORS.SHADOW.PRIMARY,
+    shadowOffset: {
+      width: 10,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    gap: 10,
   },
   closeButton: {
     padding: 5,
