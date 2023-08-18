@@ -11,6 +11,8 @@ import {
 
 import {Theme} from '../../theme';
 
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 type TOption = {
   label: string;
   value: string;
@@ -18,6 +20,7 @@ type TOption = {
 };
 
 type TMWPicker = {
+  buttonLabel: string;
   filterPlaceholder?: string;
   options: TOption[];
   onOptionChange: (option: TOption) => void;
@@ -53,6 +56,9 @@ export const MWPicker = ({
 
   return (
     <View style={styles.root}>
+      <TouchableOpacity style={styles.closeButton}>
+        <Icon name={'close'} size={25} color={Theme.COLORS.ICONS.PRIMARY} />
+      </TouchableOpacity>
       <TextInput
         onFocus={() => setInputActive(true)}
         onBlur={() => setInputActive(false)}
@@ -76,8 +82,13 @@ const styles = StyleSheet.create({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    gap: 15,
     padding: 10,
+  },
+  closeButton: {
+    padding: 5,
+    alignSelf: 'flex-end',
+    marginLeft: 5,
+    marginRight: 5,
   },
 });
 
@@ -129,5 +140,6 @@ const inputStyles = ({active}: {active?: boolean}) =>
       borderBottomWidth: active ? 3 : 1,
       marginLeft: 5,
       marginRight: 5,
+      marginBottom: 10,
     },
   });

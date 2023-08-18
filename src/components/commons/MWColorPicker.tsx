@@ -79,7 +79,7 @@ export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
                 setShowPreview(false);
                 props.onChangeColor?.(pickerColor);
               }}>
-              <Text style={styles.chooseColorButtonText}>ELEGIR COLOR</Text>
+              <Text style={styles.chooseColorButtonText}>SELECT COLOR</Text>
             </TouchableOpacity>
           </View>
         </View>
