@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
-import {StyleSheet, View} from 'react-native';
-import {MWCard, MWTextInput, MWColorPicker} from '../components';
+import {StyleSheet, View, Text} from 'react-native';
+import {MWCard, MWTextInput, MWColorPicker, MWTag} from '../components';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -14,13 +14,14 @@ import {Theme} from '../theme';
 
 export const TagCreation = (): JSX.Element => {
   const [id, setId] = useState('');
-  const [label, setLabel] = useState('');
-  const [backgroundColor, setBackgroundColor] = useState('');
-  const [labelColor, setLabelColor] = useState('');
+  const [label, setLabel] = useState('test');
+  const [labelColor, setLabelColor] = useState('#000000');
+  const [backgroundColor, setBackgroundColor] = useState('#fffff');
+  const [borderColor, setBorderColor] = useState('#000000');
 
   const handleOnSave = () => {
     const collection = firestore().collection('tags');
-    const tagDTO = {label, backgroundColor, labelColor};
+    const tagDTO = {label, labelColor, backgroundColor, borderColor};
     if (id) {
       collection
         .doc(id)
@@ -56,7 +57,7 @@ export const TagCreation = (): JSX.Element => {
     }
   };
 
-  const disabled = !label || !backgroundColor || !labelColor;
+  const disabled = !label || !labelColor || !backgroundColor || !borderColor;
 
   return (
     <View style={styles.root}>
@@ -68,17 +69,34 @@ export const TagCreation = (): JSX.Element => {
           onChangeText={text => setLabel(text)}
         />
         <MWColorPicker
+          label="Tag label color:"
+          placeholder="Insert here the label color"
+          value={labelColor}
+          onChangeColor={text => setLabelColor(text)}
+        />
+        <MWColorPicker
           label="Tag background color:"
           placeholder="Insert here the background color"
           value={backgroundColor}
           onChangeColor={text => setBackgroundColor(text)}
         />
         <MWColorPicker
-          label="Tag label color:"
-          placeholder="Insert here the label color"
-          value={labelColor}
-          onChangeColor={text => setLabelColor(text)}
+          label="Tag border color:"
+          placeholder="Insert here the border color"
+          value={borderColor}
+          onChangeColor={text => setBorderColor(text)}
         />
+        {label && (
+          <View style={styles.previewWrapper}>
+            <Text style={styles.previewLabel}>Preview:</Text>
+            <MWTag
+              label={label}
+              labelColor={labelColor}
+              backgroundColor={backgroundColor}
+              borderColor={borderColor}
+            />
+          </View>
+        )}
         <View style={styles.footer}>
           <Icon.Button
             name="delete"
@@ -115,6 +133,17 @@ const styles = StyleSheet.create({
   root: {
     backgroundColor: Theme.COLORS.BG.PRIMARY,
     flex: 1,
+  },
+  previewWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  previewLabel: {
+    fontSize: 15,
+    fontWeight: '400',
+    color: Theme.COLORS.TEXT.SECONDARY,
   },
   footer: {
     display: 'flex',

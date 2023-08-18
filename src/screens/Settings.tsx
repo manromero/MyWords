@@ -8,7 +8,8 @@ import {Theme} from '../theme';
 
 const routes = [
   {name: 'Words', icon: 'format-list-bulleted', route: 'Words'},
-  {name: 'Tags', icon: 'bookmark-border', route: 'Tags'},
+  {name: 'Tags', icon: 'bookmarks', route: 'Tags'},
+  {name: 'Tags Creation', icon: 'bookmark-add', route: 'Tags Creation'},
   {name: 'Log Out', icon: 'logout', route: ''},
 ];
 
