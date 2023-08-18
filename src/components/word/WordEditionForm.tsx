@@ -19,7 +19,7 @@ import {Theme} from '../../theme';
 
 type TWordEdition = TWord;
 
-export const WordEdition = (props: TWordEdition): JSX.Element => {
+export const WordEditionForm = (props: TWordEdition): JSX.Element => {
   const [id, setId] = useState(props.id);
   const [word, setWord] = useState(props.word ?? '');
   const [translation, setTranslation] = useState(props.translation ?? '');

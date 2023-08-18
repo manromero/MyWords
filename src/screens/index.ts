@@ -5,5 +5,6 @@ export * from './Login';
 export * from './Main';
 export * from './WordEdition';
 export * from './TagCreation';
+export * from './TagEdition';
 export * from './TagList';
 export * from './Settings';

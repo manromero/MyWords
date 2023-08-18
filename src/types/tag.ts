@@ -1,6 +1,7 @@
 export type TTag = {
   id?: string;
-  label: string;
-  backgroundColor: string;
-  labelColor: string;
+  label?: string;
+  labelColor?: string;
+  backgroundColor?: string;
+  borderColor?: string;
 };

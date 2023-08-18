@@ -9,6 +9,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {
   Settings,
   TagCreation,
+  TagEdition,
   TagList,
   WordCarousel,
   WordCreation,
@@ -26,12 +27,13 @@ const SettingsStack = createStackNavigator();
 
 const SettingStackScreen = () => {
   return (
-    <SettingsStack.Navigator initialRouteName="Tags Creation">
+    <SettingsStack.Navigator initialRouteName="Settings">
       <SettingsStack.Screen name="Settings" component={Settings} />
       <SettingsStack.Screen name="Words" component={WordList} />
       <SettingsStack.Screen name="Word Edition" component={WordEdition} />
       <SettingsStack.Screen name="Tags" component={TagList} />
-      <SettingsStack.Screen name="Tags Creation" component={TagCreation} />
+      <SettingsStack.Screen name="Tag Creation" component={TagCreation} />
+      <SettingsStack.Screen name="Tag Edition" component={TagEdition} />
     </SettingsStack.Navigator>
   );
 };

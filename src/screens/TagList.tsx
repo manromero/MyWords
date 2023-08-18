@@ -30,20 +30,26 @@ export const TagList = ({navigation}: any): JSX.Element => {
   const [filter, setFilter] = useState('');
   const [inputActive, setInputActive] = useState(false);
 
+  const handleOnSnapShotResults = (
+    query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
+  ) => {
+    setTags(query.docs);
+  };
+
+  const handleOnSnapShotError = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Error when retrieving the tags',
+    });
+  };
+
   useEffect(() => {
-    firestore()
+    const subscriber = firestore()
       .collection('tags')
-      .get()
-      .then(response => {
-        setTags(response.docs);
-      })
-      .catch(() => {
-        Toast.show({
-          type: 'error',
-          text1: 'Error when retrieving tags',
-        });
-      });
+      .onSnapshot(handleOnSnapShotResults, handleOnSnapShotError);
+    return () => subscriber();
   }, []);
+
   return (
     <View style={styles.root}>
       <TextInput
@@ -92,7 +98,7 @@ const Item = ({
     <TouchableOpacity
       style={itemStyles.root}
       // TODO MANROMERO edition passing params
-      onPress={() => navigation.navigate('Edit Tag', props)}>
+      onPress={() => navigation.navigate('Tag Edition', props as TTag)}>
       <Text style={itemStyles.label}>{props.label}</Text>
     </TouchableOpacity>
   );
