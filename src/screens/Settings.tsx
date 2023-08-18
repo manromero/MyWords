@@ -6,11 +6,35 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {Theme} from '../theme';
 
+import auth from '@react-native-firebase/auth';
+
+// Toast
+import Toast from 'react-native-toast-message';
+
 const routes = [
   {name: 'Words', icon: 'format-list-bulleted', route: 'Words'},
   {name: 'Tags', icon: 'bookmarks', route: 'Tags'},
   {name: 'Tag Creation', icon: 'bookmark-add', route: 'Tag Creation'},
-  {name: 'Log Out', icon: 'logout', route: ''},
+  {
+    name: 'Log Out',
+    icon: 'logout',
+    onPress: () => {
+      auth()
+        .signOut()
+        .then(() =>
+          Toast.show({
+            type: 'success',
+            text1: 'Log out successfully',
+          }),
+        )
+        .catch(() =>
+          Toast.show({
+            type: 'error',
+            text1: 'Unexpected error loging out',
+          }),
+        );
+    },
+  },
 ];
 
 // TODO type
@@ -42,7 +66,14 @@ const Item = (props: any & {navigation: any}): JSX.Element => {
   return (
     <TouchableOpacity
       style={itemStyles.root}
-      onPress={() => props.navigation.navigate(props.route)}>
+      onPress={() => {
+        if (props.onPress) {
+          props.onPress();
+        }
+        if (props.route) {
+          props.navigation.navigate(props.route);
+        }
+      }}>
       <Icon
         name={props.icon}
         aria-label="Play sound"

@@ -31,7 +31,7 @@ export const Login = (): JSX.Element => {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.label}>Before continue, please sign in</Text>
+      <Text style={styles.label}>Before continue, please log in</Text>
       <GoogleSigninButton
         size={GoogleSigninButton.Size.Wide}
         color={GoogleSigninButton.Color.Light}

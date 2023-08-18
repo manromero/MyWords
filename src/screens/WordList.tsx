@@ -92,7 +92,6 @@ const Item = ({
   return (
     <TouchableOpacity
       style={itemStyles.root}
-      // TODO MANROMERO edition passing params
       onPress={() => navigation.navigate('Word Edition', props as TWord)}>
       <Text style={itemStyles.label}>{props.word}</Text>
     </TouchableOpacity>
@@ -123,7 +122,6 @@ const itemStyles = StyleSheet.create({
 const inputStyles = ({active}: {active?: boolean}) =>
   StyleSheet.create({
     input: {
-      backgroundColor: Theme.COLORS.BG.SECONDARY,
       borderBottomColor: Theme.COLORS.BORDER.PRIMARY,
       borderBottomWidth: active ? 3 : 1,
       marginLeft: 5,
