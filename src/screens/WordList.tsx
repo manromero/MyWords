@@ -27,20 +27,26 @@ export const WordList = ({navigation}: any): JSX.Element => {
   const [filter, setFilter] = useState('');
   const [inputActive, setInputActive] = useState(false);
 
+  const handleOnSnapShotResults = (
+    query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
+  ) => {
+    setWords(query.docs);
+  };
+
+  const handleOnSnapShotError = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Error when retrieving the words',
+    });
+  };
+
   useEffect(() => {
-    firestore()
+    const subscriber = firestore()
       .collection('words')
-      .get()
-      .then(response => {
-        setWords(response.docs);
-      })
-      .catch(() => {
-        Toast.show({
-          type: 'error',
-          text1: 'Error when retrieving the words',
-        });
-      });
+      .onSnapshot(handleOnSnapShotResults, handleOnSnapShotError);
+    return () => subscriber();
   }, []);
+
   return (
     <View style={styles.root}>
       <TextInput
