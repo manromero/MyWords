@@ -4,3 +4,4 @@ export * from './MWColorPicker';
 export * from './MWTag';
 export * from './MWPicker';
 export * from './MWTagsPreview';
+export * from './MWModal';
