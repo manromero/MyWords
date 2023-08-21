@@ -99,7 +99,11 @@ const Item = ({
     <TouchableOpacity
       style={itemStyles.root}
       onPress={() => navigation.navigate('Word Edition', props as TWord)}>
-      <Text style={itemStyles.label}>{props.word}</Text>
+      <Text style={itemStyles.label} numberOfLines={1}>
+        {props.word}
+        {props.translation ? ` - ${props.translation}` : ''}
+        {!props.translation && props.notes ? ` - ${props.notes}` : ''}
+      </Text>
     </TouchableOpacity>
   );
 };
