@@ -6,7 +6,6 @@ import {
   TextInput,
   View,
   TouchableOpacity,
-  Modal,
 } from 'react-native';
 
 import ColorPicker, {
@@ -25,6 +24,7 @@ type TMWColorPicker = {
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Theme} from '../../theme';
+import {MWModal} from './MWModal';
 
 export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
   const [showPreview, setShowPreview] = useState(false);
@@ -53,37 +53,24 @@ export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
           />
         </TouchableOpacity>
       </View>
-      <Modal animationType="slide" transparent={true} visible={showPreview}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <TouchableOpacity
-              style={styles.closeButton}
-              onPress={() => setShowPreview(false)}>
-              <Icon
-                name={'close'}
-                size={20}
-                color={Theme.COLORS.ICONS.PRIMARY}
-              />
-            </TouchableOpacity>
-            <ColorPicker
-              style={styles.colorPicker}
-              onComplete={color => setPickerColor(color.hex)}
-              value={props.value || '#000000'}>
-              <Panel1 />
-              <HueSlider />
-              <OpacitySlider />
-            </ColorPicker>
-            <TouchableOpacity
-              style={styles.chooseColorButton}
-              onPress={() => {
-                setShowPreview(false);
-                props.onChangeColor?.(pickerColor);
-              }}>
-              <Text style={styles.chooseColorButtonText}>SELECT COLOR</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
+      <MWModal open={showPreview} onClose={() => setShowPreview(false)}>
+        <ColorPicker
+          style={styles.colorPicker}
+          onComplete={color => setPickerColor(color.hex)}
+          value={props.value || '#000000'}>
+          <Panel1 />
+          <HueSlider />
+          <OpacitySlider />
+        </ColorPicker>
+        <TouchableOpacity
+          style={styles.chooseColorButton}
+          onPress={() => {
+            setShowPreview(false);
+            props.onChangeColor?.(pickerColor);
+          }}>
+          <Text style={styles.chooseColorButtonText}>SELECT COLOR</Text>
+        </TouchableOpacity>
+      </MWModal>
     </View>
   );
 };
@@ -97,32 +84,6 @@ const styles = StyleSheet.create({
   },
   label: {fontSize: 15, fontWeight: '400', color: Theme.COLORS.TEXT.SECONDARY},
   showModalIconWrapper: {padding: 5},
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    width: '70%',
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 20,
-    shadowColor: Theme.COLORS.SHADOW.PRIMARY,
-    shadowOffset: {
-      width: 10,
-      height: 10,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-    gap: 10,
-  },
-  closeButton: {
-    padding: 5,
-    alignSelf: 'flex-end',
-  },
   colorPicker: {gap: 10},
   chooseColorButton: {
     backgroundColor: Theme.COLORS.BG.ACTION_PRIMARY,

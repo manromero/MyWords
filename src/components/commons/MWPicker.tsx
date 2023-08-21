@@ -7,13 +7,11 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Modal,
-  Dimensions,
 } from 'react-native';
 
 import {Theme} from '../../theme';
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import {MWModal} from './MWModal';
 
 type TOption = {
   label: string;
@@ -64,35 +62,21 @@ export const MWPicker = ({
         onPress={() => setShowModal(true)}>
         <Text style={styles.openModalButtonText}>{props.buttonLabel}</Text>
       </TouchableOpacity>
-      <Modal animationType="slide" transparent={true} visible={showModal}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <TouchableOpacity style={styles.closeButton}>
-              <Icon
-                name={'close'}
-                size={25}
-                color={Theme.COLORS.ICONS.PRIMARY}
-                onPress={() => setShowModal(false)}
-              />
-            </TouchableOpacity>
-            <TextInput
-              onFocus={() => setInputActive(true)}
-              onBlur={() => setInputActive(false)}
-              style={inputStyles({active: inputActive}).input}
-              placeholder={filterPlaceholder}
-              value={filter}
-              onChangeText={newFilter => setFilter(newFilter)}
-            />
-            <FlatList
-              data={options.filter(option => option.label.includes(filter))}
-              renderItem={({item}) => (
-                <Item {...item} onPress={handleOnPress} />
-              )}
-              keyExtractor={item => item.value}
-            />
-          </View>
-        </View>
-      </Modal>
+      <MWModal open={showModal} onClose={() => setShowModal(false)}>
+        <TextInput
+          onFocus={() => setInputActive(true)}
+          onBlur={() => setInputActive(false)}
+          style={inputStyles({active: inputActive}).input}
+          placeholder={filterPlaceholder}
+          value={filter}
+          onChangeText={newFilter => setFilter(newFilter)}
+        />
+        <FlatList
+          data={options.filter(option => option.label.includes(filter))}
+          renderItem={({item}) => <Item {...item} onPress={handleOnPress} />}
+          keyExtractor={item => item.value}
+        />
+      </MWModal>
     </View>
   );
 };
@@ -108,35 +92,6 @@ const styles = StyleSheet.create({
   openModalButtonText: {
     color: Theme.COLORS.TEXT.ACTION_PRIMARY,
     fontWeight: '700',
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    width: '80%',
-    margin: 20,
-    maxHeight: Dimensions.get('screen').height * 0.7,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 20,
-    shadowColor: Theme.COLORS.SHADOW.PRIMARY,
-    shadowOffset: {
-      width: 10,
-      height: 10,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-    gap: 10,
-  },
-  closeButton: {
-    padding: 5,
-    alignSelf: 'flex-end',
-    marginLeft: 5,
-    marginRight: 5,
   },
 });
 
