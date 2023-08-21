@@ -36,7 +36,7 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
   ) => {
     setTags(prevTags => {
       const _tags = query.docs.map(dt => {
-        const selected = prevTags.some(pt => pt.id === dt.id);
+        const selected = prevTags.some(pt => pt.selected && pt.id === dt.id);
         return {id: dt.id, ...dt.data(), selected};
       });
       return _tags;

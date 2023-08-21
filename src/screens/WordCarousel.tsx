@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 
-import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
 
-import {MWModal, WordCarousel as WordCarouselComponent} from '../components';
+import {TagsFilter, WordCarousel as WordCarouselComponent} from '../components';
 
 import firestore, {
   FirebaseFirestoreTypes,
+  firebase,
 } from '@react-native-firebase/firestore';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -19,6 +20,8 @@ export const WordCarousel = (): JSX.Element => {
     FirebaseFirestoreTypes.QueryDocumentSnapshot<FirebaseFirestoreTypes.DocumentData>[]
   >([]);
   const [openFilter, setOpenFilter] = useState(false);
+  // TODO MANROMERO Type
+  const [filter, setFilter] = useState<any>({tags: []});
 
   const handleOnSnapShotResults = (
     query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
@@ -35,11 +38,18 @@ export const WordCarousel = (): JSX.Element => {
 
   // TODO MANROMERO, maybe on fetch instead of subscrition??
   useEffect(() => {
+    // const filters = [];
+    // const tagRef = new firebase.firestore.FieldPath('tags', 'label');
+
+    // TODO MANROMERO
     const subscriber = firestore()
       .collection('words')
+      // https://stackoverflow.com/questions/59374452/firestore-query-where-filter-of-object-in-array-field
+      // Quizás solo deba almacenar el tag id
+      .where('tags', 'array-contains', {label: 'viajes'})
       .onSnapshot(handleOnSnapShotResults, handleOnSnapShotError);
     return () => subscriber();
-  }, []);
+  }, [filter]);
 
   return (
     <View style={styles.root}>
@@ -53,9 +63,11 @@ export const WordCarousel = (): JSX.Element => {
           color={Theme.COLORS.ICONS.PRIMARY}
         />
       </TouchableOpacity>
-      <MWModal open={openFilter} onClose={() => setOpenFilter(false)}>
-        <Text> hola mundo</Text>
-      </MWModal>
+      <TagsFilter
+        open={openFilter}
+        onClose={() => setOpenFilter(false)}
+        onFilter={newFilter => setFilter(newFilter)}
+      />
     </View>
   );
 };
