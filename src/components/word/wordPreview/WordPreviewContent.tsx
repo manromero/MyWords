@@ -11,6 +11,7 @@ import firestore from '@react-native-firebase/firestore';
 // Toast
 import Toast from 'react-native-toast-message';
 import {Theme} from '../../../theme';
+import {MWTagsPreview} from '../../commons';
 
 Tts.setDefaultLanguage('en-gb');
 
@@ -30,13 +31,16 @@ export const WordPreviewContent = ({
 
   const handleOnPressLearnedIcon = () => {
     const collection = firestore().collection('words');
+    const newLearnedValue = !props.learned;
     collection
       .doc(props.id)
-      .update({learned: !props.learned})
+      .update({learned: newLearnedValue})
       .then(() =>
         Toast.show({
           type: 'success',
-          text1: 'New word learned!',
+          text1: newLearnedValue
+            ? 'New word learned!'
+            : "Don't worry, keep going!",
         }),
       )
       .catch(() => {
@@ -86,6 +90,9 @@ export const WordPreviewContent = ({
             onPress={handleOnPressLearnedIcon}
           />
         </View>
+      )}
+      {props.tags && props.tags.length > 0 && (
+        <MWTagsPreview tags={props.tags} />
       )}
     </>
   );
