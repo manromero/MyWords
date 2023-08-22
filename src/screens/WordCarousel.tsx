@@ -68,7 +68,6 @@ export const WordCarousel = (): JSX.Element => {
     const tagsIdFilters = filter.tags.map(t => t.id);
     let collectionReference: any = firestore().collection('words');
     if (tagsIdFilters.length > 0) {
-      console.log('filtro', tagsIdFilters);
       collectionReference = collectionReference.where(
         'tags',
         'array-contains-any',
