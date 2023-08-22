@@ -3,7 +3,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Tts from 'react-native-tts';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {TWord} from '../../../types';
+import {TTag, TWord} from '../../../types';
 
 // firestore
 import firestore from '@react-native-firebase/firestore';
@@ -15,7 +15,7 @@ import {MWTagsPreview} from '../../commons';
 
 Tts.setDefaultLanguage('en-gb');
 
-type TWordPreviewContent = TWord & {
+type TWordPreviewContent = Omit<TWord, 'tags'> & {tags: TTag[]} & {
   showLearnedIcon?: boolean;
 };
 

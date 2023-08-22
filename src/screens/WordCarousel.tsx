@@ -6,54 +6,85 @@ import {TagsFilter, WordCarousel as WordCarouselComponent} from '../components';
 
 import firestore, {
   FirebaseFirestoreTypes,
-  firebase,
 } from '@react-native-firebase/firestore';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // Toast
 import Toast from 'react-native-toast-message';
+
+// theme
 import {Theme} from '../theme';
+
+// types
+import {TTag} from '../types';
 
 export const WordCarousel = (): JSX.Element => {
   const [words, setWords] = useState<
     FirebaseFirestoreTypes.QueryDocumentSnapshot<FirebaseFirestoreTypes.DocumentData>[]
   >([]);
+  const [tags, setTags] = useState<
+    FirebaseFirestoreTypes.QueryDocumentSnapshot<FirebaseFirestoreTypes.DocumentData>[]
+  >([]);
   const [openFilter, setOpenFilter] = useState(false);
-  // TODO MANROMERO Type
-  const [filter, setFilter] = useState<any>({tags: []});
+  const [filter, setFilter] = useState<{tags: TTag[]}>({tags: []});
 
-  const handleOnSnapShotResults = (
+  const handleOnSnapShotTagsResults = (
+    query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
+  ) => {
+    setTags(query.docs);
+  };
+
+  const handleOnSnapShotTagsError = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Error when retrieving the tags',
+    });
+  };
+
+  // Retrieve tags
+  useEffect(() => {
+    const subscriber = firestore()
+      .collection('tags')
+      .onSnapshot(handleOnSnapShotTagsResults, handleOnSnapShotTagsError);
+    return () => subscriber();
+  }, []);
+
+  const handleOnSnapShotWordsResults = (
     query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
   ) => {
     setWords(query.docs);
   };
 
-  const handleOnSnapShotError = () => {
+  const handleOnSnapShotWordsError = () => {
     Toast.show({
       type: 'error',
       text1: 'Error when retrieving the words',
     });
   };
 
-  // TODO MANROMERO, maybe on fetch instead of subscrition??
+  // Retreive words
   useEffect(() => {
-    // const filters = [];
-    // const tagRef = new firebase.firestore.FieldPath('tags', 'label');
-
-    // TODO MANROMERO
-    const subscriber = firestore()
-      .collection('words')
-      // https://stackoverflow.com/questions/59374452/firestore-query-where-filter-of-object-in-array-field
-      // Quizás solo deba almacenar el tag id
-      .where('tags', 'array-contains', {label: 'viajes'})
-      .onSnapshot(handleOnSnapShotResults, handleOnSnapShotError);
+    const tagsIdFilters = filter.tags.map(t => t.id);
+    let collectionReference: any = firestore().collection('words');
+    if (tagsIdFilters.length > 0) {
+      console.log('filtro', tagsIdFilters);
+      collectionReference = collectionReference.where(
+        'tags',
+        'array-contains-any',
+        tagsIdFilters,
+      );
+    }
+    const subscriber = collectionReference.onSnapshot(
+      handleOnSnapShotWordsResults,
+      handleOnSnapShotWordsError,
+    );
     return () => subscriber();
   }, [filter]);
 
   return (
     <View style={styles.root}>
-      <WordCarouselComponent data={words} />
+      <WordCarouselComponent words={words} tags={tags} />
       <TouchableOpacity
         style={styles.filterIcon}
         onPress={() => setOpenFilter(true)}>
@@ -66,7 +97,10 @@ export const WordCarousel = (): JSX.Element => {
       <TagsFilter
         open={openFilter}
         onClose={() => setOpenFilter(false)}
-        onFilter={newFilter => setFilter(newFilter)}
+        onFilter={newFilter => {
+          setOpenFilter(false);
+          setFilter(newFilter);
+        }}
       />
     </View>
   );

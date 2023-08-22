@@ -76,12 +76,12 @@ export const TagsFilter = (props: TTagsFilter): JSX.Element => {
           value: t.id as string,
           selected: t.selected,
         }))}
-        onOptionChange={option => {
+        onOptionPress={value => {
           setTags(prevTags => {
             return prevTags.map(pT => {
               const _tag = {...pT};
-              if (_tag.id === option.value) {
-                _tag.selected = option.selected;
+              if (_tag.id === value) {
+                _tag.selected = !_tag.selected;
               }
               return _tag;
             });

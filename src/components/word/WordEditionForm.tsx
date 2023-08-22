@@ -14,14 +14,12 @@ import firestore, {
 import Toast from 'react-native-toast-message';
 
 // types
-import {TTag, TWord} from '../../types';
+import {TWord} from '../../types';
 
 import {useNavigation} from '@react-navigation/native';
 import {Theme} from '../../theme';
 
 type TWordEdition = TWord;
-
-type TTagForSelection = TTag & {selected?: boolean};
 
 export const WordEditionForm = (props: TWordEdition): JSX.Element => {
   const [id, setId] = useState(props.id);
@@ -29,18 +27,25 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
   const [translation, setTranslation] = useState(props.translation ?? '');
   const [notes, setNotes] = useState(props.notes ?? '');
   const [showPreview, setShowPreview] = useState(false);
-  const [tags, setTags] = useState<TTagForSelection[]>(props.tags ?? []);
+  const [fullTags, setFullTags] = useState<any[]>([]);
+  const [tags, setTags] = useState<string[]>(props.tags ?? []);
+
+  const handleOnTagPress = (value: string) => {
+    if (tags.includes(value)) {
+      // remove
+      const newTags = tags.filter(t => t !== value);
+      setTags(newTags);
+    } else {
+      // add
+      const newTags = [...tags, value];
+      setTags(newTags);
+    }
+  };
 
   const handleOnSnapShotResults = (
     query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
   ) => {
-    setTags(prevTags => {
-      const _tags = query.docs.map(dt => {
-        const selected = prevTags.some(pt => pt.selected && pt.id === dt.id);
-        return {id: dt.id, ...dt.data(), selected};
-      });
-      return _tags;
-    });
+    setFullTags(query.docs);
   };
 
   const handleOnSnapShotError = () => {
@@ -61,16 +66,7 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
 
   const handleOnSave = () => {
     const collection = firestore().collection('words');
-    const dtoTags = tags
-      .filter(t => t.selected)
-      .map(t => ({
-        id: t.id,
-        label: t.label,
-        labelColor: t.label,
-        backgroundColor: t.backgroundColor,
-        borderColor: t.borderColor,
-      }));
-    const wordDTO = {word, translation, notes, tags: dtoTags};
+    const wordDTO = {word, translation, notes, tags};
     if (id) {
       collection
         .doc(id)
@@ -137,7 +133,7 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
           translation={translation}
           notes={notes}
           showLearnedIcon={false}
-          tags={tags.filter(t => t.selected)}
+          tags={fullTags.filter(t => tags.includes(t.id)).map(t => t.data())}
         />
       ) : (
         <>
@@ -162,24 +158,16 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
           />
           <MWPicker
             buttonLabel={'Update tags'}
-            options={tags.map(t => ({
-              label: t.label as string,
+            options={fullTags.map(t => ({
+              label: t.data().label as string,
               value: t.id as string,
-              selected: t.selected,
+              selected: tags.includes(t.id),
             }))}
-            onOptionChange={option => {
-              setTags(prevTags => {
-                return prevTags.map(pT => {
-                  const _tag = {...pT};
-                  if (_tag.id === option.value) {
-                    _tag.selected = option.selected;
-                  }
-                  return _tag;
-                });
-              });
-            }}
+            onOptionPress={handleOnTagPress}
           />
-          <MWTagsPreview tags={tags.filter(t => t.selected)} />
+          <MWTagsPreview
+            tags={fullTags.filter(t => tags.includes(t.id)).map(t => t.data())}
+          />
         </>
       )}
       <Icon.Button

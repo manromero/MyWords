@@ -5,10 +5,11 @@ import Carousel from 'react-native-reanimated-carousel';
 import {StyleSheet, Dimensions} from 'react-native';
 
 import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
-import {TWord} from '../../types';
+import {TTag, TWord} from '../../types';
 
 type TWordCarousel = {
-  data: FirebaseFirestoreTypes.QueryDocumentSnapshot<FirebaseFirestoreTypes.DocumentData>[];
+  words: FirebaseFirestoreTypes.QueryDocumentSnapshot<FirebaseFirestoreTypes.DocumentData>[];
+  tags: FirebaseFirestoreTypes.QueryDocumentSnapshot<FirebaseFirestoreTypes.DocumentData>[];
 };
 
 export const WordCarousel = (props: TWordCarousel): JSX.Element => {
@@ -18,11 +19,21 @@ export const WordCarousel = (props: TWordCarousel): JSX.Element => {
       style={styles.carousel}
       loop
       width={windowWidth}
-      data={props.data}
+      data={props.words}
       scrollAnimationDuration={400}
-      renderItem={({item}) => (
-        <WordPreview key={item.id} id={item.id} {...(item.data() as TWord)} />
-      )}
+      renderItem={({item}) => {
+        const tags: TTag[] = props.tags
+          .filter(t => item.data().tags.includes(t.id))
+          .map(t => t.data());
+        return (
+          <WordPreview
+            key={item.id}
+            id={item.id}
+            {...(item.data() as TWord)}
+            tags={tags}
+          />
+        );
+      }}
     />
   );
 };

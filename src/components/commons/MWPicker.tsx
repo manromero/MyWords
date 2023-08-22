@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 import {
   StyleSheet,
@@ -23,36 +23,19 @@ type TMWPicker = {
   buttonLabel: string;
   filterPlaceholder?: string;
   options: TOption[];
-  onOptionChange: (option: TOption) => void;
+  onOptionPress: (value: string) => void;
 };
 
 export const MWPicker = ({
   filterPlaceholder = 'Filter Elements',
   ...props
 }: TMWPicker): JSX.Element => {
-  const [options, setOptions] = useState<TOption[]>(props.options);
   const [filter, setFilter] = useState('');
   const [inputActive, setInputActive] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    setOptions(props.options);
-  }, [props.options]);
-
-  const handleOnPress = (optionValue: string) => {
-    let optionUdapted;
-    const newOptions = options.map(option => {
-      const copyOption = {...option};
-      if (copyOption.value === optionValue) {
-        copyOption.selected = !copyOption.selected;
-        optionUdapted = {...copyOption};
-      }
-      return copyOption;
-    });
-    setOptions(newOptions);
-    if (optionUdapted) {
-      props.onOptionChange(optionUdapted);
-    }
+  const handleOnPress = (value: string) => {
+    props.onOptionPress(value);
   };
 
   return (
@@ -72,7 +55,7 @@ export const MWPicker = ({
           onChangeText={newFilter => setFilter(newFilter)}
         />
         <FlatList
-          data={options.filter(option => option.label.includes(filter))}
+          data={props.options.filter(option => option.label.includes(filter))}
           renderItem={({item}) => <Item {...item} onPress={handleOnPress} />}
           keyExtractor={item => item.value}
         />
