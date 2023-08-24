@@ -2,14 +2,14 @@ import React from 'react';
 
 import {StyleSheet, View, Text} from 'react-native';
 
-type TMWTag = {
+type TTag = {
   label: string;
   labelColor: string;
   backgroundColor: string;
   borderColor: string;
 };
 
-export const MWTag = (props: TMWTag): JSX.Element => {
+export const Tag = (props: TTag): JSX.Element => {
   const styles = getStyles({
     labelColor: props.labelColor,
     backgroundColor: props.backgroundColor,
@@ -34,11 +34,10 @@ const getStyles = ({
   StyleSheet.create({
     root: {
       alignSelf: 'flex-start',
-      padding: 5,
       backgroundColor: backgroundColor,
       borderColor: borderColor,
       borderWidth: 1,
       borderRadius: 2,
     },
-    label: {color: labelColor, fontSize: 15},
+    label: {color: labelColor, padding: 5, fontSize: 15},
   });

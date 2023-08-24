@@ -15,7 +15,7 @@ export const MWModal = (
   props: React.PropsWithChildren<TMWModal>,
 ): JSX.Element => {
   return (
-    <Modal animationType="slide" transparent={true} visible={props.open}>
+    <Modal animationType="none" transparent={true} visible={props.open}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <TouchableOpacity style={styles.closeButton} onPress={props.onClose}>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    backgroundColor: Theme.COLORS.BG.MODAL,
   },
   modalView: {
     width: '70%',

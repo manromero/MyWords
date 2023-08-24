@@ -68,11 +68,12 @@ const styles = StyleSheet.create({
   openModalButton: {
     backgroundColor: Theme.COLORS.BG.ACTION_PRIMARY,
     display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
-    padding: 5,
+    padding_top: 5,
+    padding_bottom: 5,
   },
   openModalButtonText: {
+    alignSelf: 'flex-start',
     color: Theme.COLORS.TEXT.ACTION_PRIMARY,
     fontWeight: '700',
   },

@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 
 import {StyleSheet, View} from 'react-native';
-import {MWCard, MWPicker, MWTagsPreview, MWTextInput} from '../commons';
+import {MWCard, MWPicker, MWTextInput} from '../commons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {WordPreviewContent} from './wordPreview';
 
@@ -17,6 +17,7 @@ import {TWord} from '../../types';
 import {useNavigation} from '@react-navigation/native';
 import {Theme} from '../../theme';
 import {DataContext} from '../../context';
+import {TagsPreview} from '../tag';
 
 type TWordEdition = TWord;
 
@@ -145,8 +146,9 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
             }))}
             onOptionPress={handleOnTagPress}
           />
-          <MWTagsPreview
+          <TagsPreview
             tags={alltags.data.filter(t => tags.includes(t.id as string))}
+            noTagsText="No tags selected"
           />
         </>
       )}

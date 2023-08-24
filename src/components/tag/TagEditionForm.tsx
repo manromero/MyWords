@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import {StyleSheet, View, Text} from 'react-native';
-import {MWCard, MWTextInput, MWColorPicker, MWTag} from '../../components';
+import {MWCard, MWTextInput, MWColorPicker, Tag} from '../../components';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -117,7 +117,7 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
       {label && (
         <View style={styles.previewWrapper}>
           <Text style={styles.previewLabel}>Preview:</Text>
-          <MWTag
+          <Tag
             label={label}
             labelColor={labelColor}
             backgroundColor={backgroundColor}

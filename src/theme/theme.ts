@@ -14,6 +14,7 @@ export const Theme = {
       ACTION_PRIMARY: 'transparent',
       ACTION_DELETE: 'transparent',
       PICKER_OPTION_SELECTED: '#dbe3fa',
+      MODAL: '#00000080',
     },
     ICONS: {
       PRIMARY: '#1c2025',

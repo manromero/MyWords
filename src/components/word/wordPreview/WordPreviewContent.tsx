@@ -11,7 +11,7 @@ import firestore from '@react-native-firebase/firestore';
 // Toast
 import Toast from 'react-native-toast-message';
 import {Theme} from '../../../theme';
-import {MWTagsPreview} from '../../commons';
+import {TagsPreview} from '../../tag';
 
 Tts.setDefaultLanguage('en-gb');
 
@@ -91,9 +91,7 @@ export const WordPreviewContent = ({
           />
         </View>
       )}
-      {props.tags && props.tags.length > 0 && (
-        <MWTagsPreview tags={props.tags} />
-      )}
+      {props.tags && props.tags.length > 0 && <TagsPreview tags={props.tags} />}
     </>
   );
 };

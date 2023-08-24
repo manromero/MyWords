@@ -4,10 +4,11 @@ import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 
 // theme
 import {Theme} from '../theme';
-import {MWModal, MWPicker, MWTagsPreview} from './commons';
+import {MWModal, MWPicker} from './commons';
 
 import {TTag} from '../types';
 import {DataContext} from '../context';
+import {TagsPreview} from './tag/TagsPreview';
 
 type TFilter = {
   tags: string[];
@@ -61,7 +62,10 @@ export const TagsFilter = (props: TTagsFilter): JSX.Element => {
           });
         }}
       />
-      <MWTagsPreview tags={tags.filter(t => t.selected)} />
+      <TagsPreview
+        tags={tags.filter(t => t.selected)}
+        noTagsText="No tag selected"
+      />
       <TouchableOpacity style={styles.filterButton} onPress={handleOnFilter}>
         <Text style={styles.filterButtonText}>FILTER</Text>
       </TouchableOpacity>
