@@ -1,8 +1,5 @@
 * Filter tags and words by userId
-* Improve Modal styles
-* Improve MWPicker
 * Add carousel filter learned
-* Improve filter
 * Improve any
 * Improve structure
 * Dark mode

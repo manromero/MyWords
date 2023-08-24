@@ -1,6 +1,43 @@
 export const Theme = {
   COLORS: {
     TEXT: {
+      PRIMARY: '#f1f0f0',
+      SECONDARY: '#f1f3f4',
+      DISABLED: '#9f9f9f',
+      ACTION_PRIMARY: '#e3b238',
+      ACTION_DELETE: '#f94f4f',
+    },
+    BG: {
+      PRIMARY: '#19191c',
+      SECONDARY: '#36353d',
+      DISABLED: '#1f1f1f',
+      ACTION_PRIMARY: 'transparent',
+      ACTION_DELETE: 'transparent',
+      PICKER_OPTION_SELECTED: '#241d05',
+      MODAL: '#4343437f',
+    },
+    ICONS: {
+      PRIMARY: '#e3dfd6',
+      INFO: '#e3b238',
+      SUCCESS: '#ff821d',
+      DISABLED: '#1f1f1f',
+    },
+    BORDER: {
+      PRIMARY: '#e3dfd6',
+      SECONDARY: '#9f9f9f',
+    },
+    SHADOW: {
+      // TODO MANROMERO no me gusta la sombra como queda en modo oscuro
+      PRIMARY: '#fff',
+    },
+  },
+
+  // TODO MANROMERO los modales se ven feos
+};
+
+export const LightTheme = {
+  COLORS: {
+    TEXT: {
       PRIMARY: '#1c2025',
       SECONDARY: '#00000099',
       DISABLED: '#606060',

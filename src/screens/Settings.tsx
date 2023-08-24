@@ -54,7 +54,7 @@ export const Settings = ({navigation}: any): JSX.Element => {
 
 const styles = StyleSheet.create({
   root: {
-    backgroundColor: Theme.COLORS.BG.SECONDARY,
+    backgroundColor: Theme.COLORS.BG.PRIMARY,
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
@@ -91,7 +91,7 @@ const itemStyles = StyleSheet.create({
     padding: 10,
     paddingTop: 15,
     paddingBottom: 15,
-    backgroundColor: Theme.COLORS.BG.SECONDARY,
+    backgroundColor: Theme.COLORS.BG.PRIMARY,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',

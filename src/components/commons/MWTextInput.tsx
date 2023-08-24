@@ -38,5 +38,6 @@ const inputStyles = ({active}: {active?: boolean}) =>
     input: {
       borderBottomColor: Theme.COLORS.BORDER.PRIMARY,
       borderBottomWidth: active ? 3 : 1,
+      color: Theme.COLORS.TEXT.PRIMARY,
     },
   });

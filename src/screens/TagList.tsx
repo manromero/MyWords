@@ -95,5 +95,6 @@ const inputStyles = ({active}: {active?: boolean}) =>
       borderBottomWidth: active ? 3 : 1,
       marginLeft: 5,
       marginRight: 5,
+      color: Theme.COLORS.TEXT.PRIMARY,
     },
   });

@@ -103,5 +103,6 @@ const inputStyles = ({active}: {active?: boolean}) =>
       flex: 1,
       borderBottomColor: Theme.COLORS.BORDER.PRIMARY,
       borderBottomWidth: active ? 3 : 1,
+      color: Theme.COLORS.TEXT.PRIMARY,
     },
   });

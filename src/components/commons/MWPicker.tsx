@@ -128,5 +128,6 @@ const inputStyles = ({active}: {active?: boolean}) =>
       marginLeft: 5,
       marginRight: 5,
       marginBottom: 10,
+      color: Theme.COLORS.TEXT.PRIMARY,
     },
   });
