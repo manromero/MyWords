@@ -1,89 +1,33 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 
 import {TagsFilter, WordCarousel as WordCarouselComponent} from '../components';
 
-import firestore, {
-  FirebaseFirestoreTypes,
-} from '@react-native-firebase/firestore';
-
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
-// Toast
-import Toast from 'react-native-toast-message';
 
 // theme
 import {Theme} from '../theme';
 
 // types
-import {TTag} from '../types';
+import {DataContext} from '../context';
+import {TWord} from '../types';
 
 export const WordCarousel = (): JSX.Element => {
-  const [words, setWords] = useState<
-    FirebaseFirestoreTypes.QueryDocumentSnapshot<FirebaseFirestoreTypes.DocumentData>[]
-  >([]);
-  const [tags, setTags] = useState<
-    FirebaseFirestoreTypes.QueryDocumentSnapshot<FirebaseFirestoreTypes.DocumentData>[]
-  >([]);
+  const {words, tags} = useContext(DataContext);
   const [openFilter, setOpenFilter] = useState(false);
-  const [filter, setFilter] = useState<{tags: TTag[]}>({tags: []});
+  const [filter, setFilter] = useState<{tags: string[]}>({tags: []});
 
-  const handleOnSnapShotTagsResults = (
-    query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
-  ) => {
-    setTags(query.docs);
-  };
-
-  const handleOnSnapShotTagsError = () => {
-    Toast.show({
-      type: 'error',
-      text1: 'Error when retrieving the tags',
-    });
-  };
-
-  // Retrieve tags
-  useEffect(() => {
-    const subscriber = firestore()
-      .collection('tags')
-      .onSnapshot(handleOnSnapShotTagsResults, handleOnSnapShotTagsError);
-    return () => subscriber();
-  }, []);
-
-  const handleOnSnapShotWordsResults = (
-    query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
-  ) => {
-    setWords(query.docs);
-  };
-
-  const handleOnSnapShotWordsError = () => {
-    Toast.show({
-      type: 'error',
-      text1: 'Error when retrieving the words',
-    });
-  };
-
-  // Retreive words
-  useEffect(() => {
-    const tagsIdFilters = filter.tags.map(t => t.id);
-    let collectionReference: any = firestore().collection('words');
-    if (tagsIdFilters.length > 0) {
-      collectionReference = collectionReference.where(
-        'tags',
-        'array-contains-any',
-        tagsIdFilters,
-      );
-    }
-    const subscriber = collectionReference.onSnapshot(
-      handleOnSnapShotWordsResults,
-      handleOnSnapShotWordsError,
+  let filteredWords: TWord[] = words.data;
+  if (filter.tags.length > 0) {
+    filteredWords = words.data.filter(word =>
+      word.tags?.some(wordTagId => filter.tags.includes(wordTagId)),
     );
-    return () => subscriber();
-  }, [filter]);
+  }
 
   return (
     <View style={styles.root}>
-      <WordCarouselComponent words={words} tags={tags} />
+      <WordCarouselComponent words={filteredWords} tags={tags.data} />
       <TouchableOpacity
         style={styles.filterIcon}
         onPress={() => setOpenFilter(true)}>

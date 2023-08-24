@@ -1,20 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 
 import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 
 // theme
 import {Theme} from '../theme';
 import {MWModal, MWPicker, MWTagsPreview} from './commons';
-import {Toast} from 'react-native-toast-message/lib/src/Toast';
 
-// firestore
-import firestore, {
-  FirebaseFirestoreTypes,
-} from '@react-native-firebase/firestore';
 import {TTag} from '../types';
+import {DataContext} from '../context';
 
 type TFilter = {
-  tags: TTag[];
+  tags: string[];
 };
 
 type TTagsFilter = {
@@ -26,44 +22,21 @@ type TTagsFilter = {
 type TTagForSelection = TTag & {selected?: boolean};
 
 export const TagsFilter = (props: TTagsFilter): JSX.Element => {
+  const {tags: allTags} = useContext(DataContext);
   const [tags, setTags] = useState<TTagForSelection[]>([]);
 
-  const handleOnSnapShotResults = (
-    query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
-  ) => {
+  useEffect(() => {
     setTags(prevTags => {
-      const _tags = query.docs.map(dt => {
+      const _tags = allTags.data.map(dt => {
         const selected = prevTags.some(pt => pt.selected && pt.id === dt.id);
-        return {id: dt.id, ...dt.data(), selected};
+        return {...dt, selected};
       });
       return _tags;
     });
-  };
-
-  const handleOnSnapShotError = () => {
-    Toast.show({
-      type: 'error',
-      text1: 'Error when retrieving the tags',
-    });
-  };
-
-  useEffect(() => {
-    const subscriber = firestore()
-      .collection('tags')
-      .onSnapshot(handleOnSnapShotResults, handleOnSnapShotError);
-    return () => subscriber();
-  }, []);
+  }, [allTags]);
 
   const handleOnFilter = () => {
-    const filteredTags = tags
-      .filter(t => t.selected)
-      .map(t => ({
-        id: t.id,
-        label: t.label,
-        labelColor: t.label,
-        backgroundColor: t.backgroundColor,
-        borderColor: t.borderColor,
-      }));
+    const filteredTags = tags.filter(t => t.selected).map(t => t.id as string);
     props.onFilter?.({tags: filteredTags});
   };
 

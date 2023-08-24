@@ -6,7 +6,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaView, StyleSheet} from 'react-native';
 
 // providers
-import {AuthProvider} from './context';
+import {AuthProvider, DataProvider} from './context';
 
 // Main
 import {Main} from './screens';
@@ -20,7 +20,9 @@ function App(): JSX.Element {
       <SafeAreaView style={styles.root}>
         <GestureHandlerRootView style={styles.gestureHandlerView}>
           <AuthProvider>
-            <Main />
+            <DataProvider>
+              <Main />
+            </DataProvider>
           </AuthProvider>
         </GestureHandlerRootView>
       </SafeAreaView>

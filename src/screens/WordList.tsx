@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 
 import {
   StyleSheet,
@@ -9,43 +9,17 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import firestore, {
-  FirebaseFirestoreTypes,
-} from '@react-native-firebase/firestore';
-
 // Toast
-import Toast from 'react-native-toast-message';
 import {TWord} from '../types';
 
 import {Theme} from '../theme';
+import {DataContext} from '../context';
 
 // TODO type
 export const WordList = ({navigation}: any): JSX.Element => {
-  const [words, setWords] = useState<
-    FirebaseFirestoreTypes.QueryDocumentSnapshot<FirebaseFirestoreTypes.DocumentData>[]
-  >([]);
+  const {words} = useContext(DataContext);
   const [filter, setFilter] = useState('');
   const [inputActive, setInputActive] = useState(false);
-
-  const handleOnSnapShotResults = (
-    query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
-  ) => {
-    setWords(query.docs);
-  };
-
-  const handleOnSnapShotError = () => {
-    Toast.show({
-      type: 'error',
-      text1: 'Error when retrieving the words',
-    });
-  };
-
-  useEffect(() => {
-    const subscriber = firestore()
-      .collection('words')
-      .onSnapshot(handleOnSnapShotResults, handleOnSnapShotError);
-    return () => subscriber();
-  }, []);
 
   return (
     <View style={styles.root}>
@@ -58,23 +32,17 @@ export const WordList = ({navigation}: any): JSX.Element => {
         onChangeText={newFilter => setFilter(newFilter)}
       />
       <FlatList
-        data={words.filter(wordDoc => {
-          const wordData = wordDoc.data();
+        data={words.data.filter(({word, translation, notes}) => {
           return (
-            wordData.word?.includes(filter) ||
-            wordData.translation?.includes(filter) ||
-            wordData.notes?.includes(filter)
+            word?.includes(filter) ||
+            translation?.includes(filter) ||
+            notes?.includes(filter)
           );
         })}
         renderItem={({item}) => (
-          <Item
-            key={item.id}
-            navigation={navigation}
-            id={item.id}
-            {...(item.data() as TWord)}
-          />
+          <Item key={item.id} navigation={navigation} {...(item as TWord)} />
         )}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id as string}
       />
     </View>
   );

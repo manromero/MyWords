@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 
 // components
 import {
@@ -10,45 +10,16 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-// firestore
-import firestore, {
-  FirebaseFirestoreTypes,
-} from '@react-native-firebase/firestore';
-
-// Toast
-import Toast from 'react-native-toast-message';
-
 // types
 import {TTag} from '../types';
 import {Theme} from '../theme';
+import {DataContext} from '../context';
 
 // TODO type
 export const TagList = ({navigation}: any): JSX.Element => {
-  const [tags, setTags] = useState<
-    FirebaseFirestoreTypes.QueryDocumentSnapshot<FirebaseFirestoreTypes.DocumentData>[]
-  >([]);
+  const {tags} = useContext(DataContext);
   const [filter, setFilter] = useState('');
   const [inputActive, setInputActive] = useState(false);
-
-  const handleOnSnapShotResults = (
-    query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
-  ) => {
-    setTags(query.docs);
-  };
-
-  const handleOnSnapShotError = () => {
-    Toast.show({
-      type: 'error',
-      text1: 'Error when retrieving the tags',
-    });
-  };
-
-  useEffect(() => {
-    const subscriber = firestore()
-      .collection('tags')
-      .onSnapshot(handleOnSnapShotResults, handleOnSnapShotError);
-    return () => subscriber();
-  }, []);
 
   return (
     <View style={styles.root}>
@@ -61,19 +32,11 @@ export const TagList = ({navigation}: any): JSX.Element => {
         onChangeText={newFilter => setFilter(newFilter)}
       />
       <FlatList
-        data={tags.filter(wordDoc => {
-          const wordData = wordDoc.data();
-          return wordData.label?.includes(filter);
-        })}
+        data={tags.data.filter(({label}) => label?.includes(filter))}
         renderItem={({item}) => (
-          <Item
-            key={item.id}
-            navigation={navigation}
-            id={item.id}
-            {...(item.data() as TTag)}
-          />
+          <Item key={item.id} navigation={navigation} {...(item as TTag)} />
         )}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id as string}
       />
     </View>
   );

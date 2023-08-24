@@ -4,7 +4,6 @@
 * Add carousel filter learned
 * Improve filter
 * Improve any
-* Improve data query (hooks, contexts, ....)
 * Improve structure
 * Dark mode
 * Toast reduce show message timeout

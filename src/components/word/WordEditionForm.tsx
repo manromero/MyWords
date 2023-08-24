@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 
 import {StyleSheet, View} from 'react-native';
 import {MWCard, MWPicker, MWTagsPreview, MWTextInput} from '../commons';
@@ -6,9 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {WordPreviewContent} from './wordPreview';
 
 // firestore
-import firestore, {
-  FirebaseFirestoreTypes,
-} from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
 
 // Toast
 import Toast from 'react-native-toast-message';
@@ -18,6 +16,7 @@ import {TWord} from '../../types';
 
 import {useNavigation} from '@react-navigation/native';
 import {Theme} from '../../theme';
+import {DataContext} from '../../context';
 
 type TWordEdition = TWord;
 
@@ -27,8 +26,9 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
   const [translation, setTranslation] = useState(props.translation ?? '');
   const [notes, setNotes] = useState(props.notes ?? '');
   const [showPreview, setShowPreview] = useState(false);
-  const [fullTags, setFullTags] = useState<any[]>([]);
   const [tags, setTags] = useState<string[]>(props.tags ?? []);
+
+  const {tags: alltags} = useContext(DataContext);
 
   const handleOnTagPress = (value: string) => {
     if (tags.includes(value)) {
@@ -41,26 +41,6 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
       setTags(newTags);
     }
   };
-
-  const handleOnSnapShotResults = (
-    query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
-  ) => {
-    setFullTags(query.docs);
-  };
-
-  const handleOnSnapShotError = () => {
-    Toast.show({
-      type: 'error',
-      text1: 'Error when retrieving the tags',
-    });
-  };
-
-  useEffect(() => {
-    const subscriber = firestore()
-      .collection('tags')
-      .onSnapshot(handleOnSnapShotResults, handleOnSnapShotError);
-    return () => subscriber();
-  }, []);
 
   const navigation = useNavigation();
 
@@ -133,7 +113,7 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
           translation={translation}
           notes={notes}
           showLearnedIcon={false}
-          tags={fullTags.filter(t => tags.includes(t.id)).map(t => t.data())}
+          tags={alltags.data.filter(t => tags.includes(t.id as string))}
         />
       ) : (
         <>
@@ -158,15 +138,15 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
           />
           <MWPicker
             buttonLabel={'Update tags'}
-            options={fullTags.map(t => ({
-              label: t.data().label as string,
+            options={alltags.data.map(t => ({
+              label: t.label as string,
               value: t.id as string,
-              selected: tags.includes(t.id),
+              selected: tags.includes(t.id as string),
             }))}
             onOptionPress={handleOnTagPress}
           />
           <MWTagsPreview
-            tags={fullTags.filter(t => tags.includes(t.id)).map(t => t.data())}
+            tags={alltags.data.filter(t => tags.includes(t.id as string))}
           />
         </>
       )}
