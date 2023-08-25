@@ -41,14 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: Theme.COLORS.BG.SECONDARY,
     borderRadius: 20,
     padding: 20,
-    shadowColor: Theme.COLORS.SHADOW.PRIMARY,
-    shadowOffset: {
-      width: 10,
-      height: 10,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+    elevation: 1,
     gap: 10,
   },
   closeButton: {

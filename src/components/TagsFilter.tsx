@@ -82,14 +82,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 20,
-    shadowColor: Theme.COLORS.SHADOW.PRIMARY,
-    shadowOffset: {
-      width: 20,
-      height: 20,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 1,
-    elevation: 5,
+    elevation: 1,
   },
   filterButton: {
     backgroundColor: Theme.COLORS.BG.ACTION_PRIMARY,

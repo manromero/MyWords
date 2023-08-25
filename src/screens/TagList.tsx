@@ -76,13 +76,6 @@ const itemStyles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     borderRadius: 5,
-    shadowColor: Theme.COLORS.SHADOW.PRIMARY,
-    shadowOffset: {
-      width: 2,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
     elevation: 1,
   },
   label: {fontSize: 15, fontWeight: '400', color: Theme.COLORS.TEXT.PRIMARY},

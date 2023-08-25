@@ -17,25 +17,21 @@ export const Theme = {
       MODAL: '#4343437f',
     },
     ICONS: {
-      PRIMARY: '#e3dfd6',
-      INFO: '#e3b238',
-      SUCCESS: '#ff821d',
-      DISABLED: '#1f1f1f',
+      PRIMARY: '#f1f0f0',
+      INFO: '#1c4dc7',
+      SUCCESS: '#007e1d',
+      DISABLED: '#e0e0e0',
     },
     BORDER: {
       PRIMARY: '#e3dfd6',
       SECONDARY: '#9f9f9f',
-    },
-    SHADOW: {
-      // TODO MANROMERO no me gusta la sombra como queda en modo oscuro
-      PRIMARY: '#fff',
     },
   },
 
   // TODO MANROMERO los modales se ven feos
 };
 
-export const LightTheme = {
+export const Theme2 = {
   COLORS: {
     TEXT: {
       PRIMARY: '#1c2025',
@@ -62,9 +58,6 @@ export const LightTheme = {
     BORDER: {
       PRIMARY: '#1c2025',
       SECONDARY: '#606060',
-    },
-    SHADOW: {
-      PRIMARY: '#000',
     },
   },
 };

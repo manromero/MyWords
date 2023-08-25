@@ -104,13 +104,6 @@ const getItemStyles = (selected?: boolean) =>
       display: 'flex',
       justifyContent: 'center',
       borderRadius: 5,
-      shadowColor: Theme.COLORS.SHADOW.PRIMARY,
-      shadowOffset: {
-        width: 2,
-        height: 2,
-      },
-      shadowOpacity: 0.1,
-      shadowRadius: 5,
       elevation: 1,
     },
     label: {
