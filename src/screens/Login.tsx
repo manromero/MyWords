@@ -8,7 +8,7 @@ import {
   GoogleSignin,
   GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
-import {Theme} from '../theme';
+import {useTheme} from '../hooks';
 
 GoogleSignin.configure({
   webClientId:
@@ -16,6 +16,9 @@ GoogleSignin.configure({
 });
 
 export const Login = (): JSX.Element => {
+  const theme = useTheme();
+  const styles = getStyles(theme);
+
   const handleOnGoogleButtonPress = async () => {
     // Check if your device supports Google Play
     await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
@@ -41,22 +44,23 @@ export const Login = (): JSX.Element => {
   );
 };
 
-const styles = StyleSheet.create({
-  root: {
-    backgroundColor: Theme.COLORS.BG.PRIMARY,
-    display: 'flex',
-    flexDirection: 'column',
-    padding: 10,
-    marginTop: -100,
-    gap: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-  },
-  label: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: Theme.COLORS.TEXT.PRIMARY,
-    textAlign: 'center',
-  },
-});
+const getStyles = (theme: any) =>
+  StyleSheet.create({
+    root: {
+      backgroundColor: theme.COLORS.BG.PRIMARY,
+      display: 'flex',
+      flexDirection: 'column',
+      padding: 10,
+      marginTop: -100,
+      gap: 20,
+      justifyContent: 'center',
+      alignItems: 'center',
+      flex: 1,
+    },
+    label: {
+      fontSize: 18,
+      fontWeight: '600',
+      color: theme.COLORS.TEXT.PRIMARY,
+      textAlign: 'center',
+    },
+  });

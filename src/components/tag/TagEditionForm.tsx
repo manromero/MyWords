@@ -10,23 +10,25 @@ import firestore from '@react-native-firebase/firestore';
 
 // Toast
 import Toast from 'react-native-toast-message';
-import {Theme} from '../../theme';
 import {TTag} from '../../types';
+import {useTheme} from '../../hooks';
 
 type TTagEditionForm = TTag & {navigation: any};
 
 export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
+  const theme = useTheme();
   const [id, setId] = useState(props.id);
   const [label, setLabel] = useState(props.label);
   const [labelColor, setLabelColor] = useState(
-    props.labelColor ?? Theme.COLORS.TAG.DEFAULT_LABEL,
+    props.labelColor ?? theme.COLORS.TAG.DEFAULT_LABEL,
   );
   const [backgroundColor, setBackgroundColor] = useState(
-    props.backgroundColor ?? Theme.COLORS.TAG.DEFAULT_BG,
+    props.backgroundColor ?? theme.COLORS.TAG.DEFAULT_BG,
   );
   const [borderColor, setBorderColor] = useState(
-    props.borderColor ?? Theme.COLORS.TAG.DEFAULT_BORDER,
+    props.borderColor ?? theme.COLORS.TAG.DEFAULT_BORDER,
   );
+  const styles = getStyles(theme);
 
   const handleOnSave = () => {
     const collection = firestore().collection('tags');
@@ -132,8 +134,8 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
           <Icon.Button
             name="delete"
             size={20}
-            backgroundColor={Theme.COLORS.ACTION_BUTTON.DELETE_ACTIVE_BG}
-            color={Theme.COLORS.ACTION_BUTTON.DELETE_ACTIVE_LABEL}
+            backgroundColor={theme.COLORS.ACTION_BUTTON.DELETE_ACTIVE_BG}
+            color={theme.COLORS.ACTION_BUTTON.DELETE_ACTIVE_LABEL}
             onPress={handleOnDelete}>
             DELETE
           </Icon.Button>
@@ -143,14 +145,14 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
           size={20}
           backgroundColor={
             disabled
-              ? Theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_BG
-              : Theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_BG
+              ? theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_BG
+              : theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_BG
           }
           disabled={disabled}
           color={
             disabled
-              ? Theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_LABEL
-              : Theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_LABEL
+              ? theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_LABEL
+              : theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_LABEL
           }
           onPress={handleOnSave}>
           SAVE
@@ -160,23 +162,24 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
   );
 };
 
-const styles = StyleSheet.create({
-  previewWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-  previewLabel: {
-    fontSize: 15,
-    fontWeight: '400',
-    color: Theme.COLORS.INPUT.LABEL,
-  },
-  footer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    gap: 10,
-  },
-});
+const getStyles = (theme: any) =>
+  StyleSheet.create({
+    previewWrapper: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 10,
+    },
+    previewLabel: {
+      fontSize: 15,
+      fontWeight: '400',
+      color: theme.COLORS.INPUT.LABEL,
+    },
+    footer: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+      alignItems: 'center',
+      gap: 10,
+    },
+  });

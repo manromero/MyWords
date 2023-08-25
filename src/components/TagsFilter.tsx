@@ -3,12 +3,12 @@ import React, {useContext, useEffect, useState} from 'react';
 import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 
 // theme
-import {Theme} from '../theme';
 import {MWModal, MWPicker} from './commons';
 
 import {TTag} from '../types';
 import {DataContext} from '../context';
 import {TagsPreview} from './tag/TagsPreview';
+import {useTheme} from '../hooks';
 
 type TFilter = {
   tags: string[];
@@ -40,6 +40,9 @@ export const TagsFilter = (props: TTagsFilter): JSX.Element => {
     const filteredTags = tags.filter(t => t.selected).map(t => t.id as string);
     props.onFilter?.({tags: filteredTags});
   };
+
+  const theme = useTheme();
+  const styles = getStyles(theme);
 
   return (
     <MWModal open={props.open} onClose={props.onClose}>
@@ -73,24 +76,25 @@ export const TagsFilter = (props: TTagsFilter): JSX.Element => {
   );
 };
 
-const styles = StyleSheet.create({
-  root: {
-    backgroundColor: Theme.COLORS.BG.SECONDARY,
-    margin: 20,
-    borderRadius: 30,
-    padding: 30,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 20,
-    elevation: 1,
-  },
-  filterButton: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  filterButtonText: {
-    color: Theme.COLORS.STATUS.ACTIVE,
-    fontWeight: '700',
-  },
-});
+const getStyles = (theme: any) =>
+  StyleSheet.create({
+    root: {
+      backgroundColor: theme.COLORS.BG.SECONDARY,
+      margin: 20,
+      borderRadius: 30,
+      padding: 30,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 20,
+      elevation: 1,
+    },
+    filterButton: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    filterButtonText: {
+      color: theme.COLORS.STATUS.ACTIVE,
+      fontWeight: '700',
+    },
+  });

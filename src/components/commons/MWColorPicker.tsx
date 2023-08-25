@@ -23,14 +23,16 @@ type TMWColorPicker = {
 };
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Theme} from '../../theme';
+
 import {MWModal} from './MWModal';
+import {useTheme} from '../../hooks';
 
 export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
   const [showPreview, setShowPreview] = useState(false);
   const [active, setActive] = useState(false);
   const [pickerColor, setPickerColor] = useState('');
-
+  const theme = useTheme();
+  const styles = getStyles(theme);
   return (
     <View>
       {props.label && <Text style={styles.label}>{props.label}</Text>}
@@ -38,11 +40,11 @@ export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
         <TextInput
           onFocus={() => setActive(true)}
           onBlur={() => setActive(false)}
-          style={inputStyles({active}).input}
+          style={inputStyles({active, theme}).input}
           placeholder={props.placeholder}
           value={props.value}
           onChangeText={props.onChangeColor}
-          placeholderTextColor={Theme.COLORS.INPUT.PLACEHOLDER}
+          placeholderTextColor={theme.COLORS.INPUT.PLACEHOLDER}
         />
         <TouchableOpacity
           style={styles.showModalIconWrapper}
@@ -50,7 +52,7 @@ export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
           <Icon
             name={showPreview ? 'visibility-off' : 'visibility'}
             size={20}
-            color={Theme.COLORS.STATUS.ACTIVE}
+            color={theme.COLORS.STATUS.ACTIVE}
           />
         </TouchableOpacity>
       </View>
@@ -76,39 +78,40 @@ export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
   );
 };
 
-const styles = StyleSheet.create({
-  inputWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  label: {
-    fontSize: 15,
-    fontWeight: '400',
-    color: Theme.COLORS.INPUT.LABEL,
-  },
-  showModalIconWrapper: {padding: 5},
-  colorPicker: {gap: 10},
-  chooseColorButton: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  chooseColorButtonText: {
-    color: Theme.COLORS.STATUS.ACTIVE,
-    fontWeight: '700',
-  },
-});
+const getStyles = (theme: any) =>
+  StyleSheet.create({
+    inputWrapper: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+    label: {
+      fontSize: 15,
+      fontWeight: '400',
+      color: theme.COLORS.INPUT.LABEL,
+    },
+    showModalIconWrapper: {padding: 5},
+    colorPicker: {gap: 10},
+    chooseColorButton: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    chooseColorButtonText: {
+      color: theme.COLORS.STATUS.ACTIVE,
+      fontWeight: '700',
+    },
+  });
 
-const inputStyles = ({active}: {active?: boolean}) =>
+const inputStyles = ({active, theme}: {active?: boolean; theme: any}) =>
   StyleSheet.create({
     input: {
       flex: 1,
       borderBottomColor: active
-        ? Theme.COLORS.INPUT.BORDER_ACTIVE
-        : Theme.COLORS.INPUT.BORDER_INACTIVE,
+        ? theme.COLORS.INPUT.BORDER_ACTIVE
+        : theme.COLORS.INPUT.BORDER_INACTIVE,
       borderBottomWidth: active ? 2 : 1,
-      color: Theme.COLORS.INPUT.COLOR,
+      color: theme.COLORS.INPUT.COLOR,
     },
   });

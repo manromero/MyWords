@@ -4,12 +4,11 @@ import {StyleSheet, View, FlatList, Text, TouchableOpacity} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import {Theme} from '../theme';
-
 import auth from '@react-native-firebase/auth';
 
 // Toast
 import Toast from 'react-native-toast-message';
+import {useTheme} from '../hooks';
 
 const routes = [
   {name: 'Words', icon: 'format-list-bulleted', route: 'Words'},
@@ -39,6 +38,8 @@ const routes = [
 
 // TODO type
 export const Settings = ({navigation}: any): JSX.Element => {
+  const theme = useTheme();
+  const styles = getStyles(theme);
   return (
     <View style={styles.root}>
       <FlatList
@@ -52,17 +53,20 @@ export const Settings = ({navigation}: any): JSX.Element => {
   );
 };
 
-const styles = StyleSheet.create({
-  root: {
-    backgroundColor: Theme.COLORS.BG.PRIMARY,
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 15,
-  },
-});
+const getStyles = (theme: any) =>
+  StyleSheet.create({
+    root: {
+      backgroundColor: theme.COLORS.BG.PRIMARY,
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 15,
+    },
+  });
 
 const Item = (props: any & {navigation: any}): JSX.Element => {
+  const theme = useTheme();
+  const itemStyles = getItemStyles(theme);
   return (
     <TouchableOpacity
       style={itemStyles.root}
@@ -78,29 +82,30 @@ const Item = (props: any & {navigation: any}): JSX.Element => {
         name={props.icon}
         aria-label="Play sound"
         size={20}
-        color={Theme.COLORS.STATUS.DEFAULT}
+        color={theme.COLORS.STATUS.DEFAULT}
       />
       <Text style={itemStyles.label}>{props.name}</Text>
     </TouchableOpacity>
   );
 };
 
-const itemStyles = StyleSheet.create({
-  root: {
-    flex: 1,
-    padding: 10,
-    paddingTop: 15,
-    paddingBottom: 15,
-    backgroundColor: Theme.COLORS.BG.SECONDARY,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5,
-    marginBottom: 10,
-  },
-  label: {
-    fontSize: 15,
-    fontWeight: '400',
-    color: Theme.COLORS.TEXT.PRIMARY,
-  },
-});
+const getItemStyles = (theme: any) =>
+  StyleSheet.create({
+    root: {
+      flex: 1,
+      padding: 10,
+      paddingTop: 15,
+      paddingBottom: 15,
+      backgroundColor: theme.COLORS.BG.SECONDARY,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 5,
+      marginBottom: 10,
+    },
+    label: {
+      fontSize: 15,
+      fontWeight: '400',
+      color: theme.COLORS.TEXT.PRIMARY,
+    },
+  });

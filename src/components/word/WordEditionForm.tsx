@@ -15,13 +15,15 @@ import Toast from 'react-native-toast-message';
 import {TWord} from '../../types';
 
 import {useNavigation} from '@react-navigation/native';
-import {Theme} from '../../theme';
 import {DataContext} from '../../context';
 import {TagsPreview} from '../tag';
+import {useTheme} from '../../hooks';
 
 type TWordEdition = TWord;
 
 export const WordEditionForm = (props: TWordEdition): JSX.Element => {
+  const theme = useTheme();
+
   const [id, setId] = useState(props.id);
   const [word, setWord] = useState(props.word ?? '');
   const [translation, setTranslation] = useState(props.translation ?? '');
@@ -157,13 +159,13 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
         size={20}
         backgroundColor={
           disabled
-            ? Theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_BG
-            : Theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_BG
+            ? theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_BG
+            : theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_BG
         }
         color={
           disabled
-            ? Theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_LABEL
-            : Theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_LABEL
+            ? theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_LABEL
+            : theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_LABEL
         }
         disabled={disabled}
         onPress={() => setShowPreview(prevVal => !prevVal)}>
@@ -174,8 +176,8 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
           <Icon.Button
             name="delete"
             size={20}
-            backgroundColor={Theme.COLORS.ACTION_BUTTON.DELETE_ACTIVE_BG}
-            color={Theme.COLORS.ACTION_BUTTON.DELETE_ACTIVE_LABEL}
+            backgroundColor={theme.COLORS.ACTION_BUTTON.DELETE_ACTIVE_BG}
+            color={theme.COLORS.ACTION_BUTTON.DELETE_ACTIVE_LABEL}
             onPress={handleOnDelete}>
             DELETE
           </Icon.Button>
@@ -185,14 +187,14 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
           size={20}
           backgroundColor={
             disabled
-              ? Theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_BG
-              : Theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_BG
+              ? theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_BG
+              : theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_BG
           }
           disabled={disabled}
           color={
             disabled
-              ? Theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_LABEL
-              : Theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_LABEL
+              ? theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_LABEL
+              : theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_LABEL
           }
           onPress={handleOnSave}>
           SAVE

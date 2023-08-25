@@ -10,8 +10,9 @@ import firestore from '@react-native-firebase/firestore';
 
 // Toast
 import Toast from 'react-native-toast-message';
-import {Theme} from '../../../theme';
+
 import {TagsPreview} from '../../tag';
+import {useTheme} from '../../../hooks';
 
 Tts.setDefaultLanguage('en-gb');
 
@@ -23,6 +24,9 @@ export const WordPreviewContent = ({
   showLearnedIcon = true,
   ...props
 }: TWordPreviewContent): JSX.Element => {
+  const theme = useTheme();
+  const styles = getStyles(theme);
+
   const handlePlaySound = () => {
     Tts.getInitStatus().then(() => {
       Tts.speak(props.word ?? '');
@@ -59,7 +63,7 @@ export const WordPreviewContent = ({
           name="volume-up"
           aria-label="Play sound"
           size={30}
-          color={Theme.COLORS.STATUS.ACTIVE}
+          color={theme.COLORS.STATUS.ACTIVE}
           onPress={handlePlaySound}
         />
       </View>
@@ -84,8 +88,8 @@ export const WordPreviewContent = ({
             size={30}
             color={
               props.learned
-                ? Theme.COLORS.STATUS.ACTIVE
-                : Theme.COLORS.STATUS.DISABLED
+                ? theme.COLORS.STATUS.ACTIVE
+                : theme.COLORS.STATUS.DISABLED
             }
             onPress={handleOnPressLearnedIcon}
           />
@@ -96,34 +100,35 @@ export const WordPreviewContent = ({
   );
 };
 
-const styles = StyleSheet.create({
-  wordAndPlaySoundWrapper: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  word: {
-    flex: 1,
-    fontSize: 35,
-    fontWeight: '600',
-    color: Theme.COLORS.TEXT.PRIMARY,
-    textAlign: 'center',
-  },
-  label: {
-    fontSize: 15,
-    fontWeight: '400',
-    color: Theme.COLORS.TEXT.SECONDARY,
-  },
-  translation: {
-    fontSize: 30,
-    fontWeight: '600',
-    color: Theme.COLORS.TEXT.PRIMARY,
-  },
-  notes: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: Theme.COLORS.TEXT.PRIMARY,
-  },
-  learnedIconWrapper: {display: 'flex', flexDirection: 'row-reverse'},
-});
+const getStyles = (theme: any) =>
+  StyleSheet.create({
+    wordAndPlaySoundWrapper: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    word: {
+      flex: 1,
+      fontSize: 35,
+      fontWeight: '600',
+      color: theme.COLORS.TEXT.PRIMARY,
+      textAlign: 'center',
+    },
+    label: {
+      fontSize: 15,
+      fontWeight: '400',
+      color: theme.COLORS.TEXT.SECONDARY,
+    },
+    translation: {
+      fontSize: 30,
+      fontWeight: '600',
+      color: theme.COLORS.TEXT.PRIMARY,
+    },
+    notes: {
+      fontSize: 20,
+      fontWeight: '600',
+      color: theme.COLORS.TEXT.PRIMARY,
+    },
+    learnedIconWrapper: {display: 'flex', flexDirection: 'row-reverse'},
+  });

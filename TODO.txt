@@ -1,8 +1,11 @@
+* Typar correctamente el theme.
+* Revisar theme typado, y construcción de styles.
+* Revisar importaciones.
+
 * Filter tags and words by userId
 * Add carousel filter learned
 * Improve any
 * Improve structure
-* Dark mode
 * Toast reduce show message timeout
 * Generate APK
 * Logo

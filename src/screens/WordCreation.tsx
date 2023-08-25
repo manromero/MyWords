@@ -3,9 +3,12 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import {WordEditionForm} from '../components';
-import {Theme} from '../theme';
+
+import {useTheme} from '../hooks';
 
 export const WordCreation = (): JSX.Element => {
+  const theme = useTheme();
+  const styles = getStyles(theme);
   return (
     <View style={styles.root}>
       <WordEditionForm />
@@ -13,9 +16,10 @@ export const WordCreation = (): JSX.Element => {
   );
 };
 
-const styles = StyleSheet.create({
-  root: {
-    backgroundColor: Theme.COLORS.BG.PRIMARY,
-    flex: 1,
-  },
-});
+const getStyles = (theme: any) =>
+  StyleSheet.create({
+    root: {
+      backgroundColor: theme.COLORS.BG.PRIMARY,
+      flex: 1,
+    },
+  });

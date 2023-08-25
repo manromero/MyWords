@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 
 import {StyleSheet, Text, TextInput, View} from 'react-native';
-import {Theme} from '../../theme';
+
+import {useTheme} from '../../hooks';
 
 type TMWTextInput = {
   label?: string;
@@ -12,39 +13,41 @@ type TMWTextInput = {
 };
 
 export const MWTextInput = (props: TMWTextInput): JSX.Element => {
+  const theme = useTheme();
   const [active, setActive] = useState(false);
   return (
     <View>
-      {props.label && <Text style={styles.label}>{props.label}</Text>}
+      {props.label && <Text style={styles(theme).label}>{props.label}</Text>}
       <TextInput
         onFocus={() => setActive(true)}
         onBlur={() => setActive(false)}
-        style={inputStyles({active}).input}
+        style={inputStyles({active, theme}).input}
         placeholder={props.placeholder}
         value={props.value}
         multiline={props.multiline}
         onChangeText={props.onChangeText}
-        placeholderTextColor={Theme.COLORS.INPUT.PLACEHOLDER}
+        placeholderTextColor={theme.COLORS.INPUT.PLACEHOLDER}
       />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  label: {
-    fontSize: 15,
-    fontWeight: '400',
-    color: Theme.COLORS.INPUT.LABEL,
-  },
-});
+const styles = (theme: any) =>
+  StyleSheet.create({
+    label: {
+      fontSize: 15,
+      fontWeight: '400',
+      color: theme.COLORS.INPUT.LABEL,
+    },
+  });
 
-const inputStyles = ({active}: {active?: boolean}) =>
+const inputStyles = ({active, theme}: {active?: boolean; theme: any}) =>
   StyleSheet.create({
     input: {
       borderBottomColor: active
-        ? Theme.COLORS.INPUT.BORDER_ACTIVE
-        : Theme.COLORS.INPUT.BORDER_INACTIVE,
+        ? theme.COLORS.INPUT.BORDER_ACTIVE
+        : theme.COLORS.INPUT.BORDER_INACTIVE,
       borderBottomWidth: active ? 2 : 1,
-      color: Theme.COLORS.INPUT.COLOR,
+      color: theme.COLORS.INPUT.COLOR,
     },
   });

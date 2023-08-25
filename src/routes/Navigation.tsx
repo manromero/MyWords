@@ -20,13 +20,15 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Theme} from '../theme';
+
+import {useTheme} from '../hooks';
 
 const Tab = createBottomTabNavigator();
 
 const SettingsStack = createStackNavigator();
 
 const SettingStackScreen = () => {
+  const theme = useTheme();
   return (
     <SettingsStack.Navigator initialRouteName="Settings">
       <SettingsStack.Screen
@@ -39,9 +41,9 @@ const SettingStackScreen = () => {
         component={WordList}
         options={{
           headerTitle: 'Words',
-          headerTintColor: Theme.COLORS.TEXT.PRIMARY,
+          headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
-            backgroundColor: Theme.COLORS.BG.PRIMARY,
+            backgroundColor: theme.COLORS.BG.PRIMARY,
           },
         }}
       />
@@ -50,9 +52,9 @@ const SettingStackScreen = () => {
         component={WordEdition}
         options={{
           headerTitle: 'Word Edition',
-          headerTintColor: Theme.COLORS.TEXT.PRIMARY,
+          headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
-            backgroundColor: Theme.COLORS.BG.PRIMARY,
+            backgroundColor: theme.COLORS.BG.PRIMARY,
           },
         }}
       />
@@ -61,9 +63,9 @@ const SettingStackScreen = () => {
         component={TagList}
         options={{
           headerTitle: 'Tags',
-          headerTintColor: Theme.COLORS.TEXT.PRIMARY,
+          headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
-            backgroundColor: Theme.COLORS.BG.PRIMARY,
+            backgroundColor: theme.COLORS.BG.PRIMARY,
           },
         }}
       />
@@ -72,9 +74,9 @@ const SettingStackScreen = () => {
         component={TagCreation}
         options={{
           headerTitle: 'Tag Creation',
-          headerTintColor: Theme.COLORS.TEXT.PRIMARY,
+          headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
-            backgroundColor: Theme.COLORS.BG.PRIMARY,
+            backgroundColor: theme.COLORS.BG.PRIMARY,
           },
         }}
       />
@@ -82,9 +84,9 @@ const SettingStackScreen = () => {
         name="Tag Edition"
         component={TagEdition}
         options={{
-          headerTintColor: Theme.COLORS.TEXT.PRIMARY,
+          headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
-            backgroundColor: Theme.COLORS.BG.PRIMARY,
+            backgroundColor: theme.COLORS.BG.PRIMARY,
           },
         }}
       />
@@ -93,9 +95,10 @@ const SettingStackScreen = () => {
 };
 
 export const Navigation = (): JSX.Element => {
+  const theme = useTheme();
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="Settings">
+      <Tab.Navigator initialRouteName="Words Creation">
         <Tab.Screen
           name="Words Carousel"
           component={WordCarousel}
@@ -105,11 +108,11 @@ export const Navigation = (): JSX.Element => {
             tabBarIcon: ({color, size}) => (
               <Icon name={'view-carousel'} size={size} color={color} />
             ),
-            tabBarActiveTintColor: Theme.COLORS.FOOTER.ITEM_ACTIVE,
-            tabBarInactiveTintColor: Theme.COLORS.FOOTER.ITEM_INACTIVE,
+            tabBarActiveTintColor: theme.COLORS.FOOTER.ITEM_ACTIVE,
+            tabBarInactiveTintColor: theme.COLORS.FOOTER.ITEM_INACTIVE,
             tabBarStyle: {
-              backgroundColor: Theme.COLORS.BG.PRIMARY,
-              borderColor: Theme.COLORS.BG.PRIMARY,
+              backgroundColor: theme.COLORS.BG.PRIMARY,
+              borderColor: theme.COLORS.BG.PRIMARY,
             },
           }}
         />
@@ -122,11 +125,11 @@ export const Navigation = (): JSX.Element => {
             tabBarIcon: ({color, size}) => (
               <Icon name={'playlist-add'} size={size} color={color} />
             ),
-            tabBarActiveTintColor: Theme.COLORS.FOOTER.ITEM_ACTIVE,
-            tabBarInactiveTintColor: Theme.COLORS.FOOTER.ITEM_INACTIVE,
+            tabBarActiveTintColor: theme.COLORS.FOOTER.ITEM_ACTIVE,
+            tabBarInactiveTintColor: theme.COLORS.FOOTER.ITEM_INACTIVE,
             tabBarStyle: {
-              backgroundColor: Theme.COLORS.BG.PRIMARY,
-              borderColor: Theme.COLORS.BG.PRIMARY,
+              backgroundColor: theme.COLORS.BG.PRIMARY,
+              borderColor: theme.COLORS.BG.PRIMARY,
             },
           }}
         />
@@ -139,11 +142,11 @@ export const Navigation = (): JSX.Element => {
             tabBarIcon: ({color, size}) => (
               <Icon name={'settings'} size={size} color={color} />
             ),
-            tabBarActiveTintColor: Theme.COLORS.FOOTER.ITEM_ACTIVE,
-            tabBarInactiveTintColor: Theme.COLORS.FOOTER.ITEM_INACTIVE,
+            tabBarActiveTintColor: theme.COLORS.FOOTER.ITEM_ACTIVE,
+            tabBarInactiveTintColor: theme.COLORS.FOOTER.ITEM_INACTIVE,
             tabBarStyle: {
-              backgroundColor: Theme.COLORS.BG.PRIMARY,
-              borderColor: Theme.COLORS.BG.PRIMARY,
+              backgroundColor: theme.COLORS.BG.PRIMARY,
+              borderColor: theme.COLORS.BG.PRIMARY,
             },
           }}
         />

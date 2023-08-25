@@ -3,7 +3,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Tag} from './Tag';
 import {TTag} from '../../types';
-import {Theme} from '../../theme';
+import {useTheme} from '../../hooks';
 
 type TTagsPreview = {
   tags: TTag[];
@@ -11,6 +11,8 @@ type TTagsPreview = {
 };
 
 export const TagsPreview = (props: TTagsPreview): JSX.Element | null => {
+  const theme = useTheme();
+  const styles = getStyles(theme);
   if (props.tags.length === 0 && !props.noTagsText) {
     return null;
   }
@@ -38,12 +40,13 @@ export const TagsPreview = (props: TTagsPreview): JSX.Element | null => {
   );
 };
 
-const styles = StyleSheet.create({
-  root: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 7,
-    flexWrap: 'wrap',
-  },
-  noTagsText: {color: Theme.COLORS.TEXT.SECONDARY, fontSize: 13},
-});
+const getStyles = (theme: any) =>
+  StyleSheet.create({
+    root: {
+      display: 'flex',
+      flexDirection: 'row',
+      gap: 7,
+      flexWrap: 'wrap',
+    },
+    noTagsText: {color: theme.COLORS.TEXT.SECONDARY, fontSize: 13},
+  });

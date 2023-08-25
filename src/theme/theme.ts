@@ -1,4 +1,4 @@
-export const Theme = {
+const LightTheme = {
   COLORS: {
     STATUS: {
       DEFAULT: '#232323',
@@ -49,7 +49,7 @@ export const Theme = {
   },
 };
 
-export const ThemeDark = {
+const DarkTheme = {
   COLORS: {
     STATUS: {
       DEFAULT: '#ffffff',
@@ -99,3 +99,17 @@ export const ThemeDark = {
     },
   },
 };
+
+export const themes: TThemes = {
+  light: LightTheme,
+  dark: DarkTheme,
+};
+
+export type TTheme = any;
+
+export type TThemes = {
+  light: TTheme;
+  dark: TTheme;
+};
+
+export type TThemeKey = keyof TThemes;

@@ -4,9 +4,12 @@ import {StyleSheet, View} from 'react-native';
 
 import {WordEditionForm} from '../components';
 import {TWord} from '../types';
-import {Theme} from '../theme';
+
+import {useTheme} from '../hooks';
 
 export const WordEdition = ({route}: any): JSX.Element => {
+  const theme = useTheme();
+  const styles = getStyles(theme);
   const wordToEdit = route.params as TWord;
   return (
     <View style={styles.root}>
@@ -15,9 +18,10 @@ export const WordEdition = ({route}: any): JSX.Element => {
   );
 };
 
-const styles = StyleSheet.create({
-  root: {
-    backgroundColor: Theme.COLORS.BG.PRIMARY,
-    flex: 1,
-  },
-});
+const getStyles = (theme: any) =>
+  StyleSheet.create({
+    root: {
+      backgroundColor: theme.COLORS.BG.PRIMARY,
+      flex: 1,
+    },
+  });
