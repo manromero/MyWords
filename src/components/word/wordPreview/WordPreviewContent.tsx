@@ -59,7 +59,7 @@ export const WordPreviewContent = ({
           name="volume-up"
           aria-label="Play sound"
           size={30}
-          color={Theme.COLORS.ICONS.INFO}
+          color={Theme.COLORS.STATUS.ACTIVE}
           onPress={handlePlaySound}
         />
       </View>
@@ -84,8 +84,8 @@ export const WordPreviewContent = ({
             size={30}
             color={
               props.learned
-                ? Theme.COLORS.ICONS.SUCCESS
-                : Theme.COLORS.ICONS.DISABLED
+                ? Theme.COLORS.STATUS.ACTIVE
+                : Theme.COLORS.STATUS.DISABLED
             }
             onPress={handleOnPressLearnedIcon}
           />
@@ -107,15 +107,23 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 35,
     fontWeight: '600',
-    color: Theme.COLORS.TEXT.SECONDARY,
+    color: Theme.COLORS.TEXT.PRIMARY,
     textAlign: 'center',
   },
-  label: {fontSize: 15, fontWeight: '400', color: Theme.COLORS.TEXT.SECONDARY},
+  label: {
+    fontSize: 15,
+    fontWeight: '400',
+    color: Theme.COLORS.TEXT.SECONDARY,
+  },
   translation: {
     fontSize: 30,
     fontWeight: '600',
-    color: Theme.COLORS.TEXT.SECONDARY,
+    color: Theme.COLORS.TEXT.PRIMARY,
   },
-  notes: {fontSize: 20, fontWeight: '600', color: Theme.COLORS.TEXT.SECONDARY},
+  notes: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: Theme.COLORS.TEXT.PRIMARY,
+  },
   learnedIconWrapper: {display: 'flex', flexDirection: 'row-reverse'},
 });

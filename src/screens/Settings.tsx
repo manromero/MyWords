@@ -78,7 +78,7 @@ const Item = (props: any & {navigation: any}): JSX.Element => {
         name={props.icon}
         aria-label="Play sound"
         size={20}
-        color={Theme.COLORS.ICONS.PRIMARY}
+        color={Theme.COLORS.STATUS.DEFAULT}
       />
       <Text style={itemStyles.label}>{props.name}</Text>
     </TouchableOpacity>
@@ -91,13 +91,16 @@ const itemStyles = StyleSheet.create({
     padding: 10,
     paddingTop: 15,
     paddingBottom: 15,
-    backgroundColor: Theme.COLORS.BG.PRIMARY,
+    backgroundColor: Theme.COLORS.BG.SECONDARY,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5,
-    borderBottomColor: Theme.COLORS.BORDER.SECONDARY,
-    borderBottomWidth: 1,
+    marginBottom: 10,
   },
-  label: {fontSize: 15, fontWeight: '400', color: Theme.COLORS.TEXT.PRIMARY},
+  label: {
+    fontSize: 15,
+    fontWeight: '400',
+    color: Theme.COLORS.TEXT.PRIMARY,
+  },
 });

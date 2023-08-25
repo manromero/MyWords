@@ -85,13 +85,12 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   filterButton: {
-    backgroundColor: Theme.COLORS.BG.ACTION_PRIMARY,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
   filterButtonText: {
-    color: Theme.COLORS.TEXT.ACTION_PRIMARY,
+    color: Theme.COLORS.STATUS.ACTIVE,
     fontWeight: '700',
   },
 });

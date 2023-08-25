@@ -42,6 +42,7 @@ export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
           placeholder={props.placeholder}
           value={props.value}
           onChangeText={props.onChangeColor}
+          placeholderTextColor={Theme.COLORS.INPUT.PLACEHOLDER}
         />
         <TouchableOpacity
           style={styles.showModalIconWrapper}
@@ -49,7 +50,7 @@ export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
           <Icon
             name={showPreview ? 'visibility-off' : 'visibility'}
             size={20}
-            color={Theme.COLORS.ICONS.INFO}
+            color={Theme.COLORS.STATUS.ACTIVE}
           />
         </TouchableOpacity>
       </View>
@@ -82,17 +83,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  label: {fontSize: 15, fontWeight: '400', color: Theme.COLORS.TEXT.SECONDARY},
+  label: {
+    fontSize: 15,
+    fontWeight: '400',
+    color: Theme.COLORS.INPUT.LABEL,
+  },
   showModalIconWrapper: {padding: 5},
   colorPicker: {gap: 10},
   chooseColorButton: {
-    backgroundColor: Theme.COLORS.BG.ACTION_PRIMARY,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
   chooseColorButtonText: {
-    color: Theme.COLORS.TEXT.ACTION_PRIMARY,
+    color: Theme.COLORS.STATUS.ACTIVE,
     fontWeight: '700',
   },
 });
@@ -101,8 +105,10 @@ const inputStyles = ({active}: {active?: boolean}) =>
   StyleSheet.create({
     input: {
       flex: 1,
-      borderBottomColor: Theme.COLORS.BORDER.PRIMARY,
-      borderBottomWidth: active ? 3 : 1,
-      color: Theme.COLORS.TEXT.PRIMARY,
+      borderBottomColor: active
+        ? Theme.COLORS.INPUT.BORDER_ACTIVE
+        : Theme.COLORS.INPUT.BORDER_INACTIVE,
+      borderBottomWidth: active ? 2 : 1,
+      color: Theme.COLORS.INPUT.COLOR,
     },
   });

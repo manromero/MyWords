@@ -41,7 +41,7 @@ const SettingStackScreen = () => {
           headerTitle: 'Words',
           headerTintColor: Theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
-            backgroundColor: Theme.COLORS.BG.SECONDARY,
+            backgroundColor: Theme.COLORS.BG.PRIMARY,
           },
         }}
       />
@@ -52,7 +52,7 @@ const SettingStackScreen = () => {
           headerTitle: 'Word Edition',
           headerTintColor: Theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
-            backgroundColor: Theme.COLORS.BG.SECONDARY,
+            backgroundColor: Theme.COLORS.BG.PRIMARY,
           },
         }}
       />
@@ -63,7 +63,7 @@ const SettingStackScreen = () => {
           headerTitle: 'Tags',
           headerTintColor: Theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
-            backgroundColor: Theme.COLORS.BG.SECONDARY,
+            backgroundColor: Theme.COLORS.BG.PRIMARY,
           },
         }}
       />
@@ -74,7 +74,7 @@ const SettingStackScreen = () => {
           headerTitle: 'Tag Creation',
           headerTintColor: Theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
-            backgroundColor: Theme.COLORS.BG.SECONDARY,
+            backgroundColor: Theme.COLORS.BG.PRIMARY,
           },
         }}
       />
@@ -84,7 +84,7 @@ const SettingStackScreen = () => {
         options={{
           headerTintColor: Theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
-            backgroundColor: Theme.COLORS.BG.SECONDARY,
+            backgroundColor: Theme.COLORS.BG.PRIMARY,
           },
         }}
       />
@@ -101,13 +101,15 @@ export const Navigation = (): JSX.Element => {
           component={WordCarousel}
           options={{
             headerShown: false,
-            tabBarLabel: 'Learn',
+            tabBarShowLabel: false,
             tabBarIcon: ({color, size}) => (
               <Icon name={'view-carousel'} size={size} color={color} />
             ),
+            tabBarActiveTintColor: Theme.COLORS.FOOTER.ITEM_ACTIVE,
+            tabBarInactiveTintColor: Theme.COLORS.FOOTER.ITEM_INACTIVE,
             tabBarStyle: {
-              backgroundColor: Theme.COLORS.BG.SECONDARY,
-              borderColor: Theme.COLORS.BG.SECONDARY,
+              backgroundColor: Theme.COLORS.BG.PRIMARY,
+              borderColor: Theme.COLORS.BG.PRIMARY,
             },
           }}
         />
@@ -116,13 +118,15 @@ export const Navigation = (): JSX.Element => {
           component={WordCreation}
           options={{
             headerShown: false,
-            tabBarLabel: 'New Word',
+            tabBarShowLabel: false,
             tabBarIcon: ({color, size}) => (
               <Icon name={'playlist-add'} size={size} color={color} />
             ),
+            tabBarActiveTintColor: Theme.COLORS.FOOTER.ITEM_ACTIVE,
+            tabBarInactiveTintColor: Theme.COLORS.FOOTER.ITEM_INACTIVE,
             tabBarStyle: {
-              backgroundColor: Theme.COLORS.BG.SECONDARY,
-              borderColor: Theme.COLORS.BG.SECONDARY,
+              backgroundColor: Theme.COLORS.BG.PRIMARY,
+              borderColor: Theme.COLORS.BG.PRIMARY,
             },
           }}
         />
@@ -131,13 +135,15 @@ export const Navigation = (): JSX.Element => {
           component={SettingStackScreen}
           options={{
             headerShown: false,
-            tabBarLabel: 'Settings',
+            tabBarShowLabel: false,
             tabBarIcon: ({color, size}) => (
               <Icon name={'settings'} size={size} color={color} />
             ),
+            tabBarActiveTintColor: Theme.COLORS.FOOTER.ITEM_ACTIVE,
+            tabBarInactiveTintColor: Theme.COLORS.FOOTER.ITEM_INACTIVE,
             tabBarStyle: {
-              backgroundColor: Theme.COLORS.BG.SECONDARY,
-              borderColor: Theme.COLORS.BG.SECONDARY,
+              backgroundColor: Theme.COLORS.BG.PRIMARY,
+              borderColor: Theme.COLORS.BG.PRIMARY,
             },
           }}
         />

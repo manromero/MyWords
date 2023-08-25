@@ -24,20 +24,27 @@ export const MWTextInput = (props: TMWTextInput): JSX.Element => {
         value={props.value}
         multiline={props.multiline}
         onChangeText={props.onChangeText}
+        placeholderTextColor={Theme.COLORS.INPUT.PLACEHOLDER}
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  label: {fontSize: 15, fontWeight: '400', color: Theme.COLORS.TEXT.SECONDARY},
+  label: {
+    fontSize: 15,
+    fontWeight: '400',
+    color: Theme.COLORS.INPUT.LABEL,
+  },
 });
 
 const inputStyles = ({active}: {active?: boolean}) =>
   StyleSheet.create({
     input: {
-      borderBottomColor: Theme.COLORS.BORDER.PRIMARY,
-      borderBottomWidth: active ? 3 : 1,
-      color: Theme.COLORS.TEXT.PRIMARY,
+      borderBottomColor: active
+        ? Theme.COLORS.INPUT.BORDER_ACTIVE
+        : Theme.COLORS.INPUT.BORDER_INACTIVE,
+      borderBottomWidth: active ? 2 : 1,
+      color: Theme.COLORS.INPUT.COLOR,
     },
   });

@@ -34,7 +34,7 @@ export const Login = (): JSX.Element => {
       <Text style={styles.label}>Before continue, please log in</Text>
       <GoogleSigninButton
         size={GoogleSigninButton.Size.Wide}
-        color={GoogleSigninButton.Color.Light}
+        color={GoogleSigninButton.Color.Dark}
         onPress={handleOnGoogleButtonPress}
       />
     </View>
@@ -43,6 +43,7 @@ export const Login = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   root: {
+    backgroundColor: Theme.COLORS.BG.PRIMARY,
     display: 'flex',
     flexDirection: 'column',
     padding: 10,
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     fontWeight: '600',
-    color: Theme.COLORS.TEXT.SECONDARY,
+    color: Theme.COLORS.TEXT.PRIMARY,
     textAlign: 'center',
   },
 });

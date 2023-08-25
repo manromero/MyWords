@@ -155,11 +155,15 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
       <Icon.Button
         name={showPreview ? 'visibility-off' : 'visibility'}
         size={20}
-        backgroundColor={Theme.COLORS.BG.ACTION_PRIMARY}
+        backgroundColor={
+          disabled
+            ? Theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_BG
+            : Theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_BG
+        }
         color={
           disabled
-            ? Theme.COLORS.TEXT.DISABLED
-            : Theme.COLORS.TEXT.ACTION_PRIMARY
+            ? Theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_LABEL
+            : Theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_LABEL
         }
         disabled={disabled}
         onPress={() => setShowPreview(prevVal => !prevVal)}>
@@ -170,8 +174,8 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
           <Icon.Button
             name="delete"
             size={20}
-            backgroundColor={Theme.COLORS.BG.ACTION_DELETE}
-            color={Theme.COLORS.TEXT.ACTION_DELETE}
+            backgroundColor={Theme.COLORS.ACTION_BUTTON.DELETE_ACTIVE_BG}
+            color={Theme.COLORS.ACTION_BUTTON.DELETE_ACTIVE_LABEL}
             onPress={handleOnDelete}>
             DELETE
           </Icon.Button>
@@ -180,13 +184,15 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
           name="save"
           size={20}
           backgroundColor={
-            disabled ? Theme.COLORS.BG.DISABLED : Theme.COLORS.BG.ACTION_PRIMARY
+            disabled
+              ? Theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_BG
+              : Theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_BG
           }
           disabled={disabled}
           color={
             disabled
-              ? Theme.COLORS.TEXT.DISABLED
-              : Theme.COLORS.TEXT.ACTION_PRIMARY
+              ? Theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_LABEL
+              : Theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_LABEL
           }
           onPress={handleOnSave}>
           SAVE

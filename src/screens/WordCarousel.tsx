@@ -34,7 +34,7 @@ export const WordCarousel = (): JSX.Element => {
         <Icon
           name={'filter-list'}
           size={30}
-          color={Theme.COLORS.ICONS.PRIMARY}
+          color={Theme.COLORS.TEXT.PRIMARY}
         />
       </TouchableOpacity>
       <TagsFilter

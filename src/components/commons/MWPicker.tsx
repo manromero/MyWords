@@ -53,6 +53,7 @@ export const MWPicker = ({
           placeholder={filterPlaceholder}
           value={filter}
           onChangeText={newFilter => setFilter(newFilter)}
+          placeholderTextColor={Theme.COLORS.INPUT.PLACEHOLDER}
         />
         <FlatList
           data={props.options.filter(option => option.label.includes(filter))}
@@ -66,7 +67,6 @@ export const MWPicker = ({
 
 const styles = StyleSheet.create({
   openModalButton: {
-    backgroundColor: Theme.COLORS.BG.ACTION_PRIMARY,
     display: 'flex',
     alignItems: 'center',
     padding_top: 5,
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   },
   openModalButtonText: {
     alignSelf: 'flex-start',
-    color: Theme.COLORS.TEXT.ACTION_PRIMARY,
+    color: Theme.COLORS.STATUS.ACTIVE,
     fontWeight: '700',
   },
 });
@@ -99,8 +99,8 @@ const getItemStyles = (selected?: boolean) =>
       padding: 10,
       margin: 5,
       backgroundColor: selected
-        ? Theme.COLORS.BG.PICKER_OPTION_SELECTED
-        : Theme.COLORS.BG.SECONDARY,
+        ? Theme.COLORS.PICKER.ITEM_BG_SELECTED
+        : Theme.COLORS.PICKER.ITEM_BG_UNSELECTED,
       display: 'flex',
       justifyContent: 'center',
       borderRadius: 5,
@@ -109,18 +109,22 @@ const getItemStyles = (selected?: boolean) =>
     label: {
       fontSize: 15,
       fontWeight: selected ? '700' : '400',
-      color: Theme.COLORS.TEXT.PRIMARY,
+      color: selected
+        ? Theme.COLORS.PICKER.ITEM_LABEL_SELECTED
+        : Theme.COLORS.PICKER.ITEM_LABEL_UNSELECTED,
     },
   });
 
 const inputStyles = ({active}: {active?: boolean}) =>
   StyleSheet.create({
     input: {
-      borderBottomColor: Theme.COLORS.BORDER.PRIMARY,
-      borderBottomWidth: active ? 3 : 1,
+      borderBottomColor: active
+        ? Theme.COLORS.INPUT.BORDER_ACTIVE
+        : Theme.COLORS.INPUT.BORDER_INACTIVE,
+      borderBottomWidth: active ? 2 : 1,
       marginLeft: 5,
       marginRight: 5,
       marginBottom: 10,
-      color: Theme.COLORS.TEXT.PRIMARY,
+      color: Theme.COLORS.INPUT.COLOR,
     },
   });

@@ -1,30 +1,51 @@
 export const Theme = {
   COLORS: {
-    TEXT: {
-      PRIMARY: '#f1f0f0',
-      SECONDARY: '#f1f3f4',
-      DISABLED: '#9f9f9f',
-      ACTION_PRIMARY: '#e3b238',
-      ACTION_DELETE: '#f94f4f',
+    STATUS: {
+      DEFAULT: '#ffffff',
+      ACTIVE: '#297cda',
+      DISABLED: '#737475',
+      DANGER: '#f94f4f',
     },
     BG: {
-      PRIMARY: '#19191c',
-      SECONDARY: '#36353d',
-      DISABLED: '#1f1f1f',
-      ACTION_PRIMARY: 'transparent',
-      ACTION_DELETE: 'transparent',
-      PICKER_OPTION_SELECTED: '#241d05',
+      PRIMARY: '#000000',
+      SECONDARY: '#161618',
       MODAL: '#4343437f',
     },
-    ICONS: {
-      PRIMARY: '#f1f0f0',
-      INFO: '#1c4dc7',
-      SUCCESS: '#007e1d',
-      DISABLED: '#e0e0e0',
+    TEXT: {
+      PRIMARY: '#ffffff',
+      SECONDARY: '#aeb0b4',
     },
-    BORDER: {
-      PRIMARY: '#e3dfd6',
-      SECONDARY: '#9f9f9f',
+    INPUT: {
+      LABEL: '#aeb0b4',
+      COLOR: '#ffffff',
+      PLACEHOLDER: '#aeb0b4',
+      BORDER_ACTIVE: '#ffffff',
+      BORDER_INACTIVE: '#aeb0b4',
+    },
+    FOOTER: {
+      ITEM_ACTIVE: '#297cda',
+      ITEM_INACTIVE: '#737475',
+    },
+    PICKER: {
+      ITEM_BG_SELECTED: '#313133',
+      ITEM_BG_UNSELECTED: '#161618',
+      ITEM_LABEL_SELECTED: '#ffffff',
+      ITEM_LABEL_UNSELECTED: '#ffffff',
+    },
+    ACTION_BUTTON: {
+      PRIMARY_ACTIVE_BG: 'transparent',
+      PRIMARY_ACTIVE_LABEL: '#297cda',
+      PRIMARY_DISABLED_BG: 'transparent',
+      PRIMARY_DISABLED_LABEL: '#737475',
+      DELETE_ACTIVE_BG: 'transparent',
+      DELETE_ACTIVE_LABEL: '#f94f4f',
+      DELETE_DISABLED_BG: 'transparent',
+      DELETE_DISABLED_LABEL: '#737475',
+    },
+    TAG: {
+      DEFAULT_LABEL: '#ffffff',
+      DEFAULT_BG: '#000000',
+      DEFAULT_BORDER: '#ffffff',
     },
   },
 

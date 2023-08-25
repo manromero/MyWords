@@ -19,7 +19,11 @@ export const MWModal = (
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <TouchableOpacity style={styles.closeButton} onPress={props.onClose}>
-            <Icon name={'close'} size={20} color={Theme.COLORS.ICONS.PRIMARY} />
+            <Icon
+              name={'close'}
+              size={20}
+              color={Theme.COLORS.STATUS.DEFAULT}
+            />
           </TouchableOpacity>
           {props.children}
         </View>

@@ -30,6 +30,7 @@ export const TagList = ({navigation}: any): JSX.Element => {
         placeholder="Filter tags"
         value={filter}
         onChangeText={newFilter => setFilter(newFilter)}
+        placeholderTextColor={Theme.COLORS.INPUT.PLACEHOLDER}
       />
       <FlatList
         data={tags.data.filter(({label}) => label?.includes(filter))}
@@ -78,16 +79,22 @@ const itemStyles = StyleSheet.create({
     borderRadius: 5,
     elevation: 1,
   },
-  label: {fontSize: 15, fontWeight: '400', color: Theme.COLORS.TEXT.PRIMARY},
+  label: {
+    fontSize: 15,
+    fontWeight: '400',
+    color: Theme.COLORS.TEXT.PRIMARY,
+  },
 });
 
 const inputStyles = ({active}: {active?: boolean}) =>
   StyleSheet.create({
     input: {
-      borderBottomColor: Theme.COLORS.BORDER.PRIMARY,
-      borderBottomWidth: active ? 3 : 1,
+      borderBottomColor: active
+        ? Theme.COLORS.INPUT.BORDER_ACTIVE
+        : Theme.COLORS.INPUT.BORDER_INACTIVE,
+      borderBottomWidth: active ? 2 : 1,
       marginLeft: 5,
       marginRight: 5,
-      color: Theme.COLORS.TEXT.PRIMARY,
+      color: Theme.COLORS.INPUT.COLOR,
     },
   });

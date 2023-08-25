@@ -18,12 +18,14 @@ type TTagEditionForm = TTag & {navigation: any};
 export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
   const [id, setId] = useState(props.id);
   const [label, setLabel] = useState(props.label);
-  const [labelColor, setLabelColor] = useState(props.labelColor ?? '#000000');
+  const [labelColor, setLabelColor] = useState(
+    props.labelColor ?? Theme.COLORS.TAG.DEFAULT_LABEL,
+  );
   const [backgroundColor, setBackgroundColor] = useState(
-    props.backgroundColor ?? '#fffff',
+    props.backgroundColor ?? Theme.COLORS.TAG.DEFAULT_BG,
   );
   const [borderColor, setBorderColor] = useState(
-    props.borderColor ?? '#000000',
+    props.borderColor ?? Theme.COLORS.TAG.DEFAULT_BORDER,
   );
 
   const handleOnSave = () => {
@@ -130,8 +132,8 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
           <Icon.Button
             name="delete"
             size={20}
-            backgroundColor={Theme.COLORS.BG.ACTION_DELETE}
-            color={Theme.COLORS.TEXT.ACTION_DELETE}
+            backgroundColor={Theme.COLORS.ACTION_BUTTON.DELETE_ACTIVE_BG}
+            color={Theme.COLORS.ACTION_BUTTON.DELETE_ACTIVE_LABEL}
             onPress={handleOnDelete}>
             DELETE
           </Icon.Button>
@@ -140,13 +142,15 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
           name="save"
           size={20}
           backgroundColor={
-            disabled ? Theme.COLORS.BG.DISABLED : Theme.COLORS.BG.ACTION_PRIMARY
+            disabled
+              ? Theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_BG
+              : Theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_BG
           }
           disabled={disabled}
           color={
             disabled
-              ? Theme.COLORS.TEXT.DISABLED
-              : Theme.COLORS.TEXT.ACTION_PRIMARY
+              ? Theme.COLORS.ACTION_BUTTON.PRIMARY_DISABLED_LABEL
+              : Theme.COLORS.ACTION_BUTTON.PRIMARY_ACTIVE_LABEL
           }
           onPress={handleOnSave}>
           SAVE
@@ -166,7 +170,7 @@ const styles = StyleSheet.create({
   previewLabel: {
     fontSize: 15,
     fontWeight: '400',
-    color: Theme.COLORS.TEXT.SECONDARY,
+    color: Theme.COLORS.INPUT.LABEL,
   },
   footer: {
     display: 'flex',
