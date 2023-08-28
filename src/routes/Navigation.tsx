@@ -7,6 +7,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 // screens
 import {
+  Preferences,
   Settings,
   TagCreation,
   TagEdition,
@@ -34,7 +35,13 @@ const SettingStackScreen = () => {
       <SettingsStack.Screen
         name="Settings"
         component={Settings}
-        options={{headerShown: false}}
+        options={{
+          headerTitle: 'Settings',
+          headerTintColor: theme.COLORS.TEXT.PRIMARY,
+          headerStyle: {
+            backgroundColor: theme.COLORS.BG.PRIMARY,
+          },
+        }}
       />
       <SettingsStack.Screen
         name="Words"
@@ -84,6 +91,18 @@ const SettingStackScreen = () => {
         name="Tag Edition"
         component={TagEdition}
         options={{
+          headerTitle: 'Tag Edition',
+          headerTintColor: theme.COLORS.TEXT.PRIMARY,
+          headerStyle: {
+            backgroundColor: theme.COLORS.BG.PRIMARY,
+          },
+        }}
+      />
+      <SettingsStack.Screen
+        name="Preferences"
+        component={Preferences}
+        options={{
+          headerTitle: 'Preferences',
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -98,7 +117,7 @@ export const Navigation = (): JSX.Element => {
   const theme = useTheme();
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="Words Creation">
+      <Tab.Navigator initialRouteName="Settings">
         <Tab.Screen
           name="Words Carousel"
           component={WordCarousel}

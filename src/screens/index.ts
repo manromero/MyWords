@@ -8,3 +8,4 @@ export * from './TagCreation';
 export * from './TagEdition';
 export * from './TagList';
 export * from './Settings';
+export * from './Preferences';

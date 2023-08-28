@@ -3,7 +3,8 @@ import {TThemeKey} from '../../theme';
 
 type ContextProps = {
   theme: any;
-  changeTheme: (theme: TThemeKey) => void;
+  themeKey: TThemeKey;
+  changeThemeKey: (theme: TThemeKey) => void;
 };
 
 export const ThemeContext = createContext({} as ContextProps);

@@ -21,6 +21,10 @@ const LightTheme = {
       BORDER_ACTIVE: '#232323',
       BORDER_INACTIVE: '#676767',
     },
+    RADIO_BUTTON: {
+      LABEL: '#676767',
+      COLOR: '#232323',
+    },
     FOOTER: {
       ITEM_ACTIVE: '#0a6aee',
       ITEM_INACTIVE: '#696d70',
@@ -71,6 +75,10 @@ const DarkTheme = {
       PLACEHOLDER: '#aeb0b4',
       BORDER_ACTIVE: '#ffffff',
       BORDER_INACTIVE: '#aeb0b4',
+    },
+    RADIO_BUTTON: {
+      LABEL: '#aeb0b4',
+      COLOR: '#ffffff',
     },
     FOOTER: {
       ITEM_ACTIVE: '#297cda',
@@ -128,6 +136,10 @@ export type TTheme = {
       BORDER_ACTIVE: string;
       BORDER_INACTIVE: string;
     };
+    RADIO_BUTTON: {
+      LABEL: string;
+      COLOR: string;
+    };
     FOOTER: {
       ITEM_ACTIVE: string;
       ITEM_INACTIVE: string;
@@ -161,4 +173,4 @@ export type TThemes = {
   dark: TTheme;
 };
 
-export type TThemeKey = keyof TThemes;
+export type TThemeKey = keyof TThemes | 'automatic';

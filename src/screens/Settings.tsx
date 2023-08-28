@@ -14,6 +14,7 @@ const routes = [
   {name: 'Words', icon: 'format-list-bulleted', route: 'Words'},
   {name: 'Tags', icon: 'bookmarks', route: 'Tags'},
   {name: 'Tag Creation', icon: 'bookmark-add', route: 'Tag Creation'},
+  {name: 'Preferences', icon: 'bookmark-add', route: 'Preferences'},
   {
     name: 'Log Out',
     icon: 'logout',
