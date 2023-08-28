@@ -1,12 +1,18 @@
+// react
 import React from 'react';
 
+// react-native
 import {StyleSheet, View} from 'react-native';
 
+// inner components
 import {TagEditionForm} from '../components';
-import {TTag} from '../types';
 
-import {useTheme} from '../hooks';
+// types
+import {TTag} from '../types';
 import {TTheme} from '../theme';
+
+// hooks
+import {useTheme} from '../hooks';
 
 export const TagEdition = ({route, navigation}: any): JSX.Element => {
   const {theme} = useTheme();

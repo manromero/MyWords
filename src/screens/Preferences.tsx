@@ -1,14 +1,22 @@
+// react
 import React from 'react';
 
+// react-native
 import {StyleSheet, View, Text} from 'react-native';
 
-// Toast
+// toast
 import {useAuth, useData, useTheme} from '../hooks';
+
+// inner components
 import {MWCard, MWRadioButton} from '../components';
+
+// types
 import {TTheme, TThemeKey} from '../theme';
 
-// firestore
+// firestore TODO MANROMERO debería ir por el hook
 import firestore from '@react-native-firebase/firestore';
+
+// toast
 import {Toast} from 'react-native-toast-message/lib/src/Toast';
 
 // TODO type

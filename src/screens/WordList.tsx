@@ -1,5 +1,7 @@
+// react
 import React, {useState} from 'react';
 
+// react-native
 import {
   StyleSheet,
   View,
@@ -12,7 +14,10 @@ import {
 // Toast
 import {TWord} from '../types';
 
+// hooks
 import {useData, useTheme} from '../hooks';
+
+// types
 import {TTheme} from '../theme';
 
 // TODO type

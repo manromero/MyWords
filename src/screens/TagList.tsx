@@ -1,6 +1,7 @@
+// react
 import React, {useState} from 'react';
 
-// components
+// react-native
 import {
   StyleSheet,
   View,
@@ -12,8 +13,10 @@ import {
 
 // types
 import {TTag} from '../types';
-import {useData, useTheme} from '../hooks';
 import {TTheme} from '../theme';
+
+// hooks
+import {useData, useTheme} from '../hooks';
 
 // TODO type
 export const TagList = ({navigation}: any): JSX.Element => {

@@ -1,14 +1,22 @@
+// react
 import React from 'react';
+
+// react-native
 import {StyleSheet, Text, View} from 'react-native';
+
+// auth TODO MANROMERO debería ir por el hook?
 import auth from '@react-native-firebase/auth';
 
-// PARA USAR EL BOTON
-// TODO MANROMERO https://github.com/react-native-google-signin/google-signin#2-googlesigninbutton
+// react-native-google-signin
 import {
   GoogleSignin,
   GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
+
+// hooks
 import {useTheme} from '../hooks';
+
+// types
 import {TTheme} from '../theme';
 
 GoogleSignin.configure({

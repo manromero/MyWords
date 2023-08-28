@@ -1,15 +1,21 @@
+// react
 import React, {useState} from 'react';
 
+// react-native
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 
+// inner components
 import {TagsFilter, WordCarousel as WordCarouselComponent} from '../components';
 
+// icons
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // types
 import {TWord} from '../types';
-import {useData, useTheme} from '../hooks';
 import {TTheme} from '../theme';
+
+// hooks
+import {useData, useTheme} from '../hooks';
 
 export const WordCarousel = (): JSX.Element => {
   const {theme} = useTheme();

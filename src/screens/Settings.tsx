@@ -1,14 +1,22 @@
+// react
 import React from 'react';
 
+// react native
 import {StyleSheet, View, FlatList, Text, TouchableOpacity} from 'react-native';
 
+// icons
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+// firebase auth TODO MANROMERO, debería ir por el useAuth?
 import auth from '@react-native-firebase/auth';
 
 // Toast
 import Toast from 'react-native-toast-message';
+
+// hooks
 import {useTheme} from '../hooks';
+
+// types
 import {TTheme} from '../theme';
 
 const routes = [

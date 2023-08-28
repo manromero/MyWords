@@ -1,12 +1,18 @@
+// react
 import React from 'react';
 
+// react-native
 import {StyleSheet, View} from 'react-native';
 
+// inner components
 import {WordEditionForm} from '../components';
-import {TWord} from '../types';
 
-import {useTheme} from '../hooks';
+// types
+import {TWord} from '../types';
 import {TTheme} from '../theme';
+
+// hooks
+import {useTheme} from '../hooks';
 
 export const WordEdition = ({route}: any): JSX.Element => {
   const {theme} = useTheme();
