@@ -18,11 +18,6 @@ export const ThemeProvider = ({children}: TThemeProvider): JSX.Element => {
     setThemeKey(preferences.data.theme ?? 'automatic');
   }, [preferences.data]);
 
-  // Handle user state changes
-  const handleChangeTheme = (newThemeKey: TThemeKey) => {
-    setThemeKey(newThemeKey);
-  };
-
   return (
     <ThemeContext.Provider
       value={{
@@ -33,7 +28,6 @@ export const ThemeProvider = ({children}: TThemeProvider): JSX.Element => {
               : themeKey
           ],
         themeKey,
-        changeThemeKey: handleChangeTheme,
       }}>
       {children}
     </ThemeContext.Provider>

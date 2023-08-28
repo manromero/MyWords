@@ -51,6 +51,7 @@ export const useTags = (): TUseTagsResponse => {
     setLoading(true);
     const subscriber = firestore()
       .collection('tags')
+      .where('userId', '==', user.uid)
       .onSnapshot(handleOnSnapShotResults, handleOnSnapShotError);
     return () => subscriber();
   }, [user]);

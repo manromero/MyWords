@@ -15,7 +15,7 @@ import Toast from 'react-native-toast-message';
 import {TWord} from '../../types';
 
 import {useNavigation} from '@react-navigation/native';
-import {DataContext} from '../../context';
+import {AuthContext, DataContext} from '../../context';
 import {TagsPreview} from '../tag';
 import {useTheme} from '../../hooks';
 
@@ -24,6 +24,7 @@ type TWordEdition = TWord;
 export const WordEditionForm = (props: TWordEdition): JSX.Element => {
   const theme = useTheme();
 
+  const {user} = useContext(AuthContext);
   const [id, setId] = useState(props.id);
   const [word, setWord] = useState(props.word ?? '');
   const [translation, setTranslation] = useState(props.translation ?? '');
@@ -49,7 +50,7 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
 
   const handleOnSave = () => {
     const collection = firestore().collection('words');
-    const wordDTO = {word, translation, notes, tags};
+    const wordDTO = {word, translation, notes, tags, userId: user?.uid};
     if (id) {
       collection
         .doc(id)

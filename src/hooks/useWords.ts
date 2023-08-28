@@ -51,6 +51,7 @@ export const useWords = (): TUseWordsResponse => {
     setLoading(true);
     const subscriber = firestore()
       .collection('words')
+      .where('userId', '==', user.uid)
       .onSnapshot(handleOnSnapShotResults, handleOnSnapShotError);
     return () => subscriber();
   }, [user]);

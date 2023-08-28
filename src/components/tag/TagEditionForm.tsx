@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 
 import {StyleSheet, View, Text} from 'react-native';
 import {MWCard, MWTextInput, MWColorPicker, Tag} from '../../components';
@@ -13,10 +13,12 @@ import Toast from 'react-native-toast-message';
 import {TTag} from '../../types';
 import {useTheme} from '../../hooks';
 import {TTheme} from '../../theme';
+import {AuthContext} from '../../context';
 
 type TTagEditionForm = TTag & {navigation: any};
 
 export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
+  const {user} = useContext(AuthContext);
   const theme = useTheme();
   const [id, setId] = useState(props.id);
   const [label, setLabel] = useState(props.label);
@@ -33,7 +35,13 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
 
   const handleOnSave = () => {
     const collection = firestore().collection('tags');
-    const tagDTO = {label, labelColor, backgroundColor, borderColor};
+    const tagDTO = {
+      label,
+      labelColor,
+      backgroundColor,
+      borderColor,
+      userId: user?.uid,
+    };
     if (id) {
       collection
         .doc(id)
