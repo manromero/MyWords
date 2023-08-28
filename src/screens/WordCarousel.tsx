@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 
@@ -7,15 +7,14 @@ import {TagsFilter, WordCarousel as WordCarouselComponent} from '../components';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // types
-import {DataContext} from '../context';
 import {TWord} from '../types';
-import {useTheme} from '../hooks';
+import {useData, useTheme} from '../hooks';
 import {TTheme} from '../theme';
 
 export const WordCarousel = (): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
 
-  const {words, tags} = useContext(DataContext);
+  const {words, tags} = useData();
   const [openFilter, setOpenFilter] = useState(false);
   const [filter, setFilter] = useState<{tags: string[]}>({tags: []});
 

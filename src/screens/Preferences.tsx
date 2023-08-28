@@ -1,11 +1,10 @@
-import React, {useContext} from 'react';
+import React from 'react';
 
 import {StyleSheet, View, Text} from 'react-native';
 
 // Toast
-import {useTheme} from '../hooks';
+import {useAuth, useData, useTheme} from '../hooks';
 import {MWCard, MWRadioButton} from '../components';
-import {AuthContext, DataContext, ThemeContext} from '../context';
 import {TTheme, TThemeKey} from '../theme';
 
 // firestore
@@ -14,11 +13,10 @@ import {Toast} from 'react-native-toast-message/lib/src/Toast';
 
 // TODO type
 export const Preferences = (): JSX.Element => {
-  const {preferences} = useContext(DataContext);
-  const {user} = useContext(AuthContext);
+  const {preferences} = useData();
+  const {user} = useAuth();
 
-  const {themeKey} = useContext(ThemeContext);
-  const theme = useTheme();
+  const {theme, themeKey} = useTheme();
 
   const handleChangeTheme = (newTheme: TThemeKey) => {
     const collection = firestore().collection('preferences');

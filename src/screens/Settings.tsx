@@ -40,7 +40,7 @@ const routes = [
 
 // TODO type
 export const Settings = ({navigation}: any): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const styles = getStyles(theme);
   return (
     <View style={styles.root}>
@@ -67,7 +67,7 @@ const getStyles = (theme: any) =>
   });
 
 const Item = (props: any & {navigation: any}): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const itemStyles = getItemStyles(theme);
   return (
     <TouchableOpacity

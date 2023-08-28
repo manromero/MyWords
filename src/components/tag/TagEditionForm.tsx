@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 
 import {StyleSheet, View, Text} from 'react-native';
 import {MWCard, MWTextInput, MWColorPicker, Tag} from '../../components';
@@ -11,15 +11,14 @@ import firestore from '@react-native-firebase/firestore';
 // Toast
 import Toast from 'react-native-toast-message';
 import {TTag} from '../../types';
-import {useTheme} from '../../hooks';
+import {useAuth, useTheme} from '../../hooks';
 import {TTheme} from '../../theme';
-import {AuthContext} from '../../context';
 
 type TTagEditionForm = TTag & {navigation: any};
 
 export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
-  const {user} = useContext(AuthContext);
-  const theme = useTheme();
+  const {user} = useAuth();
+  const {theme} = useTheme();
   const [id, setId] = useState(props.id);
   const [label, setLabel] = useState(props.label);
   const [labelColor, setLabelColor] = useState(

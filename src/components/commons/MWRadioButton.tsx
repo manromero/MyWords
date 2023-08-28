@@ -12,7 +12,7 @@ type TMWRadioButton = {
 };
 
 export const MWRadioButton = (props: TMWRadioButton): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
 
   const styles = getStyles(theme);
 

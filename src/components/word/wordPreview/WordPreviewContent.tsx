@@ -25,7 +25,7 @@ export const WordPreviewContent = ({
   showLearnedIcon = true,
   ...props
 }: TWordPreviewContent): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const styles = getStyles(theme);
 
   const handlePlaySound = () => {

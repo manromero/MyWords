@@ -14,7 +14,7 @@ import {TTheme} from '../../theme';
 export const MWModal = (
   props: React.PropsWithChildren<TMWModal>,
 ): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const styles = getStyles(theme);
   return (
     <Modal animationType="none" transparent={true} visible={props.open}>

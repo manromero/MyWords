@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 
@@ -6,9 +6,8 @@ import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 import {MWModal, MWPicker} from './commons';
 
 import {TTag} from '../types';
-import {DataContext} from '../context';
 import {TagsPreview} from './tag/TagsPreview';
-import {useTheme} from '../hooks';
+import {useData, useTheme} from '../hooks';
 import {TTheme} from '../theme';
 
 type TFilter = {
@@ -24,7 +23,7 @@ type TTagsFilter = {
 type TTagForSelection = TTag & {selected?: boolean};
 
 export const TagsFilter = (props: TTagsFilter): JSX.Element => {
-  const {tags: allTags} = useContext(DataContext);
+  const {tags: allTags} = useData();
   const [tags, setTags] = useState<TTagForSelection[]>([]);
 
   useEffect(() => {
@@ -42,7 +41,7 @@ export const TagsFilter = (props: TTagsFilter): JSX.Element => {
     props.onFilter?.({tags: filteredTags});
   };
 
-  const theme = useTheme();
+  const {theme} = useTheme();
   const styles = getStyles(theme);
 
   return (

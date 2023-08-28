@@ -9,7 +9,7 @@ import {useTheme} from '../hooks';
 import {TTheme} from '../theme';
 
 export const TagEdition = ({route, navigation}: any): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const tagToEdit = route.params as TTag;
 
   const styles = getStyles(theme);

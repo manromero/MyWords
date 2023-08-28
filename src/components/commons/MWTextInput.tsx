@@ -14,7 +14,7 @@ type TMWTextInput = {
 };
 
 export const MWTextInput = (props: TMWTextInput): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const [active, setActive] = useState(false);
   return (
     <View>

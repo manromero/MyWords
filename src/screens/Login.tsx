@@ -17,7 +17,7 @@ GoogleSignin.configure({
 });
 
 export const Login = (): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const styles = getStyles(theme);
 
   const handleOnGoogleButtonPress = async () => {

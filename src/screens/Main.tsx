@@ -1,17 +1,15 @@
 // vendors
-import React, {useContext} from 'react';
-
-// context
-import {AuthContext} from '../context';
+import React from 'react';
 
 // Navigation
 import {Navigation} from '../routes/Navigation';
 
 // screens
 import {Login} from './Login';
+import {useAuth} from '../hooks';
 
 export const Main = (): JSX.Element => {
-  const {user} = useContext(AuthContext);
+  const {user} = useAuth();
 
   if (!user) {
     return <Login />;

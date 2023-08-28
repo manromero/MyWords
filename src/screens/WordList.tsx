@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 
 import {
   StyleSheet,
@@ -12,17 +12,16 @@ import {
 // Toast
 import {TWord} from '../types';
 
-import {DataContext} from '../context';
-import {useTheme} from '../hooks';
+import {useData, useTheme} from '../hooks';
 import {TTheme} from '../theme';
 
 // TODO type
 export const WordList = ({navigation}: any): JSX.Element => {
-  const {words} = useContext(DataContext);
+  const {words} = useData();
   const [filter, setFilter] = useState('');
   const [inputActive, setInputActive] = useState(false);
 
-  const theme = useTheme();
+  const {theme} = useTheme();
   const styles = getStyles(theme);
   const inputStyles = getInputStyles({active: inputActive, theme});
 
@@ -70,7 +69,7 @@ const Item = ({
   navigation,
   ...props
 }: TWord & {navigation: any}): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const itemStyles = getItemStyles(theme);
   return (
     <TouchableOpacity

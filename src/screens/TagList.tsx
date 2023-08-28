@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 
 // components
 import {
@@ -12,14 +12,13 @@ import {
 
 // types
 import {TTag} from '../types';
-import {DataContext} from '../context';
-import {useTheme} from '../hooks';
+import {useData, useTheme} from '../hooks';
 import {TTheme} from '../theme';
 
 // TODO type
 export const TagList = ({navigation}: any): JSX.Element => {
-  const theme = useTheme();
-  const {tags} = useContext(DataContext);
+  const {theme} = useTheme();
+  const {tags} = useData();
   const [filter, setFilter] = useState('');
   const [inputActive, setInputActive] = useState(false);
 
@@ -63,7 +62,7 @@ const Item = ({
   navigation,
   ...props
 }: TTag & {navigation: any}): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const itemStyles = getItemStyles(theme);
   return (
     <TouchableOpacity

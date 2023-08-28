@@ -29,7 +29,7 @@ const Tab = createBottomTabNavigator();
 const SettingsStack = createStackNavigator();
 
 const SettingStackScreen = () => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   return (
     <SettingsStack.Navigator initialRouteName="Settings">
       <SettingsStack.Screen
@@ -114,7 +114,7 @@ const SettingStackScreen = () => {
 };
 
 export const Navigation = (): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   return (
     <NavigationContainer>
       <Tab.Navigator initialRouteName="Settings">

@@ -9,7 +9,7 @@ import {TTheme} from '../../theme';
 export const MWCard = ({
   children,
 }: React.PropsWithChildren<{}>): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const styles = getStyles(theme);
   return <View style={styles.root}>{children}</View>;
 };

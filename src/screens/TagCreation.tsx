@@ -7,7 +7,7 @@ import {useTheme} from '../hooks';
 import {TTheme} from '../theme';
 
 export const TagCreation = ({navigation}: any): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const styles = getStyles(theme);
   return (
     <View style={styles.root}>

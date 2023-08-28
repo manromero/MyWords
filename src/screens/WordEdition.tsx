@@ -9,7 +9,7 @@ import {useTheme} from '../hooks';
 import {TTheme} from '../theme';
 
 export const WordEdition = ({route}: any): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const styles = getStyles(theme);
   const wordToEdit = route.params as TWord;
   return (

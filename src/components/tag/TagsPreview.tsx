@@ -12,7 +12,7 @@ type TTagsPreview = {
 };
 
 export const TagsPreview = (props: TTagsPreview): JSX.Element | null => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const styles = getStyles(theme);
   if (props.tags.length === 0 && !props.noTagsText) {
     return null;

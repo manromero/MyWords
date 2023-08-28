@@ -32,7 +32,7 @@ export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
   const [showPreview, setShowPreview] = useState(false);
   const [active, setActive] = useState(false);
   const [pickerColor, setPickerColor] = useState('');
-  const theme = useTheme();
+  const {theme} = useTheme();
   const styles = getStyles(theme);
   return (
     <View>

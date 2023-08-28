@@ -30,7 +30,7 @@ export const MWPicker = ({
   filterPlaceholder = 'Filter Elements',
   ...props
 }: TMWPicker): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
 
   const [filter, setFilter] = useState('');
   const [inputActive, setInputActive] = useState(false);
@@ -87,7 +87,7 @@ const getStyles = (theme: TTheme) =>
 const Item = (
   props: TOption & {onPress: (optionValue: string) => void},
 ): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const itemStyles = getItemStyles({selected: props.selected, theme});
   return (
     <TouchableOpacity

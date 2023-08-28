@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 
 import {StyleSheet, View} from 'react-native';
 import {MWCard, MWPicker, MWTextInput} from '../commons';
@@ -15,16 +15,15 @@ import Toast from 'react-native-toast-message';
 import {TWord} from '../../types';
 
 import {useNavigation} from '@react-navigation/native';
-import {AuthContext, DataContext} from '../../context';
 import {TagsPreview} from '../tag';
-import {useTheme} from '../../hooks';
+import {useAuth, useData, useTheme} from '../../hooks';
 
 type TWordEdition = TWord;
 
 export const WordEditionForm = (props: TWordEdition): JSX.Element => {
-  const theme = useTheme();
+  const {theme} = useTheme();
 
-  const {user} = useContext(AuthContext);
+  const {user} = useAuth();
   const [id, setId] = useState(props.id);
   const [word, setWord] = useState(props.word ?? '');
   const [translation, setTranslation] = useState(props.translation ?? '');
@@ -32,7 +31,7 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
   const [showPreview, setShowPreview] = useState(false);
   const [tags, setTags] = useState<string[]>(props.tags ?? []);
 
-  const {tags: alltags} = useContext(DataContext);
+  const {tags: alltags} = useData();
 
   const handleOnTagPress = (value: string) => {
     if (tags.includes(value)) {

@@ -1,15 +1,15 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ThemeContext} from './ThemeContext';
 import {TThemeKey, themes} from '../../theme';
 import {Appearance} from 'react-native';
-import {DataContext} from '../data';
+import {useData} from '../../hooks';
 
 type TThemeProvider = {
   children: React.ReactNode;
 };
 
 export const ThemeProvider = ({children}: TThemeProvider): JSX.Element => {
-  const {preferences} = useContext(DataContext);
+  const {preferences} = useData();
   const [themeKey, setThemeKey] = useState<TThemeKey>(
     preferences.data.theme ?? 'automatic',
   );
