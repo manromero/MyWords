@@ -1,14 +1,22 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {ThemeContext} from './ThemeContext';
 import {TThemeKey, themes} from '../../theme';
 import {Appearance} from 'react-native';
+import {DataContext} from '../data';
 
 type TThemeProvider = {
   children: React.ReactNode;
 };
 
 export const ThemeProvider = ({children}: TThemeProvider): JSX.Element => {
-  const [themeKey, setThemeKey] = useState<TThemeKey>('dark');
+  const {preferences} = useContext(DataContext);
+  const [themeKey, setThemeKey] = useState<TThemeKey>(
+    preferences.data.theme ?? 'automatic',
+  );
+
+  useEffect(() => {
+    setThemeKey(preferences.data.theme ?? 'automatic');
+  }, [preferences.data]);
 
   // Handle user state changes
   const handleChangeTheme = (newThemeKey: TThemeKey) => {

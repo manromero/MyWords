@@ -173,4 +173,4 @@ export type TThemes = {
   dark: TTheme;
 };
 
-export type TThemeKey = keyof TThemes | 'automatic';
+export type TThemeKey = 'automatic' | 'light' | 'dark';

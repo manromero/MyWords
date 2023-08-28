@@ -1,7 +1,7 @@
 import React from 'react';
 import {DataContext} from './DataContext';
 
-import {useTags, useWords} from '../../hooks';
+import {usePreferences, useTags, useWords} from '../../hooks';
 
 type TDataProvider = {
   children: React.ReactNode;
@@ -10,9 +10,10 @@ type TDataProvider = {
 export const DataProvider = ({children}: TDataProvider): JSX.Element => {
   const tags = useTags();
   const words = useWords();
+  const preferences = usePreferences();
 
   return (
-    <DataContext.Provider value={{tags, words}}>
+    <DataContext.Provider value={{tags, words, preferences}}>
       {children}
     </DataContext.Provider>
   );
