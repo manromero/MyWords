@@ -1,17 +1,19 @@
-// vendors
+// react
 import React from 'react';
+
+// react-native-gesture-handler
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
-// react-native components
+// react-native
 import {SafeAreaView, StyleSheet} from 'react-native';
 
 // providers
 import {AuthProvider, DataProvider, ThemeProvider} from './context';
 
-// Main
+// screens
 import {Main} from './screens';
 
-// Toast
+// toast
 import Toast from 'react-native-toast-message';
 
 function App(): JSX.Element {
