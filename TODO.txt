@@ -1,8 +1,9 @@
-* Revisar importaciones.
-* Add carousel filter learned
+* Revisar importaciones -> en progreso
 * Improve any
+* Add carousel filter learned
 * Improve structure
 * Toast reduce show message timeout
+* Toast theme
 * Generate APK
 * Logo
 * Loading
