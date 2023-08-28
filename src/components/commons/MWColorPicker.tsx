@@ -26,6 +26,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {MWModal} from './MWModal';
 import {useTheme} from '../../hooks';
+import {TTheme} from '../../theme';
 
 export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
   const [showPreview, setShowPreview] = useState(false);
@@ -78,7 +79,7 @@ export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
   );
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: TTheme) =>
   StyleSheet.create({
     inputWrapper: {
       display: 'flex',
@@ -104,7 +105,7 @@ const getStyles = (theme: any) =>
     },
   });
 
-const inputStyles = ({active, theme}: {active?: boolean; theme: any}) =>
+const inputStyles = ({active, theme}: {active?: boolean; theme: TTheme}) =>
   StyleSheet.create({
     input: {
       flex: 1,

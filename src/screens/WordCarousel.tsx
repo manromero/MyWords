@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {DataContext} from '../context';
 import {TWord} from '../types';
 import {useTheme} from '../hooks';
+import {TTheme} from '../theme';
 
 export const WordCarousel = (): JSX.Element => {
   const theme = useTheme();
@@ -51,7 +52,7 @@ export const WordCarousel = (): JSX.Element => {
   );
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: TTheme) =>
   StyleSheet.create({
     root: {
       backgroundColor: theme.COLORS.BG.PRIMARY,

@@ -9,6 +9,7 @@ import {
   GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
 import {useTheme} from '../hooks';
+import {TTheme} from '../theme';
 
 GoogleSignin.configure({
   webClientId:
@@ -44,7 +45,7 @@ export const Login = (): JSX.Element => {
   );
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: TTheme) =>
   StyleSheet.create({
     root: {
       backgroundColor: theme.COLORS.BG.PRIMARY,

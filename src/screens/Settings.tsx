@@ -9,6 +9,7 @@ import auth from '@react-native-firebase/auth';
 // Toast
 import Toast from 'react-native-toast-message';
 import {useTheme} from '../hooks';
+import {TTheme} from '../theme';
 
 const routes = [
   {name: 'Words', icon: 'format-list-bulleted', route: 'Words'},
@@ -90,7 +91,7 @@ const Item = (props: any & {navigation: any}): JSX.Element => {
   );
 };
 
-const getItemStyles = (theme: any) =>
+const getItemStyles = (theme: TTheme) =>
   StyleSheet.create({
     root: {
       flex: 1,

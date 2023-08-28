@@ -4,6 +4,7 @@ import {StyleSheet, View} from 'react-native';
 
 import {TagEditionForm} from '../components';
 import {useTheme} from '../hooks';
+import {TTheme} from '../theme';
 
 export const TagCreation = ({navigation}: any): JSX.Element => {
   const theme = useTheme();
@@ -15,7 +16,7 @@ export const TagCreation = ({navigation}: any): JSX.Element => {
   );
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: TTheme) =>
   StyleSheet.create({
     root: {
       backgroundColor: theme.COLORS.BG.PRIMARY,

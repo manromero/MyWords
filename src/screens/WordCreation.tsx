@@ -5,6 +5,7 @@ import {StyleSheet, View} from 'react-native';
 import {WordEditionForm} from '../components';
 
 import {useTheme} from '../hooks';
+import {TTheme} from '../theme';
 
 export const WordCreation = (): JSX.Element => {
   const theme = useTheme();
@@ -16,7 +17,7 @@ export const WordCreation = (): JSX.Element => {
   );
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: TTheme) =>
   StyleSheet.create({
     root: {
       backgroundColor: theme.COLORS.BG.PRIMARY,

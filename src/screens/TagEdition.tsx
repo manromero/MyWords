@@ -6,6 +6,7 @@ import {TagEditionForm} from '../components';
 import {TTag} from '../types';
 
 import {useTheme} from '../hooks';
+import {TTheme} from '../theme';
 
 export const TagEdition = ({route, navigation}: any): JSX.Element => {
   const theme = useTheme();
@@ -19,7 +20,7 @@ export const TagEdition = ({route, navigation}: any): JSX.Element => {
   );
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: TTheme) =>
   StyleSheet.create({
     root: {
       backgroundColor: theme.COLORS.BG.PRIMARY,

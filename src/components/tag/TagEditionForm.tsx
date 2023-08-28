@@ -12,6 +12,7 @@ import firestore from '@react-native-firebase/firestore';
 import Toast from 'react-native-toast-message';
 import {TTag} from '../../types';
 import {useTheme} from '../../hooks';
+import {TTheme} from '../../theme';
 
 type TTagEditionForm = TTag & {navigation: any};
 
@@ -162,7 +163,7 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
   );
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: TTheme) =>
   StyleSheet.create({
     previewWrapper: {
       display: 'flex',

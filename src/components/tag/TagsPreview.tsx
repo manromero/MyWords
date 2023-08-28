@@ -4,6 +4,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Tag} from './Tag';
 import {TTag} from '../../types';
 import {useTheme} from '../../hooks';
+import {TTheme} from '../../theme';
 
 type TTagsPreview = {
   tags: TTag[];
@@ -40,7 +41,7 @@ export const TagsPreview = (props: TTagsPreview): JSX.Element | null => {
   );
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: TTheme) =>
   StyleSheet.create({
     root: {
       display: 'flex',

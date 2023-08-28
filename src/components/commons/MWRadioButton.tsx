@@ -3,6 +3,7 @@ import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
 import {useTheme} from '../../hooks';
+import {TTheme} from '../../theme';
 
 type TMWRadioButton = {
   label?: string;
@@ -27,7 +28,7 @@ export const MWRadioButton = (props: TMWRadioButton): JSX.Element => {
   );
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: TTheme) =>
   StyleSheet.create({
     root: {
       display: 'flex',

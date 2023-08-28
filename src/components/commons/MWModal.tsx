@@ -9,6 +9,7 @@ type TMWModal = {
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useTheme} from '../../hooks';
+import {TTheme} from '../../theme';
 
 export const MWModal = (
   props: React.PropsWithChildren<TMWModal>,
@@ -33,7 +34,7 @@ export const MWModal = (
   );
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: TTheme) =>
   StyleSheet.create({
     centeredView: {
       flex: 1,

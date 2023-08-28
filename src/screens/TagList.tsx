@@ -14,6 +14,7 @@ import {
 import {TTag} from '../types';
 import {DataContext} from '../context';
 import {useTheme} from '../hooks';
+import {TTheme} from '../theme';
 
 // TODO type
 export const TagList = ({navigation}: any): JSX.Element => {
@@ -74,7 +75,7 @@ const Item = ({
   );
 };
 
-const getItemStyles = (theme: any) =>
+const getItemStyles = (theme: TTheme) =>
   StyleSheet.create({
     root: {
       flex: 1,
@@ -93,7 +94,7 @@ const getItemStyles = (theme: any) =>
     },
   });
 
-const inputStyles = ({active, theme}: {active?: boolean; theme: any}) =>
+const inputStyles = ({active, theme}: {active?: boolean; theme: TTheme}) =>
   StyleSheet.create({
     input: {
       borderBottomColor: active

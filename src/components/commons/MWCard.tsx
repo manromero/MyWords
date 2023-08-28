@@ -4,6 +4,7 @@ import {StyleSheet, View} from 'react-native';
 
 // theme
 import {useTheme} from '../../hooks';
+import {TTheme} from '../../theme';
 
 export const MWCard = ({
   children,
@@ -13,7 +14,7 @@ export const MWCard = ({
   return <View style={styles.root}>{children}</View>;
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: TTheme) =>
   StyleSheet.create({
     root: {
       backgroundColor: theme.COLORS.BG.SECONDARY,

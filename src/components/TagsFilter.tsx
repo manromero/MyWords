@@ -9,6 +9,7 @@ import {TTag} from '../types';
 import {DataContext} from '../context';
 import {TagsPreview} from './tag/TagsPreview';
 import {useTheme} from '../hooks';
+import {TTheme} from '../theme';
 
 type TFilter = {
   tags: string[];
@@ -76,7 +77,7 @@ export const TagsFilter = (props: TTagsFilter): JSX.Element => {
   );
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: TTheme) =>
   StyleSheet.create({
     root: {
       backgroundColor: theme.COLORS.BG.SECONDARY,

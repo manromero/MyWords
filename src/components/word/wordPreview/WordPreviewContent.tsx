@@ -13,6 +13,7 @@ import Toast from 'react-native-toast-message';
 
 import {TagsPreview} from '../../tag';
 import {useTheme} from '../../../hooks';
+import {TTheme} from '../../../theme';
 
 Tts.setDefaultLanguage('en-gb');
 
@@ -100,7 +101,7 @@ export const WordPreviewContent = ({
   );
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: TTheme) =>
   StyleSheet.create({
     wordAndPlaySoundWrapper: {
       display: 'flex',

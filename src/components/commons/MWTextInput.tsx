@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 
 import {useTheme} from '../../hooks';
+import {TTheme} from '../../theme';
 
 type TMWTextInput = {
   label?: string;
@@ -32,7 +33,7 @@ export const MWTextInput = (props: TMWTextInput): JSX.Element => {
   );
 };
 
-const styles = (theme: any) =>
+const styles = (theme: TTheme) =>
   StyleSheet.create({
     label: {
       fontSize: 15,
@@ -41,7 +42,7 @@ const styles = (theme: any) =>
     },
   });
 
-const inputStyles = ({active, theme}: {active?: boolean; theme: any}) =>
+const inputStyles = ({active, theme}: {active?: boolean; theme: TTheme}) =>
   StyleSheet.create({
     input: {
       borderBottomColor: active
