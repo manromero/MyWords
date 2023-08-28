@@ -1,9 +1,11 @@
 /* eslint-disable react/no-unstable-nested-components */
-// vendors
+// react
 import React from 'react';
 
-// navigation components
+// react-navigation
 import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 
 // screens
 import {
@@ -17,11 +19,11 @@ import {
   WordEdition,
   WordList,
 } from '../screens';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
 
+// icons
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+// hooks
 import {useTheme} from '../hooks';
 
 const Tab = createBottomTabNavigator();

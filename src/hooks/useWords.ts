@@ -1,12 +1,18 @@
+// react
 import {useState, useEffect, useContext} from 'react';
 
+// firestore
 import firestore, {
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore';
 
+// toast
 import Toast from 'react-native-toast-message';
+
+// types
 import {TWord} from '../types';
 
+// context
 import {AuthContext} from '../context';
 
 export type TUseWordsResponse = {

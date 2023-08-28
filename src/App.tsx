@@ -7,7 +7,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 // react-native
 import {SafeAreaView, StyleSheet} from 'react-native';
 
-// providers
+// context
 import {AuthProvider, DataProvider, ThemeProvider} from './context';
 
 // screens
