@@ -1,19 +1,30 @@
+// react
 import React from 'react';
 
+// react-native
 import {StyleSheet, Text, View} from 'react-native';
+
+// react-native-tts
 import Tts from 'react-native-tts';
+
+// icons
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+// types
 import {TTag, TWord} from '../../../types';
+import {TTheme} from '../../../theme';
 
 // firestore
 import firestore from '@react-native-firebase/firestore';
 
-// Toast
+// toast
 import Toast from 'react-native-toast-message';
 
+// inner components
 import {TagsPreview} from '../../tag';
+
+// hooks
 import {useTheme} from '../../../hooks';
-import {TTheme} from '../../../theme';
 
 Tts.setDefaultLanguage('en-gb');
 

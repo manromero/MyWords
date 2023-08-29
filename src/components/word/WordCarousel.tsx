@@ -1,9 +1,16 @@
+// react
 import React from 'react';
 
-import {WordPreview} from './wordPreview';
-import Carousel from 'react-native-reanimated-carousel';
+// react-native
 import {StyleSheet, Dimensions} from 'react-native';
 
+// react-native-reanimated-carousel
+import Carousel from 'react-native-reanimated-carousel';
+
+// inner components
+import {WordPreview} from './wordPreview';
+
+// types
 import {TTag, TWord} from '../../types';
 
 type TWordCarousel = {

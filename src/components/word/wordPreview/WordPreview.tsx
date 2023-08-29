@@ -1,5 +1,7 @@
+// react
 import React from 'react';
 
+// inner components
 import {MWCard} from '../../commons';
 import {WordPreviewContent} from './WordPreviewContent';
 

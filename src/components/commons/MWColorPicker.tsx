@@ -1,5 +1,7 @@
+// react
 import React, {useState} from 'react';
 
+// react-native
 import {
   StyleSheet,
   Text,
@@ -8,11 +10,24 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+// reanimated color picker
 import ColorPicker, {
   Panel1,
   OpacitySlider,
   HueSlider,
 } from 'reanimated-color-picker';
+
+// icons
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+// inner components
+import {MWModal} from './MWModal';
+
+// hooks
+import {useTheme} from '../../hooks';
+
+// types
+import {TTheme} from '../../theme';
 
 type TMWColorPicker = {
   label?: string;
@@ -21,12 +36,6 @@ type TMWColorPicker = {
   multiline?: boolean;
   onChangeColor?: (text: string) => void;
 };
-
-import Icon from 'react-native-vector-icons/MaterialIcons';
-
-import {MWModal} from './MWModal';
-import {useTheme} from '../../hooks';
-import {TTheme} from '../../theme';
 
 export const MWColorPicker = (props: TMWColorPicker): JSX.Element => {
   const [showPreview, setShowPreview] = useState(false);

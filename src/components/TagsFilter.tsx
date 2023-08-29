@@ -1,14 +1,19 @@
+// react
 import React, {useEffect, useState} from 'react';
 
+// react-native
 import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 
-// theme
+// inner components
 import {MWModal, MWPicker} from './commons';
-
-import {TTag} from '../types';
 import {TagsPreview} from './tag/TagsPreview';
-import {useData, useTheme} from '../hooks';
+
+// types
+import {TTag} from '../types';
 import {TTheme} from '../theme';
+
+// hooks
+import {useData, useTheme} from '../hooks';
 
 type TFilter = {
   tags: string[];

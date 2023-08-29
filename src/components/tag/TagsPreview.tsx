@@ -1,10 +1,18 @@
+// react
 import React from 'react';
 
+// react-native
 import {StyleSheet, Text, View} from 'react-native';
-import {Tag} from './Tag';
+
+// types
 import {TTag} from '../../types';
-import {useTheme} from '../../hooks';
 import {TTheme} from '../../theme';
+
+// inner components
+import {Tag} from './Tag';
+
+// hooks
+import {useTheme} from '../../hooks';
 
 type TTagsPreview = {
   tags: TTag[];

@@ -1,18 +1,27 @@
+// react
 import React, {useState} from 'react';
 
+// react-native
 import {StyleSheet, View, Text} from 'react-native';
+
+// inner components
 import {MWCard, MWTextInput, MWColorPicker, Tag} from '../../components';
 
+// icons
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // firestore
 import firestore from '@react-native-firebase/firestore';
 
-// Toast
+// toast
 import Toast from 'react-native-toast-message';
+
+// types
 import {TTag} from '../../types';
-import {useAuth, useTheme} from '../../hooks';
 import {TTheme} from '../../theme';
+
+// hooks
+import {useAuth, useTheme} from '../../hooks';
 
 type TTagEditionForm = TTag & {navigation: any};
 

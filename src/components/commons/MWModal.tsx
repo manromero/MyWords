@@ -1,15 +1,22 @@
+// react
 import React from 'react';
 
+// react-native
 import {StyleSheet, View, Modal, TouchableOpacity} from 'react-native';
+
+// icons
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+// hooks
+import {useTheme} from '../../hooks';
+
+// types
+import {TTheme} from '../../theme';
 
 type TMWModal = {
   open?: boolean;
   onClose?: () => void;
 };
-
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import {useTheme} from '../../hooks';
-import {TTheme} from '../../theme';
 
 export const MWModal = (
   props: React.PropsWithChildren<TMWModal>,

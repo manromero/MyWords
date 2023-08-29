@@ -1,5 +1,7 @@
+// react
 import React, {useState} from 'react';
 
+// react-native
 import {
   StyleSheet,
   View,
@@ -9,8 +11,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+// inner components
 import {MWModal} from './MWModal';
+
+// hooks
 import {useTheme} from '../../hooks';
+
+// types
 import {TTheme} from '../../theme';
 
 type TOption = {

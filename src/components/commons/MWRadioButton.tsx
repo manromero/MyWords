@@ -1,8 +1,13 @@
+// react
 import React from 'react';
 
+// react-native
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
+// hooks
 import {useTheme} from '../../hooks';
+
+// types
 import {TTheme} from '../../theme';
 
 type TMWRadioButton = {

@@ -1,9 +1,13 @@
+// react
 import React from 'react';
 
+// react-native
 import {StyleSheet, View} from 'react-native';
 
-// theme
+// hooks
 import {useTheme} from '../../hooks';
+
+// types
 import {TTheme} from '../../theme';
 
 export const MWCard = ({

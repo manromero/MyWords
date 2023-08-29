@@ -1,5 +1,7 @@
+// react
 import React from 'react';
 
+// react-native
 import {StyleSheet, View, Text} from 'react-native';
 
 type TTag = {

@@ -1,21 +1,30 @@
+// react
 import React, {useState} from 'react';
 
+// react-native
 import {StyleSheet, View} from 'react-native';
+
+// inner components
 import {MWCard, MWPicker, MWTextInput} from '../commons';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import {WordPreviewContent} from './wordPreview';
+import {TagsPreview} from '../tag';
+
+// icons
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // firestore
 import firestore from '@react-native-firebase/firestore';
 
-// Toast
+// toast
 import Toast from 'react-native-toast-message';
 
 // types
 import {TWord} from '../../types';
 
+// react-navigation
 import {useNavigation} from '@react-navigation/native';
-import {TagsPreview} from '../tag';
+
+// hooks
 import {useAuth, useData, useTheme} from '../../hooks';
 
 type TWordEdition = TWord;
