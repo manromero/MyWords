@@ -25,21 +25,27 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // hooks
 import {useTheme} from '../hooks';
-import {routes} from './routes';
+import {routes, routesOptions} from './routes';
 
-const Tab = createBottomTabNavigator();
+type TabNavigatorParamList = {
+  [routes.SCREEN_WORD_CAROUSEL]: undefined;
+  [routes.SCREEN_WORD_CREATION]: undefined;
+  [routes.SCREEN_SETTINGS]: undefined;
+};
+
+const Tab = createBottomTabNavigator<TabNavigatorParamList>();
 
 const SettingsStack = createStackNavigator();
 
 const SettingStackScreen = () => {
   const {theme} = useTheme();
   return (
-    <SettingsStack.Navigator initialRouteName={routes.SCREEN_SETTINGS.route}>
+    <SettingsStack.Navigator initialRouteName={routes.SCREEN_SETTINGS}>
       <SettingsStack.Screen
-        name={routes.SCREEN_SETTINGS.route}
+        name={routes.SCREEN_SETTINGS}
         component={Settings}
         options={{
-          headerTitle: routes.SCREEN_SETTINGS.title,
+          headerTitle: routesOptions.SCREEN_SETTINGS.title,
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -47,10 +53,10 @@ const SettingStackScreen = () => {
         }}
       />
       <SettingsStack.Screen
-        name={routes.SCREEN_WORD_LIST.route}
+        name={routes.SCREEN_WORD_LIST}
         component={WordList}
         options={{
-          headerTitle: routes.SCREEN_WORD_LIST.title,
+          headerTitle: routesOptions.SCREEN_WORD_LIST.title,
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -58,10 +64,10 @@ const SettingStackScreen = () => {
         }}
       />
       <SettingsStack.Screen
-        name={routes.SCREEN_WORD_EDITION.route}
+        name={routes.SCREEN_WORD_EDITION}
         component={WordEdition}
         options={{
-          headerTitle: routes.SCREEN_WORD_EDITION.title,
+          headerTitle: routesOptions.SCREEN_WORD_EDITION.title,
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -69,10 +75,10 @@ const SettingStackScreen = () => {
         }}
       />
       <SettingsStack.Screen
-        name={routes.SCREEN_TAG_LIST.route}
+        name={routes.SCREEN_TAG_LIST}
         component={TagList}
         options={{
-          headerTitle: routes.SCREEN_TAG_LIST.title,
+          headerTitle: routesOptions.SCREEN_TAG_LIST.title,
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -80,10 +86,10 @@ const SettingStackScreen = () => {
         }}
       />
       <SettingsStack.Screen
-        name={routes.SCREEN_TAG_CREATION.route}
+        name={routes.SCREEN_TAG_CREATION}
         component={TagCreation}
         options={{
-          headerTitle: routes.SCREEN_TAG_CREATION.title,
+          headerTitle: routesOptions.SCREEN_TAG_CREATION.title,
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -91,10 +97,10 @@ const SettingStackScreen = () => {
         }}
       />
       <SettingsStack.Screen
-        name={routes.SCREEN_TAG_EDITION.route}
+        name={routes.SCREEN_TAG_EDITION}
         component={TagEdition}
         options={{
-          headerTitle: routes.SCREEN_TAG_EDITION.title,
+          headerTitle: routesOptions.SCREEN_TAG_EDITION.title,
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -102,10 +108,10 @@ const SettingStackScreen = () => {
         }}
       />
       <SettingsStack.Screen
-        name={routes.SCREEN_PREFERENCES.route}
+        name={routes.SCREEN_PREFERENCES}
         component={Preferences}
         options={{
-          headerTitle: routes.SCREEN_PREFERENCES.title,
+          headerTitle: routesOptions.SCREEN_PREFERENCES.title,
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -120,9 +126,9 @@ export const Navigation = (): JSX.Element => {
   const {theme} = useTheme();
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName={routes.SCREEN_SETTINGS.route}>
+      <Tab.Navigator initialRouteName={routes.SCREEN_SETTINGS}>
         <Tab.Screen
-          name={routes.SCREEN_WORD_CAROUSEL.route}
+          name={routes.SCREEN_WORD_CAROUSEL}
           component={WordCarousel}
           options={{
             headerShown: false,
@@ -139,7 +145,7 @@ export const Navigation = (): JSX.Element => {
           }}
         />
         <Tab.Screen
-          name={routes.SCREEN_WORD_CREATION.route}
+          name={routes.SCREEN_WORD_CREATION}
           component={WordCreation}
           options={{
             headerShown: false,
@@ -156,7 +162,7 @@ export const Navigation = (): JSX.Element => {
           }}
         />
         <Tab.Screen
-          name={routes.SCREEN_SETTINGS.route}
+          name={routes.SCREEN_SETTINGS}
           component={SettingStackScreen}
           options={{
             headerShown: false,

@@ -74,7 +74,7 @@ const Item = ({
     <TouchableOpacity
       style={itemStyles.root}
       onPress={() =>
-        navigation.navigate(routes.SCREEN_TAG_EDITION.route, props as TTag)
+        navigation.navigate(routes.SCREEN_TAG_EDITION, props as TTag)
       }>
       <Text style={itemStyles.label}>{props.label}</Text>
     </TouchableOpacity>

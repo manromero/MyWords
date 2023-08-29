@@ -18,28 +18,28 @@ import {useTheme} from '../hooks';
 
 // types
 import {TTheme} from '../theme';
-import {routes} from '../routes';
+import {routes, routesOptions} from '../routes';
 
 const listOptions = [
   {
-    title: routes.SCREEN_WORD_LIST.title,
+    title: routesOptions.SCREEN_WORD_LIST.title,
     icon: 'format-list-bulleted',
-    route: routes.SCREEN_WORD_LIST.route,
+    route: routes.SCREEN_WORD_LIST,
   },
   {
-    title: routes.SCREEN_TAG_LIST.title,
+    title: routesOptions.SCREEN_TAG_LIST.title,
     icon: 'bookmarks',
-    route: routes.SCREEN_TAG_LIST.route,
+    route: routes.SCREEN_TAG_LIST,
   },
   {
-    title: routes.SCREEN_TAG_CREATION.title,
+    title: routesOptions.SCREEN_TAG_CREATION.title,
     icon: 'bookmark-add',
-    route: routes.SCREEN_TAG_CREATION.route,
+    route: routes.SCREEN_TAG_CREATION,
   },
   {
-    title: routes.SCREEN_PREFERENCES.title,
+    title: routesOptions.SCREEN_PREFERENCES.title,
     icon: 'bookmark-add',
-    route: routes.SCREEN_PREFERENCES.route,
+    route: routes.SCREEN_PREFERENCES,
   },
   {
     title: 'Log Out',

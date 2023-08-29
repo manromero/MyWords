@@ -83,7 +83,7 @@ const Item = ({
     <TouchableOpacity
       style={itemStyles.root}
       onPress={() =>
-        navigation.navigate(routes.SCREEN_WORD_EDITION.route, props as TWord)
+        navigation.navigate(routes.SCREEN_WORD_EDITION, props as TWord)
       }>
       <Text style={itemStyles.label} numberOfLines={1}>
         {props.word}
