@@ -12,8 +12,22 @@ import {useTheme} from '../hooks';
 
 // types
 import {TTheme} from '../theme';
+import {TNavigatorSettingsStackParamList} from '../types';
 
-export const TagCreation = ({navigation}: any): JSX.Element => {
+// routes
+import {routes} from '../routes';
+
+// react-navigation
+import {StackNavigationProp} from '@react-navigation/stack';
+
+type TTagCreation = {
+  navigation: StackNavigationProp<
+    TNavigatorSettingsStackParamList,
+    routes.SCREEN_TAG_EDITION
+  >;
+};
+
+export const TagCreation = ({navigation}: TTagCreation): JSX.Element => {
   const {theme} = useTheme();
   const styles = getStyles(theme);
   return (

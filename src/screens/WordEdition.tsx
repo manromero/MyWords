@@ -8,13 +8,26 @@ import {StyleSheet, View} from 'react-native';
 import {WordEditionForm} from '../components';
 
 // types
-import {TWord} from '../types';
+import {TNavigatorSettingsStackParamList, TWord} from '../types';
 import {TTheme} from '../theme';
 
 // hooks
 import {useTheme} from '../hooks';
 
-export const WordEdition = ({route}: any): JSX.Element => {
+// routes
+import {routes} from '../routes';
+
+// react-navigation
+import {RouteProp} from '@react-navigation/native';
+
+type TWordEdition = {
+  route: RouteProp<
+    TNavigatorSettingsStackParamList,
+    routes.SCREEN_WORD_EDITION
+  >;
+};
+
+export const WordEdition = ({route}: TWordEdition): JSX.Element => {
   const {theme} = useTheme();
   const styles = getStyles(theme);
   const wordToEdit = route.params as TWord;

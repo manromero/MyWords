@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 // Toast
-import {TWord} from '../types';
+import {TNavigatorSettingsStackParamList, TWord} from '../types';
 
 // hooks
 import {useData, useTheme} from '../hooks';
@@ -23,8 +23,19 @@ import {TTheme} from '../theme';
 // routes
 import {routes} from '../routes';
 
-// TODO type
-export const WordList = ({navigation}: any): JSX.Element => {
+// react-navigation
+import {StackNavigationProp} from '@react-navigation/stack';
+
+type TNavigation = StackNavigationProp<
+  TNavigatorSettingsStackParamList,
+  routes.SCREEN_WORD_LIST
+>;
+
+type TWordList = {
+  navigation: TNavigation;
+};
+
+export const WordList = ({navigation}: TWordList): JSX.Element => {
   const {words} = useData();
   const [filter, setFilter] = useState('');
   const [inputActive, setInputActive] = useState(false);
@@ -76,7 +87,7 @@ const getStyles = (theme: TTheme) =>
 const Item = ({
   navigation,
   ...props
-}: TWord & {navigation: any}): JSX.Element => {
+}: TWord & {navigation: TNavigation}): JSX.Element => {
   const {theme} = useTheme();
   const itemStyles = getItemStyles(theme);
   return (

@@ -25,17 +25,19 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // hooks
 import {useTheme} from '../hooks';
+
+// routes
 import {routes, routesOptions} from './routes';
 
-type TabNavigatorParamList = {
-  [routes.SCREEN_WORD_CAROUSEL]: undefined;
-  [routes.SCREEN_WORD_CREATION]: undefined;
-  [routes.SCREEN_SETTINGS]: undefined;
-};
+// types
+import {
+  TNavigatorSettingsStackParamList,
+  TNavigatorTabParamList,
+} from '../types';
 
-const Tab = createBottomTabNavigator<TabNavigatorParamList>();
+const Tab = createBottomTabNavigator<TNavigatorTabParamList>();
 
-const SettingsStack = createStackNavigator();
+const SettingsStack = createStackNavigator<TNavigatorSettingsStackParamList>();
 
 const SettingStackScreen = () => {
   const {theme} = useTheme();

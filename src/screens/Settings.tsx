@@ -19,8 +19,32 @@ import {useTheme} from '../hooks';
 // types
 import {TTheme} from '../theme';
 import {routes, routesOptions} from '../routes';
+import {TNavigatorSettingsStackParamList} from '../types';
 
-const listOptions = [
+// react-natigation
+import {StackNavigationProp} from '@react-navigation/stack';
+
+type TNavigation = StackNavigationProp<
+  TNavigatorSettingsStackParamList,
+  routes.SCREEN_SETTINGS
+>;
+
+type TSettings = {
+  navigation: TNavigation;
+};
+
+type TOption = {
+  title: string;
+  icon: string;
+  route?:
+    | routes.SCREEN_WORD_LIST
+    | routes.SCREEN_TAG_LIST
+    | routes.SCREEN_TAG_CREATION
+    | routes.SCREEN_PREFERENCES;
+  onPress?: () => void;
+};
+
+const listOptions: TOption[] = [
   {
     title: routesOptions.SCREEN_WORD_LIST.title,
     icon: 'format-list-bulleted',
@@ -63,8 +87,7 @@ const listOptions = [
   },
 ];
 
-// TODO type
-export const Settings = ({navigation}: any): JSX.Element => {
+export const Settings = ({navigation}: TSettings): JSX.Element => {
   const {theme} = useTheme();
   const styles = getStyles(theme);
   return (
@@ -91,7 +114,7 @@ const getStyles = (theme: TTheme) =>
     },
   });
 
-const Item = (props: any & {navigation: any}): JSX.Element => {
+const Item = (props: TOption & {navigation: TNavigation}): JSX.Element => {
   const {theme} = useTheme();
   const itemStyles = getItemStyles(theme);
   return (

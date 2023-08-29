@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 // types
-import {TTag} from '../types';
+import {TNavigatorSettingsStackParamList, TTag} from '../types';
 import {TTheme} from '../theme';
 
 // hooks
@@ -21,8 +21,19 @@ import {useData, useTheme} from '../hooks';
 // routes
 import {routes} from '../routes';
 
-// TODO type
-export const TagList = ({navigation}: any): JSX.Element => {
+// react-navigation
+import {StackNavigationProp} from '@react-navigation/stack';
+
+type TNavigation = StackNavigationProp<
+  TNavigatorSettingsStackParamList,
+  routes.SCREEN_TAG_LIST
+>;
+
+type TTagList = {
+  navigation: TNavigation;
+};
+
+export const TagList = ({navigation}: TTagList): JSX.Element => {
   const {theme} = useTheme();
   const {tags} = useData();
   const [filter, setFilter] = useState('');
@@ -67,7 +78,7 @@ const getStyles = (theme: TTheme) =>
 const Item = ({
   navigation,
   ...props
-}: TTag & {navigation: any}): JSX.Element => {
+}: TTag & {navigation: TNavigation}): JSX.Element => {
   const {theme} = useTheme();
   const itemStyles = getItemStyles(theme);
   return (

@@ -8,15 +8,30 @@ import {StyleSheet, View} from 'react-native';
 import {TagEditionForm} from '../components';
 
 // types
-import {TTag} from '../types';
+import {TNavigatorSettingsStackParamList} from '../types';
 import {TTheme} from '../theme';
 
 // hooks
 import {useTheme} from '../hooks';
 
-export const TagEdition = ({route, navigation}: any): JSX.Element => {
+// routes
+import {routes} from '../routes';
+
+// react-navigation
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RouteProp} from '@react-navigation/native';
+
+type TTagEdition = {
+  route: RouteProp<TNavigatorSettingsStackParamList, routes.SCREEN_TAG_EDITION>;
+  navigation: StackNavigationProp<
+    TNavigatorSettingsStackParamList,
+    routes.SCREEN_TAG_EDITION
+  >;
+};
+
+export const TagEdition = ({route, navigation}: TTagEdition): JSX.Element => {
   const {theme} = useTheme();
-  const tagToEdit = route.params as TTag;
+  const tagToEdit = route.params;
 
   const styles = getStyles(theme);
   return (

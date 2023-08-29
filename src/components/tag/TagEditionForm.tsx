@@ -17,13 +17,24 @@ import firestore from '@react-native-firebase/firestore';
 import Toast from 'react-native-toast-message';
 
 // types
-import {TTag} from '../../types';
+import {TNavigatorSettingsStackParamList, TTag} from '../../types';
 import {TTheme} from '../../theme';
+
+// react-navigation
+import {StackNavigationProp} from '@react-navigation/stack';
 
 // hooks
 import {useAuth, useTheme} from '../../hooks';
 
-type TTagEditionForm = TTag & {navigation: any};
+// routes
+import {routes} from '../../routes';
+
+type TTagEditionForm = TTag & {
+  navigation: StackNavigationProp<
+    TNavigatorSettingsStackParamList,
+    routes.SCREEN_TAG_EDITION
+  >;
+};
 
 export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
   const {user} = useAuth();

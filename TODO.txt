@@ -1,4 +1,3 @@
-* Improve any
 * Add carousel filter learned
 * Improve structure
 * Toast reduce show message timeout
