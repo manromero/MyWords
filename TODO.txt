@@ -1,4 +1,3 @@
-* Revisar importaciones -> en progreso
 * Improve any
 * Add carousel filter learned
 * Improve structure

@@ -11,12 +11,11 @@ export const AuthProvider = ({children}: TAuthProvider): JSX.Element => {
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
 
   // Handle user state changes
-  const onAuthStateChanged = (_user: any) => {
+  const onAuthStateChanged = (_user: FirebaseAuthTypes.User | null) => {
     setUser(_user);
   };
 
   const handleSignOut = () => {
-    // TODO improve error
     auth()
       .signOut()
       .then(() => console.log('User signed out!'));

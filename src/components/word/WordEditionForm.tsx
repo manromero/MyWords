@@ -104,7 +104,6 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
           type: 'success',
           text1: 'Word deleted',
         });
-        // TODO manromero revisar
         navigation.goBack();
       })
       .catch(() => {

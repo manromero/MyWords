@@ -63,7 +63,7 @@ export const Settings = ({navigation}: any): JSX.Element => {
   );
 };
 
-const getStyles = (theme: any) =>
+const getStyles = (theme: TTheme) =>
   StyleSheet.create({
     root: {
       backgroundColor: theme.COLORS.BG.PRIMARY,
