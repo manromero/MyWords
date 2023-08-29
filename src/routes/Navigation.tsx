@@ -25,6 +25,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // hooks
 import {useTheme} from '../hooks';
+import {routes} from './routes';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,12 +34,12 @@ const SettingsStack = createStackNavigator();
 const SettingStackScreen = () => {
   const {theme} = useTheme();
   return (
-    <SettingsStack.Navigator initialRouteName="Settings">
+    <SettingsStack.Navigator initialRouteName={routes.SCREEN_SETTINGS.route}>
       <SettingsStack.Screen
-        name="Settings"
+        name={routes.SCREEN_SETTINGS.route}
         component={Settings}
         options={{
-          headerTitle: 'Settings',
+          headerTitle: routes.SCREEN_SETTINGS.title,
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -46,10 +47,10 @@ const SettingStackScreen = () => {
         }}
       />
       <SettingsStack.Screen
-        name="Words"
+        name={routes.SCREEN_WORD_LIST.route}
         component={WordList}
         options={{
-          headerTitle: 'Words',
+          headerTitle: routes.SCREEN_WORD_LIST.title,
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -57,10 +58,10 @@ const SettingStackScreen = () => {
         }}
       />
       <SettingsStack.Screen
-        name="Word Edition"
+        name={routes.SCREEN_WORD_EDITION.route}
         component={WordEdition}
         options={{
-          headerTitle: 'Word Edition',
+          headerTitle: routes.SCREEN_WORD_EDITION.title,
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -68,10 +69,10 @@ const SettingStackScreen = () => {
         }}
       />
       <SettingsStack.Screen
-        name="Tags"
+        name={routes.SCREEN_TAG_LIST.route}
         component={TagList}
         options={{
-          headerTitle: 'Tags',
+          headerTitle: routes.SCREEN_TAG_LIST.title,
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -79,10 +80,10 @@ const SettingStackScreen = () => {
         }}
       />
       <SettingsStack.Screen
-        name="Tag Creation"
+        name={routes.SCREEN_TAG_CREATION.route}
         component={TagCreation}
         options={{
-          headerTitle: 'Tag Creation',
+          headerTitle: routes.SCREEN_TAG_CREATION.title,
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -90,10 +91,10 @@ const SettingStackScreen = () => {
         }}
       />
       <SettingsStack.Screen
-        name="Tag Edition"
+        name={routes.SCREEN_TAG_EDITION.route}
         component={TagEdition}
         options={{
-          headerTitle: 'Tag Edition',
+          headerTitle: routes.SCREEN_TAG_EDITION.title,
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -101,10 +102,10 @@ const SettingStackScreen = () => {
         }}
       />
       <SettingsStack.Screen
-        name="Preferences"
+        name={routes.SCREEN_PREFERENCES.route}
         component={Preferences}
         options={{
-          headerTitle: 'Preferences',
+          headerTitle: routes.SCREEN_PREFERENCES.title,
           headerTintColor: theme.COLORS.TEXT.PRIMARY,
           headerStyle: {
             backgroundColor: theme.COLORS.BG.PRIMARY,
@@ -119,9 +120,9 @@ export const Navigation = (): JSX.Element => {
   const {theme} = useTheme();
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="Settings">
+      <Tab.Navigator initialRouteName={routes.SCREEN_SETTINGS.route}>
         <Tab.Screen
-          name="Words Carousel"
+          name={routes.SCREEN_WORD_CAROUSEL.route}
           component={WordCarousel}
           options={{
             headerShown: false,
@@ -138,7 +139,7 @@ export const Navigation = (): JSX.Element => {
           }}
         />
         <Tab.Screen
-          name="Words Creation"
+          name={routes.SCREEN_WORD_CREATION.route}
           component={WordCreation}
           options={{
             headerShown: false,
@@ -155,7 +156,7 @@ export const Navigation = (): JSX.Element => {
           }}
         />
         <Tab.Screen
-          name="Settings"
+          name={routes.SCREEN_SETTINGS.route}
           component={SettingStackScreen}
           options={{
             headerShown: false,

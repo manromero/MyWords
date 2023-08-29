@@ -18,6 +18,9 @@ import {TTheme} from '../theme';
 // hooks
 import {useData, useTheme} from '../hooks';
 
+// routes
+import {routes} from '../routes';
+
 // TODO type
 export const TagList = ({navigation}: any): JSX.Element => {
   const {theme} = useTheme();
@@ -70,8 +73,9 @@ const Item = ({
   return (
     <TouchableOpacity
       style={itemStyles.root}
-      // TODO MANROMERO edition passing params
-      onPress={() => navigation.navigate('Tag Edition', props as TTag)}>
+      onPress={() =>
+        navigation.navigate(routes.SCREEN_TAG_EDITION.route, props as TTag)
+      }>
       <Text style={itemStyles.label}>{props.label}</Text>
     </TouchableOpacity>
   );

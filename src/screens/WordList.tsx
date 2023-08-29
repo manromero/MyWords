@@ -20,6 +20,9 @@ import {useData, useTheme} from '../hooks';
 // types
 import {TTheme} from '../theme';
 
+// routes
+import {routes} from '../routes';
+
 // TODO type
 export const WordList = ({navigation}: any): JSX.Element => {
   const {words} = useData();
@@ -79,7 +82,9 @@ const Item = ({
   return (
     <TouchableOpacity
       style={itemStyles.root}
-      onPress={() => navigation.navigate('Word Edition', props as TWord)}>
+      onPress={() =>
+        navigation.navigate(routes.SCREEN_WORD_EDITION.route, props as TWord)
+      }>
       <Text style={itemStyles.label} numberOfLines={1}>
         {props.word}
         {props.translation ? ` - ${props.translation}` : ''}

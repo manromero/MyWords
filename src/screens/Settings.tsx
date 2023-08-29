@@ -18,14 +18,31 @@ import {useTheme} from '../hooks';
 
 // types
 import {TTheme} from '../theme';
+import {routes} from '../routes';
 
-const routes = [
-  {name: 'Words', icon: 'format-list-bulleted', route: 'Words'},
-  {name: 'Tags', icon: 'bookmarks', route: 'Tags'},
-  {name: 'Tag Creation', icon: 'bookmark-add', route: 'Tag Creation'},
-  {name: 'Preferences', icon: 'bookmark-add', route: 'Preferences'},
+const listOptions = [
   {
-    name: 'Log Out',
+    title: routes.SCREEN_WORD_LIST.title,
+    icon: 'format-list-bulleted',
+    route: routes.SCREEN_WORD_LIST.route,
+  },
+  {
+    title: routes.SCREEN_TAG_LIST.title,
+    icon: 'bookmarks',
+    route: routes.SCREEN_TAG_LIST.route,
+  },
+  {
+    title: routes.SCREEN_TAG_CREATION.title,
+    icon: 'bookmark-add',
+    route: routes.SCREEN_TAG_CREATION.route,
+  },
+  {
+    title: routes.SCREEN_PREFERENCES.title,
+    icon: 'bookmark-add',
+    route: routes.SCREEN_PREFERENCES.route,
+  },
+  {
+    title: 'Log Out',
     icon: 'logout',
     onPress: () => {
       auth()
@@ -53,11 +70,11 @@ export const Settings = ({navigation}: any): JSX.Element => {
   return (
     <View style={styles.root}>
       <FlatList
-        data={routes}
+        data={listOptions}
         renderItem={({item}) => (
-          <Item key={item.name} navigation={navigation} {...item} />
+          <Item key={item.title} navigation={navigation} {...item} />
         )}
-        keyExtractor={item => item.name}
+        keyExtractor={item => item.title}
       />
     </View>
   );
@@ -94,7 +111,7 @@ const Item = (props: any & {navigation: any}): JSX.Element => {
         size={20}
         color={theme.COLORS.STATUS.DEFAULT}
       />
-      <Text style={itemStyles.label}>{props.name}</Text>
+      <Text style={itemStyles.label}>{props.title}</Text>
     </TouchableOpacity>
   );
 };
