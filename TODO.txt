@@ -3,3 +3,8 @@
 * Logo
 * Loading
 * Clean Creation form when finished
+
+Debug apk: 
+
+npx react-native build-android --mode=release
+./gradlew assembleRelease
