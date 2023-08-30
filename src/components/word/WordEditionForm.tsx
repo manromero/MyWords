@@ -22,7 +22,10 @@ import {TWord} from '../../types';
 import {useNavigation} from '@react-navigation/native';
 
 // hooks
-import {useAuth, useData, useTheme, useToast} from '../../hooks';
+import {useAuth, useData, useTheme} from '../../hooks';
+
+// utils
+import {showToast} from '../../utils';
 
 type TWordEdition = TWord;
 
@@ -36,7 +39,6 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
   const [notes, setNotes] = useState(props.notes ?? '');
   const [showPreview, setShowPreview] = useState(false);
   const [tags, setTags] = useState<string[]>(props.tags ?? []);
-  const {showToast} = useToast();
 
   const {tags: alltags} = useData();
 

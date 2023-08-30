@@ -1,5 +1,5 @@
 // react
-import {useState, useEffect, useContext, useCallback} from 'react';
+import {useState, useEffect, useContext} from 'react';
 
 // firestore
 import firestore, {
@@ -12,8 +12,8 @@ import {TTag} from '../types';
 // context
 import {AuthContext} from '../context';
 
-// hooks
-import {useToast} from './useToast';
+// utils
+import {showToast} from '../utils';
 
 export type TUseTagsResponse = {
   data: TTag[];
@@ -26,7 +26,6 @@ export const useTags = (): TUseTagsResponse => {
   const [error, setError] = useState(false);
   const [data, setData] = useState<TTag[]>([]);
   const {user} = useContext(AuthContext);
-  const {showToast} = useToast();
 
   const handleOnSnapShotResults = (
     query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
@@ -39,14 +38,14 @@ export const useTags = (): TUseTagsResponse => {
     setData(tags);
   };
 
-  const handleOnSnapShotError = useCallback(() => {
+  const handleOnSnapShotError = () => {
     setLoading(false);
     setError(true);
     showToast({
       type: 'error',
       text1: 'Error when retrieving the tags',
     });
-  }, [showToast]);
+  };
 
   useEffect(() => {
     if (!user) {
@@ -61,7 +60,7 @@ export const useTags = (): TUseTagsResponse => {
       .where('userId', '==', user.uid)
       .onSnapshot(handleOnSnapShotResults, handleOnSnapShotError);
     return () => subscriber();
-  }, [user, handleOnSnapShotError]);
+  }, [user]);
 
   return {data, error, loading};
 };

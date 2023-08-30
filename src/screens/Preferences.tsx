@@ -5,7 +5,7 @@ import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
 // hooks
-import {useAuth, useData, useTheme, useToast} from '../hooks';
+import {useAuth, useData, useTheme} from '../hooks';
 
 // inner components
 import {MWCard, MWRadioButton} from '../components';
@@ -16,11 +16,13 @@ import {TTheme, TThemeKey} from '../types';
 // firestore TODO MANROMERO debería ir por el hook
 import firestore from '@react-native-firebase/firestore';
 
+// utils
+import {showToast} from '../utils';
+
 // TODO type
 export const Preferences = (): JSX.Element => {
   const {preferences} = useData();
   const {user} = useAuth();
-  const {showToast} = useToast();
 
   const {theme, themeKey} = useTheme();
 

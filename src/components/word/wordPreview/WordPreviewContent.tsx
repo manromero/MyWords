@@ -20,7 +20,10 @@ import firestore from '@react-native-firebase/firestore';
 import {TagsPreview} from '../../tag';
 
 // hooks
-import {useTheme, useToast} from '../../../hooks';
+import {useTheme} from '../../../hooks';
+
+// utils
+import {showToast} from '../../../utils';
 
 Tts.setDefaultLanguage('en-gb');
 
@@ -33,7 +36,6 @@ export const WordPreviewContent = ({
   ...props
 }: TWordPreviewContent): JSX.Element => {
   const {theme} = useTheme();
-  const {showToast} = useToast();
   const styles = getStyles(theme);
 
   const handlePlaySound = () => {

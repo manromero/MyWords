@@ -1,5 +1,5 @@
 // react
-import {useState, useEffect, useContext, useCallback} from 'react';
+import {useState, useEffect, useContext} from 'react';
 
 // firestore
 import firestore, {
@@ -12,8 +12,8 @@ import {AuthContext} from '../context';
 // types
 import {TPreferences} from '../types/preferences';
 
-// hooks
-import {useToast} from './useToast';
+// utils
+import {showToast} from '../utils';
 
 export type TUsePreferencesResponse = {
   data: TPreferences;
@@ -30,7 +30,6 @@ export const usePreferences = (): TUsePreferencesResponse => {
   const [error, setError] = useState(false);
   const [data, setData] = useState<TPreferences>(DEFAULT_PREFERENCES);
   const {user} = useContext(AuthContext);
-  const {showToast} = useToast();
 
   const handleOnSnapShotResults = (
     query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
@@ -44,14 +43,14 @@ export const usePreferences = (): TUsePreferencesResponse => {
     setData(_data);
   };
 
-  const handleOnSnapShotError = useCallback(() => {
+  const handleOnSnapShotError = () => {
     setLoading(false);
     setError(true);
     showToast({
       type: 'error',
       text1: 'Error when retrieving the words',
     });
-  }, [showToast]);
+  };
 
   useEffect(() => {
     if (!user) {
@@ -66,7 +65,7 @@ export const usePreferences = (): TUsePreferencesResponse => {
       .where('userId', '==', user.uid)
       .onSnapshot(handleOnSnapShotResults, handleOnSnapShotError);
     return () => subscriber();
-  }, [user, handleOnSnapShotError]);
+  }, [user]);
 
   return {data, error, loading};
 };

@@ -20,10 +20,13 @@ import {TNavigatorSettingsStackParamList, TTag, TTheme} from '../../types';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 // hooks
-import {useAuth, useTheme, useToast} from '../../hooks';
+import {useAuth, useTheme} from '../../hooks';
 
 // routes
 import {routes} from '../../routes';
+
+// utils
+import {showToast} from '../../utils';
 
 type TTagEditionForm = TTag & {
   navigation: StackNavigationProp<
@@ -46,7 +49,6 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
   const [borderColor, setBorderColor] = useState(
     props.borderColor ?? theme.COLORS.TAG.DEFAULT_BORDER,
   );
-  const {showToast} = useToast();
   const styles = getStyles(theme);
 
   const handleOnSave = () => {
