@@ -128,7 +128,7 @@ export const Navigation = (): JSX.Element => {
   const {theme} = useTheme();
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName={routes.SCREEN_SETTINGS}>
+      <Tab.Navigator initialRouteName={routes.SCREEN_WORD_CAROUSEL}>
         <Tab.Screen
           name={routes.SCREEN_WORD_CAROUSEL}
           component={WordCarousel}

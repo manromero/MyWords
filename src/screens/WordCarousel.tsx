@@ -5,13 +5,16 @@ import React, {useState} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 
 // inner components
-import {TagsFilter, WordCarousel as WordCarouselComponent} from '../components';
+import {
+  WordsFilter,
+  WordCarousel as WordCarouselComponent,
+} from '../components';
 
 // icons
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // types
-import {TWord, TTheme} from '../types';
+import {TWord, TTheme, TWordsFilter, TWordsFilterLearned} from '../types';
 
 // hooks
 import {useData, useTheme} from '../hooks';
@@ -21,16 +24,34 @@ export const WordCarousel = (): JSX.Element => {
 
   const {words, tags} = useData();
   const [openFilter, setOpenFilter] = useState(false);
-  const [filter, setFilter] = useState<{tags: string[]}>({tags: []});
+  const [filter, setFilter] = useState<TWordsFilter>({
+    tags: [],
+    learnedFilter: TWordsFilterLearned.NOT_LEARNED,
+  });
 
   const styles = getStyles(theme);
 
   let filteredWords: TWord[] = words.data;
-  if (filter.tags.length > 0) {
-    filteredWords = words.data.filter(word =>
-      word.tags?.some(wordTagId => filter.tags.includes(wordTagId)),
-    );
-  }
+  filteredWords = words.data.filter(word => {
+    // Filter by learned
+    if (filter.learnedFilter === TWordsFilterLearned.LEARNED && !word.learned) {
+      return false;
+    }
+    if (
+      filter.learnedFilter === TWordsFilterLearned.NOT_LEARNED &&
+      word.learned
+    ) {
+      return false;
+    }
+    // Filter by tags
+    if (
+      filter.tags.length > 0 &&
+      !word.tags?.some(wordTagId => filter.tags.includes(wordTagId))
+    ) {
+      return false;
+    }
+    return true;
+  });
 
   return (
     <View style={styles.root}>
@@ -44,7 +65,7 @@ export const WordCarousel = (): JSX.Element => {
           color={theme.COLORS.TEXT.PRIMARY}
         />
       </TouchableOpacity>
-      <TagsFilter
+      <WordsFilter
         open={openFilter}
         onClose={() => setOpenFilter(false)}
         onFilter={newFilter => {
