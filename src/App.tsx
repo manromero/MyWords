@@ -13,8 +13,8 @@ import {AuthProvider, DataProvider, ThemeProvider} from './context';
 // screens
 import {Main} from './screens';
 
-// toast
-import Toast from 'react-native-toast-message';
+// inner components
+import {MWToast} from './components';
 
 function App(): JSX.Element {
   return (
@@ -25,12 +25,12 @@ function App(): JSX.Element {
             <DataProvider>
               <ThemeProvider>
                 <Main />
+                <MWToast />
               </ThemeProvider>
             </DataProvider>
           </AuthProvider>
         </GestureHandlerRootView>
       </SafeAreaView>
-      <Toast />
     </>
   );
 }

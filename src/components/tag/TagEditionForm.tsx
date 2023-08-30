@@ -13,9 +13,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 // firestore
 import firestore from '@react-native-firebase/firestore';
 
-// toast
-import Toast from 'react-native-toast-message';
-
 // types
 import {TNavigatorSettingsStackParamList, TTag, TTheme} from '../../types';
 
@@ -23,7 +20,7 @@ import {TNavigatorSettingsStackParamList, TTag, TTheme} from '../../types';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 // hooks
-import {useAuth, useTheme} from '../../hooks';
+import {useAuth, useTheme, useToast} from '../../hooks';
 
 // routes
 import {routes} from '../../routes';
@@ -49,6 +46,7 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
   const [borderColor, setBorderColor] = useState(
     props.borderColor ?? theme.COLORS.TAG.DEFAULT_BORDER,
   );
+  const {showToast} = useToast();
   const styles = getStyles(theme);
 
   const handleOnSave = () => {
@@ -65,14 +63,14 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
         .doc(id)
         .update(tagDTO)
         .then(() => {
-          Toast.show({
+          showToast({
             type: 'success',
             text1: 'Tag updated',
           });
           props.navigation.goBack();
         })
         .catch(() => {
-          Toast.show({
+          showToast({
             type: 'error',
             text1: 'Error when updating the tag',
           });
@@ -82,14 +80,14 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
         .add(tagDTO)
         .then(dataSaved => {
           setId(dataSaved.id);
-          Toast.show({
+          showToast({
             type: 'success',
             text1: 'Tag created',
           });
           props.navigation.goBack();
         })
         .catch(() => {
-          Toast.show({
+          showToast({
             type: 'error',
             text1: 'Error when creating the tag',
           });
@@ -103,14 +101,14 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
       .doc(id)
       .delete()
       .then(() => {
-        Toast.show({
+        showToast({
           type: 'success',
           text1: 'Tag deleted',
         });
         props.navigation.goBack();
       })
       .catch(() => {
-        Toast.show({
+        showToast({
           type: 'error',
           text1: 'Error when deleting the word',
         });

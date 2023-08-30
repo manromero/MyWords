@@ -14,6 +14,11 @@ export type TTheme = {
       PRIMARY: string;
       SECONDARY: string;
     };
+    TOAST: {
+      BG: string;
+      SUCCESS_BORDER: string;
+      ERROR_BORDER: string;
+    };
     INPUT: {
       LABEL: string;
       COLOR: string;

@@ -1,6 +1,4 @@
 * Improve structure
-* Toast reduce show message timeout
-* Toast theme
 * Generate APK
 * Logo
 * Loading

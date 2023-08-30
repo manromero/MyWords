@@ -15,9 +15,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 // firestore
 import firestore from '@react-native-firebase/firestore';
 
-// toast
-import Toast from 'react-native-toast-message';
-
 // types
 import {TWord} from '../../types';
 
@@ -25,7 +22,7 @@ import {TWord} from '../../types';
 import {useNavigation} from '@react-navigation/native';
 
 // hooks
-import {useAuth, useData, useTheme} from '../../hooks';
+import {useAuth, useData, useTheme, useToast} from '../../hooks';
 
 type TWordEdition = TWord;
 
@@ -39,6 +36,7 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
   const [notes, setNotes] = useState(props.notes ?? '');
   const [showPreview, setShowPreview] = useState(false);
   const [tags, setTags] = useState<string[]>(props.tags ?? []);
+  const {showToast} = useToast();
 
   const {tags: alltags} = useData();
 
@@ -64,13 +62,13 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
         .doc(id)
         .update(wordDTO)
         .then(() =>
-          Toast.show({
+          showToast({
             type: 'success',
             text1: 'Word updated',
           }),
         )
         .catch(() => {
-          Toast.show({
+          showToast({
             type: 'error',
             text1: 'Error when updating the word',
           });
@@ -80,13 +78,13 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
         .add(wordDTO)
         .then(dataSaved => {
           setId(dataSaved.id);
-          Toast.show({
+          showToast({
             type: 'success',
             text1: 'Word created',
           });
         })
         .catch(() => {
-          Toast.show({
+          showToast({
             type: 'error',
             text1: 'Error when creating the word',
           });
@@ -100,14 +98,14 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
       .doc(id)
       .delete()
       .then(() => {
-        Toast.show({
+        showToast({
           type: 'success',
           text1: 'Word deleted',
         });
         navigation.goBack();
       })
       .catch(() => {
-        Toast.show({
+        showToast({
           type: 'error',
           text1: 'Error when deleting the word',
         });

@@ -16,14 +16,11 @@ import {TTag, TWord, TTheme} from '../../../types';
 // firestore
 import firestore from '@react-native-firebase/firestore';
 
-// toast
-import Toast from 'react-native-toast-message';
-
 // inner components
 import {TagsPreview} from '../../tag';
 
 // hooks
-import {useTheme} from '../../../hooks';
+import {useTheme, useToast} from '../../../hooks';
 
 Tts.setDefaultLanguage('en-gb');
 
@@ -36,6 +33,7 @@ export const WordPreviewContent = ({
   ...props
 }: TWordPreviewContent): JSX.Element => {
   const {theme} = useTheme();
+  const {showToast} = useToast();
   const styles = getStyles(theme);
 
   const handlePlaySound = () => {
@@ -51,7 +49,7 @@ export const WordPreviewContent = ({
       .doc(props.id)
       .update({learned: newLearnedValue})
       .then(() =>
-        Toast.show({
+        showToast({
           type: 'success',
           text1: newLearnedValue
             ? 'New word learned!'
@@ -59,7 +57,7 @@ export const WordPreviewContent = ({
         }),
       )
       .catch(() => {
-        Toast.show({
+        showToast({
           type: 'error',
           text1: 'Unexpected error',
         });

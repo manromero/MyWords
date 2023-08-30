@@ -1,19 +1,19 @@
 // react
-import {useState, useEffect, useContext} from 'react';
+import {useState, useEffect, useContext, useCallback} from 'react';
 
 // firestore
 import firestore, {
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore';
 
-// toast
-import Toast from 'react-native-toast-message';
-
 // types
 import {TWord} from '../types';
 
 // context
 import {AuthContext} from '../context';
+
+// hooks
+import {useToast} from './useToast';
 
 export type TUseWordsResponse = {
   data: TWord[];
@@ -26,6 +26,7 @@ export const useWords = (): TUseWordsResponse => {
   const [error, setError] = useState(false);
   const [data, setData] = useState<TWord[]>([]);
   const {user} = useContext(AuthContext);
+  const {showToast} = useToast();
 
   const handleOnSnapShotResults = (
     query: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
@@ -38,14 +39,14 @@ export const useWords = (): TUseWordsResponse => {
     setData(words);
   };
 
-  const handleOnSnapShotError = () => {
+  const handleOnSnapShotError = useCallback(() => {
     setLoading(false);
     setError(true);
-    Toast.show({
+    showToast({
       type: 'error',
       text1: 'Error when retrieving the words',
     });
-  };
+  }, [showToast]);
 
   useEffect(() => {
     if (!user) {
@@ -60,7 +61,7 @@ export const useWords = (): TUseWordsResponse => {
       .where('userId', '==', user.uid)
       .onSnapshot(handleOnSnapShotResults, handleOnSnapShotError);
     return () => subscriber();
-  }, [user]);
+  }, [user, handleOnSnapShotError]);
 
   return {data, error, loading};
 };

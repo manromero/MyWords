@@ -5,7 +5,7 @@ import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
 // hooks
-import {useAuth, useData, useTheme} from '../hooks';
+import {useAuth, useData, useTheme, useToast} from '../hooks';
 
 // inner components
 import {MWCard, MWRadioButton} from '../components';
@@ -16,13 +16,11 @@ import {TTheme, TThemeKey} from '../types';
 // firestore TODO MANROMERO debería ir por el hook
 import firestore from '@react-native-firebase/firestore';
 
-// toast
-import {Toast} from 'react-native-toast-message/lib/src/Toast';
-
 // TODO type
 export const Preferences = (): JSX.Element => {
   const {preferences} = useData();
   const {user} = useAuth();
+  const {showToast} = useToast();
 
   const {theme, themeKey} = useTheme();
 
@@ -35,13 +33,13 @@ export const Preferences = (): JSX.Element => {
         .doc(id)
         .update(preferencesDTO)
         .then(() => {
-          Toast.show({
+          showToast({
             type: 'success',
-            text1: 'Them updated',
+            text1: 'Theme updated',
           });
         })
         .catch(() => {
-          Toast.show({
+          showToast({
             type: 'error',
             text1: 'Error when updating the theme',
           });
@@ -50,13 +48,13 @@ export const Preferences = (): JSX.Element => {
       collection
         .add(preferencesDTO)
         .then(() => {
-          Toast.show({
+          showToast({
             type: 'success',
             text1: 'Preferences updated',
           });
         })
         .catch(() => {
-          Toast.show({
+          showToast({
             type: 'error',
             text1: 'Error when updating the preferences',
           });

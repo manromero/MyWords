@@ -11,10 +11,16 @@ const LightTheme = {
       PRIMARY: '#f2f4f3',
       SECONDARY: '#ffffff',
       MODAL: '#4343437f',
+      TOAST: '#ffffff',
     },
     TEXT: {
       PRIMARY: '#232323',
       SECONDARY: '#676767',
+    },
+    TOAST: {
+      BG: '#ffffff',
+      SUCCESS_BORDER: '#69C779',
+      ERROR_BORDER: '#FE6301',
     },
     INPUT: {
       LABEL: '#676767',
@@ -70,6 +76,11 @@ const DarkTheme = {
     TEXT: {
       PRIMARY: '#ffffff',
       SECONDARY: '#aeb0b4',
+    },
+    TOAST: {
+      BG: '#2f3032',
+      SUCCESS_BORDER: '#69C779',
+      ERROR_BORDER: '#FE6301',
     },
     INPUT: {
       LABEL: '#aeb0b4',
