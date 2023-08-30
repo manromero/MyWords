@@ -8,8 +8,7 @@ import {StyleSheet, View} from 'react-native';
 import {TagEditionForm} from '../components';
 
 // types
-import {TNavigatorSettingsStackParamList} from '../types';
-import {TTheme} from '../theme';
+import {TNavigatorSettingsStackParamList, TTheme} from '../types';
 
 // hooks
 import {useTheme} from '../hooks';

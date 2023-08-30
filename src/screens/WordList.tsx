@@ -11,14 +11,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-// Toast
-import {TNavigatorSettingsStackParamList, TWord} from '../types';
+// types
+import {TNavigatorSettingsStackParamList, TWord, TTheme} from '../types';
 
 // hooks
 import {useData, useTheme} from '../hooks';
-
-// types
-import {TTheme} from '../theme';
 
 // routes
 import {routes} from '../routes';

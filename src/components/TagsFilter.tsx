@@ -9,8 +9,7 @@ import {MWModal, MWPicker} from './commons';
 import {TagsPreview} from './tag/TagsPreview';
 
 // types
-import {TTag} from '../types';
-import {TTheme} from '../theme';
+import {TTag, TTheme} from '../types';
 
 // hooks
 import {useData, useTheme} from '../hooks';

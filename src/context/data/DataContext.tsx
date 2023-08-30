@@ -1,4 +1,7 @@
+// react
 import {createContext} from 'react';
+
+// types
 import {
   TUsePreferencesResponse,
   TUseTagsResponse,

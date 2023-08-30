@@ -1,6 +1,10 @@
+// react
 import React from 'react';
+
+// context
 import {DataContext} from './DataContext';
 
+// hooks
 import {usePreferences, useTags, useWords} from '../../hooks';
 
 type TDataProvider = {

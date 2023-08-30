@@ -5,8 +5,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 // types
-import {TTag} from '../../types';
-import {TTheme} from '../../theme';
+import {TTag, TTheme} from '../../types';
 
 // inner components
 import {Tag} from './Tag';

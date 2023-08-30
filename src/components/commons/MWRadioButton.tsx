@@ -8,7 +8,7 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {useTheme} from '../../hooks';
 
 // types
-import {TTheme} from '../../theme';
+import {TTheme} from '../../types';
 
 type TMWRadioButton = {
   label?: string;

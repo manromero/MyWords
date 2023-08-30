@@ -12,8 +12,7 @@ import {
 } from 'react-native';
 
 // types
-import {TNavigatorSettingsStackParamList, TTag} from '../types';
-import {TTheme} from '../theme';
+import {TNavigatorSettingsStackParamList, TTag, TTheme} from '../types';
 
 // hooks
 import {useData, useTheme} from '../hooks';

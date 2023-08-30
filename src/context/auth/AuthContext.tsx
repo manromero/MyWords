@@ -1,5 +1,8 @@
-import {FirebaseAuthTypes} from '@react-native-firebase/auth';
+// react
 import {createContext} from 'react';
+
+// firebase-auth
+import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 type ContextProps = {
   user: FirebaseAuthTypes.User | null;

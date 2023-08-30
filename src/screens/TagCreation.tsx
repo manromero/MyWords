@@ -11,8 +11,7 @@ import {TagEditionForm} from '../components';
 import {useTheme} from '../hooks';
 
 // types
-import {TTheme} from '../theme';
-import {TNavigatorSettingsStackParamList} from '../types';
+import {TNavigatorSettingsStackParamList, TTheme} from '../types';
 
 // routes
 import {routes} from '../routes';

@@ -27,7 +27,7 @@ import {MWModal} from './MWModal';
 import {useTheme} from '../../hooks';
 
 // types
-import {TTheme} from '../../theme';
+import {TTheme} from '../../types';
 
 type TMWColorPicker = {
   label?: string;

@@ -17,7 +17,7 @@ import {
 import {useTheme} from '../hooks';
 
 // types
-import {TTheme} from '../theme';
+import {TTheme} from '../types';
 
 GoogleSignin.configure({
   webClientId:

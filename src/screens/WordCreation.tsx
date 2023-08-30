@@ -11,7 +11,7 @@ import {WordEditionForm} from '../components';
 import {useTheme} from '../hooks';
 
 // types
-import {TTheme} from '../theme';
+import {TTheme} from '../types';
 
 export const WordCreation = (): JSX.Element => {
   const {theme} = useTheme();

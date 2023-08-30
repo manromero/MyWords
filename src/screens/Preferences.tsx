@@ -4,14 +4,14 @@ import React from 'react';
 // react-native
 import {StyleSheet, View, Text} from 'react-native';
 
-// toast
+// hooks
 import {useAuth, useData, useTheme} from '../hooks';
 
 // inner components
 import {MWCard, MWRadioButton} from '../components';
 
 // types
-import {TTheme, TThemeKey} from '../theme';
+import {TTheme, TThemeKey} from '../types';
 
 // firestore TODO MANROMERO debería ir por el hook
 import firestore from '@react-native-firebase/firestore';

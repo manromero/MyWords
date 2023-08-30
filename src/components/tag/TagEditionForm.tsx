@@ -17,8 +17,7 @@ import firestore from '@react-native-firebase/firestore';
 import Toast from 'react-native-toast-message';
 
 // types
-import {TNavigatorSettingsStackParamList, TTag} from '../../types';
-import {TTheme} from '../../theme';
+import {TNavigatorSettingsStackParamList, TTag, TTheme} from '../../types';
 
 // react-navigation
 import {StackNavigationProp} from '@react-navigation/stack';

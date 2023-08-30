@@ -1,5 +1,5 @@
 import {createContext} from 'react';
-import {TTheme, TThemeKey} from '../../theme';
+import {TTheme, TThemeKey} from '../../types';
 
 type ContextProps = {
   theme: TTheme;

@@ -11,8 +11,7 @@ import {TagsFilter, WordCarousel as WordCarouselComponent} from '../components';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // types
-import {TWord} from '../types';
-import {TTheme} from '../theme';
+import {TWord, TTheme} from '../types';
 
 // hooks
 import {useData, useTheme} from '../hooks';

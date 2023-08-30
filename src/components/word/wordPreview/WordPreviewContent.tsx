@@ -11,8 +11,7 @@ import Tts from 'react-native-tts';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // types
-import {TTag, TWord} from '../../../types';
-import {TTheme} from '../../../theme';
+import {TTag, TWord, TTheme} from '../../../types';
 
 // firestore
 import firestore from '@react-native-firebase/firestore';

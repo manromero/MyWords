@@ -8,7 +8,7 @@ import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {useTheme} from '../../hooks';
 
 // types
-import {TTheme} from '../../theme';
+import {TTheme} from '../../types';
 
 type TMWTextInput = {
   label?: string;

@@ -1,8 +1,20 @@
+// react
 import React, {useEffect, useState} from 'react';
+
+// context
 import {ThemeContext} from './ThemeContext';
-import {TThemeKey, themes} from '../../theme';
+
+// theme
+import {themes} from '../../theme';
+
+// react-native
 import {Appearance} from 'react-native';
+
+// hooks
 import {useData} from '../../hooks';
+
+// types
+import {TThemeKey} from '../../types';
 
 type TThemeProvider = {
   children: React.ReactNode;

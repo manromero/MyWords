@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useTheme} from '../../hooks';
 
 // types
-import {TTheme} from '../../theme';
+import {TTheme} from '../../types';
 
 type TMWModal = {
   open?: boolean;

@@ -17,9 +17,10 @@ import Toast from 'react-native-toast-message';
 import {useTheme} from '../hooks';
 
 // types
-import {TTheme} from '../theme';
+import {TNavigatorSettingsStackParamList, TTheme} from '../types';
+
+// routes
 import {routes, routesOptions} from '../routes';
-import {TNavigatorSettingsStackParamList} from '../types';
 
 // react-natigation
 import {StackNavigationProp} from '@react-navigation/stack';

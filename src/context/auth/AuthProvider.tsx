@@ -1,6 +1,10 @@
+// react
 import React, {useState, useEffect} from 'react';
+
+// context
 import {AuthContext} from './AuthContext';
 
+// firebase-auth
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 type TAuthProvider = {
