@@ -2,7 +2,6 @@
 * Generate APK
 * Logo
 * Loading
-* Clean Creation form when finished
 
 Debug apk: 
 

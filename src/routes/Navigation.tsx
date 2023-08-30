@@ -41,8 +41,11 @@ const SettingsStack = createStackNavigator<TNavigatorSettingsStackParamList>();
 
 const SettingStackScreen = () => {
   const {theme} = useTheme();
+
   return (
-    <SettingsStack.Navigator initialRouteName={routes.SCREEN_SETTINGS}>
+    <SettingsStack.Navigator
+      screenOptions={{animationEnabled: false}}
+      initialRouteName={routes.SCREEN_SETTINGS}>
       <SettingsStack.Screen
         name={routes.SCREEN_SETTINGS}
         component={Settings}

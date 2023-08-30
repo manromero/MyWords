@@ -33,12 +33,20 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
   const {theme} = useTheme();
 
   const {user} = useAuth();
-  const [id, setId] = useState(props.id);
+  const [id, _setId] = useState(props.id);
   const [word, setWord] = useState(props.word ?? '');
   const [translation, setTranslation] = useState(props.translation ?? '');
   const [notes, setNotes] = useState(props.notes ?? '');
   const [showPreview, setShowPreview] = useState(false);
   const [tags, setTags] = useState<string[]>(props.tags ?? []);
+
+  const initialiceState = () => {
+    setWord('');
+    setTranslation('');
+    setNotes('');
+    setShowPreview(false);
+    setTags([]);
+  };
 
   const {tags: alltags} = useData();
 
@@ -78,12 +86,13 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
     } else {
       collection
         .add(wordDTO)
-        .then(dataSaved => {
-          setId(dataSaved.id);
+        .then(() => {
           showToast({
             type: 'success',
             text1: 'Word created',
           });
+          // Clean data to allow create more
+          initialiceState();
         })
         .catch(() => {
           showToast({

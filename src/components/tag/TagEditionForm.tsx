@@ -38,7 +38,7 @@ type TTagEditionForm = TTag & {
 export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
   const {user} = useAuth();
   const {theme} = useTheme();
-  const [id, setId] = useState(props.id);
+  const [id, _setId] = useState(props.id);
   const [label, setLabel] = useState(props.label);
   const [labelColor, setLabelColor] = useState(
     props.labelColor ?? theme.COLORS.TAG.DEFAULT_LABEL,
@@ -49,6 +49,14 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
   const [borderColor, setBorderColor] = useState(
     props.borderColor ?? theme.COLORS.TAG.DEFAULT_BORDER,
   );
+
+  const initialiceState = () => {
+    setLabel(undefined);
+    setLabelColor(theme.COLORS.TAG.DEFAULT_LABEL);
+    setBackgroundColor(theme.COLORS.TAG.DEFAULT_BG);
+    setBorderColor(theme.COLORS.TAG.DEFAULT_BORDER);
+  };
+
   const styles = getStyles(theme);
 
   const handleOnSave = () => {
@@ -69,7 +77,6 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
             type: 'success',
             text1: 'Tag updated',
           });
-          props.navigation.goBack();
         })
         .catch(() => {
           showToast({
@@ -80,13 +87,13 @@ export const TagEditionForm = (props: TTagEditionForm): JSX.Element => {
     } else {
       collection
         .add(tagDTO)
-        .then(dataSaved => {
-          setId(dataSaved.id);
+        .then(() => {
           showToast({
             type: 'success',
             text1: 'Tag created',
           });
-          props.navigation.goBack();
+          // Clean data to allow create more
+          initialiceState();
         })
         .catch(() => {
           showToast({
