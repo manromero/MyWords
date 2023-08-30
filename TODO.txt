@@ -1,7 +1,10 @@
-* Improve structure
-* Generate APK
 * Logo
 * Loading
+* take care of overflow when to much notes
+* make icon click surface bigger.
+* update modal action-bottom-sheet
+* use hooks when call to firestore
+* use hook auth instead of firebase auth service
 
 Debug apk: 
 
