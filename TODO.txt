@@ -1,4 +1,3 @@
-* Logo
 * Loading
 * Mensaje de no words cuando no haya
 * take care of overflow when to much notes
