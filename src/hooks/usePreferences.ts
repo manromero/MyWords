@@ -1,5 +1,5 @@
 // react
-import {useState, useEffect, useContext} from 'react';
+import {useState, useEffect, useContext, useCallback} from 'react';
 
 // firestore
 import firestore, {
@@ -19,6 +19,7 @@ export type TUsePreferencesResponse = {
   data: TPreferences;
   loading: boolean;
   error: boolean;
+  loadUserPreferences: (userId: string) => void;
 };
 
 const DEFAULT_PREFERENCES: TPreferences = {
@@ -67,5 +68,17 @@ export const usePreferences = (): TUsePreferencesResponse => {
     return () => subscriber();
   }, [user]);
 
-  return {data, error, loading};
+  const loadUserPreferences = useCallback(async (userId: string) => {
+    try {
+      const preferences = await firestore()
+        .collection('preferences')
+        .where('userId', '==', userId)
+        .get();
+      handleOnSnapShotResults(preferences);
+    } catch (e) {
+      // Do nothing, error will be propagated on the subscription
+    }
+  }, []);
+
+  return {data, error, loading, loadUserPreferences};
 };

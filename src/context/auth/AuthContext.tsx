@@ -5,6 +5,7 @@ import {createContext} from 'react';
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 type ContextProps = {
+  initialized: boolean;
   user: FirebaseAuthTypes.User | null;
   signOut: () => void;
 };

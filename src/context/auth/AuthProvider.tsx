@@ -12,11 +12,13 @@ type TAuthProvider = {
 };
 
 export const AuthProvider = ({children}: TAuthProvider): JSX.Element => {
+  const [initialized, setInitialized] = useState(false);
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
 
   // Handle user state changes
   const onAuthStateChanged = (_user: FirebaseAuthTypes.User | null) => {
     setUser(_user);
+    setInitialized(true);
   };
 
   const handleSignOut = () => {
@@ -31,7 +33,7 @@ export const AuthProvider = ({children}: TAuthProvider): JSX.Element => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{user, signOut: handleSignOut}}>
+    <AuthContext.Provider value={{user, initialized, signOut: handleSignOut}}>
       {children}
     </AuthContext.Provider>
   );
