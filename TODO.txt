@@ -1,3 +1,5 @@
+# Improvements
+
 * make icon click surface bigger.
 * use hooks when call to firestore
 
