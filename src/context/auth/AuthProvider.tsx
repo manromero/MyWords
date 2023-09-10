@@ -7,6 +7,9 @@ import {AuthContext} from './AuthContext';
 // firebase-auth
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
+// utils
+import {showToast} from '../../utils';
+
 type TAuthProvider = {
   children: React.ReactNode;
 };
@@ -24,7 +27,18 @@ export const AuthProvider = ({children}: TAuthProvider): JSX.Element => {
   const handleSignOut = () => {
     auth()
       .signOut()
-      .then(() => console.log('User signed out!'));
+      .then(() =>
+        showToast({
+          type: 'success',
+          text1: 'Log out successfully',
+        }),
+      )
+      .catch(() =>
+        showToast({
+          type: 'error',
+          text1: 'Unexpected error loging out',
+        }),
+      );
   };
 
   useEffect(() => {

@@ -1,6 +1,5 @@
 * make icon click surface bigger.
 * use hooks when call to firestore
-* use hook auth instead of firebase auth service
 
 ## Next Features
 * update modal action-bottom-sheet

@@ -7,11 +7,8 @@ import {StyleSheet, View, FlatList, Text, TouchableOpacity} from 'react-native';
 // icons
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-// firebase auth TODO MANROMERO, debería ir por el useAuth?
-import auth from '@react-native-firebase/auth';
-
 // hooks
-import {useTheme} from '../hooks';
+import {useAuth, useTheme} from '../hooks';
 
 // types
 import {TNavigatorSettingsStackParamList, TTheme} from '../types';
@@ -21,9 +18,6 @@ import {routes, routesOptions} from '../routes';
 
 // react-natigation
 import {StackNavigationProp} from '@react-navigation/stack';
-
-// utils
-import {showToast} from '../utils';
 
 type TNavigation = StackNavigationProp<
   TNavigatorSettingsStackParamList,
@@ -45,52 +39,39 @@ type TOption = {
   onPress?: () => void;
 };
 
-const listOptions: TOption[] = [
-  {
-    title: routesOptions.SCREEN_WORD_LIST.title,
-    icon: 'format-list-bulleted',
-    route: routes.SCREEN_WORD_LIST,
-  },
-  {
-    title: routesOptions.SCREEN_TAG_LIST.title,
-    icon: 'bookmarks',
-    route: routes.SCREEN_TAG_LIST,
-  },
-  {
-    title: routesOptions.SCREEN_TAG_CREATION.title,
-    icon: 'bookmark-add',
-    route: routes.SCREEN_TAG_CREATION,
-  },
-  {
-    title: routesOptions.SCREEN_PREFERENCES.title,
-    icon: 'bookmark-add',
-    route: routes.SCREEN_PREFERENCES,
-  },
-  {
-    title: 'Log Out',
-    icon: 'logout',
-    onPress: () => {
-      auth()
-        .signOut()
-        .then(() =>
-          showToast({
-            type: 'success',
-            text1: 'Log out successfully',
-          }),
-        )
-        .catch(() =>
-          showToast({
-            type: 'error',
-            text1: 'Unexpected error loging out',
-          }),
-        );
-    },
-  },
-];
-
 export const Settings = ({navigation}: TSettings): JSX.Element => {
+  const {signOut} = useAuth();
+
   const {theme} = useTheme();
   const styles = getStyles(theme);
+
+  const listOptions: TOption[] = [
+    {
+      title: routesOptions.SCREEN_WORD_LIST.title,
+      icon: 'format-list-bulleted',
+      route: routes.SCREEN_WORD_LIST,
+    },
+    {
+      title: routesOptions.SCREEN_TAG_LIST.title,
+      icon: 'bookmarks',
+      route: routes.SCREEN_TAG_LIST,
+    },
+    {
+      title: routesOptions.SCREEN_TAG_CREATION.title,
+      icon: 'bookmark-add',
+      route: routes.SCREEN_TAG_CREATION,
+    },
+    {
+      title: routesOptions.SCREEN_PREFERENCES.title,
+      icon: 'bookmark-add',
+      route: routes.SCREEN_PREFERENCES,
+    },
+    {
+      title: 'Log Out',
+      icon: 'logout',
+      onPress: signOut,
+    },
+  ];
 
   return (
     <View style={styles.root}>
