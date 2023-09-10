@@ -8,8 +8,7 @@ import {StyleSheet, View} from 'react-native';
 import {WordEditionForm} from '../components';
 
 // types
-import {TNavigatorSettingsStackParamList, TWord} from '../types';
-import {TTheme} from '../theme';
+import {TNavigatorSettingsStackParamList, TTheme, TWord} from '../types';
 
 // hooks
 import {useTheme} from '../hooks';
