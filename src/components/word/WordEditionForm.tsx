@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 
 // react-native
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
 
 // inner components
 import {MWCard, MWPicker, MWTextInput} from '../commons';
@@ -16,13 +16,13 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import firestore from '@react-native-firebase/firestore';
 
 // types
-import {TWord} from '../../types';
+import {TTheme, TWord} from '../../types';
 
 // react-navigation
 import {useNavigation} from '@react-navigation/native';
 
 // hooks
-import {useAuth, useData, useTheme} from '../../hooks';
+import {useAuth, useData, useTheme, useTranslation} from '../../hooks';
 
 // utils
 import {showToast} from '../../utils';
@@ -30,15 +30,18 @@ import {showToast} from '../../utils';
 type TWordEdition = TWord;
 
 export const WordEditionForm = (props: TWordEdition): JSX.Element => {
-  const {theme} = useTheme();
-
   const {user} = useAuth();
+  const {translate} = useTranslation();
+  const {tags: alltags} = useData();
+
   const [id, _setId] = useState(props.id);
   const [word, setWord] = useState(props.word ?? '');
   const [translation, setTranslation] = useState(props.translation ?? '');
   const [notes, setNotes] = useState(props.notes ?? '');
   const [showPreview, setShowPreview] = useState(false);
   const [tags, setTags] = useState<string[]>(props.tags ?? []);
+
+  const {theme} = useTheme();
 
   const initialiceState = () => {
     setWord('');
@@ -47,8 +50,6 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
     setShowPreview(false);
     setTags([]);
   };
-
-  const {tags: alltags} = useData();
 
   const handleOnTagPress = (value: string) => {
     if (tags.includes(value)) {
@@ -143,12 +144,35 @@ export const WordEditionForm = (props: TWordEdition): JSX.Element => {
             value={word}
             onChangeText={text => setWord(text)}
           />
-          <MWTextInput
-            label="Translation:"
-            placeholder="Insert here translation"
-            value={translation}
-            onChangeText={text => setTranslation(text)}
-          />
+          <View style={styles.translationWrapper}>
+            <View style={styles.translationInputWrapper}>
+              <MWTextInput
+                label="Translation:"
+                placeholder="Insert here translation"
+                value={translation}
+                onChangeText={text => setTranslation(text)}
+              />
+            </View>
+            <TouchableOpacity
+              style={styles.translationIconWrapper}
+              onPress={async () => {
+                const generatedTranslation = await translate(word);
+                if (generatedTranslation) {
+                  setTranslation(generatedTranslation);
+                }
+              }}
+              disabled={disabled}>
+              <Icon
+                name={'auto-fix-high'}
+                size={30}
+                color={
+                  disabled
+                    ? theme.COLORS.STATUS.DISABLED
+                    : theme.COLORS.STATUS.ACTIVE
+                }
+              />
+            </TouchableOpacity>
+          </View>
           <MWTextInput
             label="Notes:"
             placeholder="Insert here notes in markdown format"
@@ -228,5 +252,16 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     gap: 10,
+  },
+  translationWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  translationInputWrapper: {
+    flex: 1,
+  },
+  translationIconWrapper: {
+    padding: 10,
   },
 });
