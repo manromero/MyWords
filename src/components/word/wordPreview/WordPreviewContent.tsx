@@ -69,7 +69,6 @@ export const WordPreviewContent = ({
   return (
     <>
       <View style={styles.wordAndPlaySoundWrapper}>
-        <Text style={styles.word}>{props.word}</Text>
         <Icon
           name="volume-up"
           aria-label="Play sound"
@@ -77,6 +76,20 @@ export const WordPreviewContent = ({
           color={theme.COLORS.STATUS.ACTIVE}
           onPress={handlePlaySound}
         />
+        <Text style={styles.word}>{props.word}</Text>
+        {showLearnedIcon && props.id && (
+          <Icon
+            name="task-alt"
+            aria-label={props.learned ? 'Mark as unlearned' : 'Mark as learned'}
+            size={30}
+            color={
+              props.learned
+                ? theme.COLORS.STATUS.ACTIVE
+                : theme.COLORS.STATUS.DISABLED
+            }
+            onPress={handleOnPressLearnedIcon}
+          />
+        )}
       </View>
 
       {props.translation && (
@@ -91,21 +104,7 @@ export const WordPreviewContent = ({
           <Text style={styles.notes}>{props.notes}</Text>
         </View>
       )}
-      {showLearnedIcon && props.id && (
-        <View style={styles.learnedIconWrapper}>
-          <Icon
-            name="task-alt"
-            aria-label={props.learned ? 'Mark as unlearned' : 'Mark as learned'}
-            size={30}
-            color={
-              props.learned
-                ? theme.COLORS.STATUS.ACTIVE
-                : theme.COLORS.STATUS.DISABLED
-            }
-            onPress={handleOnPressLearnedIcon}
-          />
-        </View>
-      )}
+
       {props.tags && props.tags.length > 0 && <TagsPreview tags={props.tags} />}
     </>
   );
@@ -118,6 +117,7 @@ const getStyles = (theme: TTheme) =>
       justifyContent: 'space-between',
       flexDirection: 'row',
       alignItems: 'center',
+      gap: 5,
     },
     word: {
       flex: 1,
@@ -141,5 +141,4 @@ const getStyles = (theme: TTheme) =>
       fontWeight: '600',
       color: theme.COLORS.TEXT.PRIMARY,
     },
-    learnedIconWrapper: {display: 'flex', flexDirection: 'row-reverse'},
   });

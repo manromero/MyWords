@@ -1,10 +1,11 @@
-* take care of overflow when to much notes
 * make icon click surface bigger.
-* update modal action-bottom-sheet
 * use hooks when call to firestore
 * use hook auth instead of firebase auth service
 
-Debug apk: 
+## Next Features
+* update modal action-bottom-sheet
+
+## Generate Debug apk: 
 
 npx react-native build-android --mode=release
 cd android

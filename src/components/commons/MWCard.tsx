@@ -9,13 +9,20 @@ import {useTheme} from '../../hooks';
 
 // types
 import {TTheme} from '../../types';
+import {ScrollView} from 'react-native-gesture-handler';
 
 export const MWCard = ({
   children,
 }: React.PropsWithChildren<{}>): JSX.Element => {
   const {theme} = useTheme();
   const styles = getStyles(theme);
-  return <View style={styles.root}>{children}</View>;
+  return (
+    <View style={styles.root}>
+      <ScrollView contentContainerStyle={styles.scrollViewContentContainer}>
+        {children}
+      </ScrollView>
+    </View>
+  );
 };
 
 const getStyles = (theme: TTheme) =>
@@ -24,10 +31,12 @@ const getStyles = (theme: TTheme) =>
       backgroundColor: theme.COLORS.BG.SECONDARY,
       margin: 20,
       borderRadius: 30,
-      padding: 30,
+      elevation: 1,
+    },
+    scrollViewContentContainer: {
       display: 'flex',
       flexDirection: 'column',
       gap: 20,
-      elevation: 1,
+      padding: 30,
     },
   });
