@@ -19,6 +19,7 @@ const LightTheme = {
     },
     TOAST: {
       BG: '#ffffff',
+      INFO_BORDER: '#297cda',
       SUCCESS_BORDER: '#69C779',
       ERROR_BORDER: '#FE6301',
     },
@@ -79,6 +80,7 @@ const DarkTheme = {
     },
     TOAST: {
       BG: '#2f3032',
+      INFO_BORDER: '#297cda',
       SUCCESS_BORDER: '#69C779',
       ERROR_BORDER: '#FE6301',
     },

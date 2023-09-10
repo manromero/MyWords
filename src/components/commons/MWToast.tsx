@@ -11,6 +11,14 @@ export const MWToast = () => {
   const {theme} = useTheme();
   const styles = getStyles(theme);
   const config = {
+    info: (props: any) => (
+      <BaseToast
+        {...props}
+        style={styles.info}
+        text1Style={styles.text1}
+        text2Style={styles.text2}
+      />
+    ),
     success: (props: any) => (
       <BaseToast
         {...props}
@@ -32,11 +40,18 @@ export const MWToast = () => {
 };
 
 const getStyles = (theme: TTheme) => ({
+  info: {
+    borderLeftColor: theme.COLORS.TOAST.INFO_BORDER,
+    backgroundColor: theme.COLORS.TOAST.BG,
+  },
   success: {
     borderLeftColor: theme.COLORS.TOAST.SUCCESS_BORDER,
     backgroundColor: theme.COLORS.TOAST.BG,
   },
-  error: {borderLeftColor: theme.COLORS.TOAST.ERROR_BORDER},
+  error: {
+    borderLeftColor: theme.COLORS.TOAST.ERROR_BORDER,
+    backgroundColor: theme.COLORS.TOAST.BG,
+  },
   text1: {color: theme.COLORS.TEXT.PRIMARY},
   text2: {
     color: theme.COLORS.TEXT.PRIMARY,

@@ -16,6 +16,7 @@ export type TTheme = {
     };
     TOAST: {
       BG: string;
+      INFO_BORDER: string;
       SUCCESS_BORDER: string;
       ERROR_BORDER: string;
     };
