@@ -49,7 +49,7 @@ export const usePreferences = (): TUsePreferencesResponse => {
     setError(true);
     showToast({
       type: 'error',
-      text1: 'Error when retrieving the words',
+      text1: 'Error when retrieving the preferences',
     });
   };
 
